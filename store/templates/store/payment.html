@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<script>
+console.log("KEY:", "{{ razorpay_key }}");
+
+var options = {
+    "key": "{{ razorpay_key }}",
+    "amount": parseInt ("{{ amount }}"),
+    "currency": "INR",
+    "name": "My Store",
+    "description": "Purchase",
+    "order_id": "{{ order_id }}",
+
+    "method": {
+    "card": true,
+    "upi": true,
+    "netbanking": true,
+    "wallet": true
+    },
+    
+
+    "handler": function (response){
+
+        console.log("Payment success triggered", response);
+        console.log("FULL RESPONSE:", response);
+        console.log("PAYMENT_ID:", response.razorpay_payment_id);
+        console.log("ORDER_ID:", response.razorpay_order_id);
+        console.log("SIGNATURE:", response.razorpay_signature);
+
+        fetch("/payment-success-api/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify(response)
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.status === "success") {
+                window.location.href = "/payment-success/?order_id=" + response.razorpay_order_id;
+            } else {
+                alert("Payment verification failed");
+            }
+        })
+        .catch(err => {
+            console.log("Error:", err);
+            alert("Something went wrong");
+        });
+    },
+
+    "modal": {
+        "ondismiss": function(){
+            window.location.href = "/";
+        }
+    }
+};
+
+var rzp = new Razorpay(options);
+rzp.open();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+<div class="row">
+
+    <!-- LEFT: THUMBNAILS -->
+    <div class="col-md-2">
+
+        {% if product.images.all.exists %}
+            {% for img in product.images.all %}
+                <img src="{{ img.image.url }}"
+                     class="img-thumbnail mb-2"
+                     style="cursor:pointer; height:70px; object-fit:cover;"
+                     onclick="changeImage('{{ img.image.url }}')">
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
+    <!-- CENTER: MAIN IMAGE -->
+    <div class="col-md-5">
+
+        <div class="img-zoom-container">
+
+            {% if product.image %}
+                <img id="mainImage"
+                     src="{{ product.image.url }}"
+                     class="img-fluid border"
+                     style="width:100%; max-height:400px; object-fit:cover;">
+            {% else %}
+                <img id="mainImage"
+                     src="https://via.placeholder.com/400"
+                     class="img-fluid">
+            {% endif %}
+
+            <div id="lens"></div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT: PRODUCT DETAILS -->
+    <div class="col-md-5">
+
+        <h3 class="fw-bold">{{ product.name }}</h3>
+
+        <h4 class="text-success mt-3">₹ {{ product.price }}</h4>
+
+        <hr>
+
+        <p>{{ product.description }}</p>
+
+        <!-- QUANTITY SELECTOR -->
+        <div class="d-flex align-items-center mb-3">
+
+            <label class="me-3 fw-bold">Quantity:</label>
+
+            <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty()">-</button>
+
+            <input type="text" id="quantity" value="1"
+                   class="form-control text-center mx-2"
+                   style="width:60px;">
+
+            <button type="button" class="btn btn-outline-secondary" onclick="increaseQty()">+</button>
+
+        </div>
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+
+            <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
+
+            <button class="btn btn-primary w-100 mb-2">
+                Add to Cart
+            </button>
+        </form>
+        {% else %}
+        <a href="{% url 'store:login' %}?next={{ request.path }}"
+           class="btn btn-warning w-100 mb-2">
+            Login to Buy
+        </a>
+        {% endif %}
+
+        
+        <a href="{% url 'store:buy_now' product.id %}" class="btn btn-danger w-100">
+               Buy Now
+        </a>
+        
+
+    </div>
+
+    <!-- ZOOM RESULT -->
+    <div class="col-md-12 mt-4">
+        <div id="zoomResult"></div>
+    </div>
+
+</div>
+</div>
+
+<!-- JS -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const img = document.getElementById("mainImage");
+    const lens = document.getElementById("lens");
+    const result = document.getElementById("zoomResult");
+
+    if (!img) return;
+
+    const zoom = 2;
+
+    function getCursorPos(e) {
+        const rect = img.getBoundingClientRect();
+
+        return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+    }
+
+    function moveLens(e) {
+
+        const pos = getCursorPos(e);
+
+        let x = pos.x;
+        let y = pos.y;
+
+        const lensWidth = lens.offsetWidth / 2;
+        const lensHeight = lens.offsetHeight / 2;
+
+        // Boundaries (REAL FIX)
+        x = Math.max(lensWidth, Math.min(x, img.offsetWidth - lensWidth));
+        y = Math.max(lensHeight, Math.min(y, img.offsetHeight - lensHeight));
+
+        lens.style.left = (x - lensWidth) + "px";
+        lens.style.top = (y - lensHeight) + "px";
+
+        result.style.backgroundImage = `url('${img.src}')`;
+        result.style.backgroundSize =
+            (img.offsetWidth * zoom) + "px " +
+            (img.offsetHeight * zoom) + "px";
+
+        result.style.backgroundPosition =
+            "-" + (x * zoom - result.offsetWidth / 2) + "px " +
+            "-" + (y * zoom - result.offsetHeight / 2) + "px";
+    }
+
+    function showLens() {
+        lens.style.display = "block";
+        result.style.display = "block";
+    }
+
+    function hideLens() {
+        lens.style.display = "none";
+        result.style.display = "none";
+
+        // ✅ CLEAR ZOOM EFFECT
+    result.style.backgroundImage = "none";
+    }
+
+    img.addEventListener("mouseenter", showLens);
+    img.addEventListener("mousemove", moveLens);
+    img.addEventListener("mouseleave", hideLens);
+
+});
+
+/* Change image */
+function changeImage(src) {
+    document.getElementById("mainImage").src = src;
+}
+
+/* Quantity */
+function increaseQty() {
+    let qty = document.getElementById("quantity");
+    let hiddenQty = document.getElementById("hiddenQuantity");
+
+    qty.value = parseInt(qty.value) + 1;
+    hiddenQty.value = qty.value;
+}
+
+function decreaseQty() {
+    let qty = document.getElementById("quantity");
+    let hiddenQty = document.getElementById("hiddenQuantity");
+
+    if (qty.value > 1) {
+        qty.value = parseInt(qty.value) - 1;
+        hiddenQty.value = qty.value;
+    }
+}
+</script>
+
+{% endblock %}

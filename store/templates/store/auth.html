@@ -1,0 +1,64 @@
+{% extends "store/auth_base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-4">
+
+                <!-- Logo -->
+                <div class="text-center mb-3">
+                    <img src="{% static 'store/images/logo.png' %}"
+                         alt="Logo"
+                         style="width:150px; border-radius: 10px;">
+                </div>
+
+                <h4 class="text-center fw-bold text-primary">
+                    Handmade Navratri Collection
+                </h4>
+
+                <p class="text-center text-muted small">
+                    Crafted with love for festive vibes ✨
+                </p>
+
+                <!-- LOGIN FORM -->
+                <form method="post" action="{% url 'store:login' %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label>Username</label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Login
+                    </button>
+                </form>
+
+                <!-- CREATE ACCOUNT BUTTON -->
+                <div class="text-center mt-3">
+                    <small>
+                        Don’t have an account?
+                        <a href="{% url 'store:signup' %}" class="fw-bold text-success">
+                            Create Account
+                        </a>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

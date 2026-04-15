@@ -1,0 +1,79 @@
+{% extends "store/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- CATEGORY SECTION 
+
+<h4 class="mb-3">Categories</h4>
+
+<div class="row mb-4">
+
+{% for parent in parent_categories %}
+
+<div class="col-md-3 col-sm-6 mb-3">
+
+<div class="card text-center shadow-sm p-2">
+
+<h6>{{ parent.name }}</h6>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<hr> -->
+
+<!-- PRODUCT SECTION -->
+
+<div class="container mt-4">
+
+<h4 class="mb-3">Products</h4>
+
+<div class="row g-4">
+
+{% for product in products %}
+
+<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+
+    <a href="{% url 'product_detail' product.id %}" style="text-decoration:none; color:black;">
+
+        <div class="card h-100 shadow-sm">
+
+            <!-- ✅ PRODUCT IMAGE -->
+            {% if product.image %}
+                <img src="{{ product.image.url }}" 
+                    class="product-img">
+            {% else %}
+                <img src="https://via.placeholder.com/200"
+                    class="card-img-top">
+            {% endif %}
+
+
+
+            <div class="card-body text-center">
+
+                <h5>{{ product.name }}</h5>
+
+                <p class="text-success fw-bold">
+                    ₹ {{ product.price }}
+                </p>
+
+            </div>
+
+        </div>
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<div class="container mt-4">
+
+<div class="row g-4">
+
+{% for product in products %}
+
+<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+
+    <div class="card h-100 shadow-sm">
+
+        <!-- ✅ PRODUCT IMAGE -->
+        {% if product.image %}
+            <img src="{{ product.image.url }}" 
+                 class="card-img-top">
+        {% else %}
+            <img src="https://via.placeholder.com/200"
+                 class="card-img-top">
+        {% endif %}
+
+        <div class="card-body text-center">
+
+            <h5>{{ product.name }}</h5>
+
+            <p class="text-success fw-bold">
+                ₹ {{ product.price }}
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
