@@ -277,21 +277,36 @@ searchInput.addEventListener("keyup", function () {
         suggestionBox.innerHTML = "";
 
         if (data.length === 0) {
-            suggestionBox.innerHTML =
-            `<div class="list-group-item text-danger">
+
+            suggestionBox.innerHTML = `
+            <div class="list-group-item text-danger">
                 No products found
-             </div>`;
+            </div>`;
+
         } else {
 
             data.forEach(item => {
+
+                let image = item.image
+                    ? item.image
+                    : "https://via.placeholder.com/50";
+
                 suggestionBox.innerHTML += `
-                    <a href="/product/${item.id}/"
-                       class="list-group-item list-group-item-action">
-                       ${item.name}
-                    </a>
+
+                <a href="/product/${item.id}/"
+                   class="list-group-item list-group-item-action d-flex align-items-center gap-3">
+
+                    <img src="${image}"
+                         style="width:50px;height:50px;object-fit:cover;border-radius:6px;">
+
+                    <div>
+                        <div class="fw-semibold">${item.name}</div>
+                        <small class="text-success">₹ ${item.price}</small>
+                    </div>
+
+                </a>
                 `;
             });
-
         }
 
         suggestionBox.style.display = "block";

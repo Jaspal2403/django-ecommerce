@@ -885,6 +885,9 @@ def buy_now(request, product_id):
 def search_suggestions(request):
     query = request.GET.get("q", "").strip()
 
+    if not query:
+        return JsonResponse([], safe=False)
+
     products = Product.objects.filter(
         name__icontains=query
     )[:8]
@@ -892,9 +895,17 @@ def search_suggestions(request):
     data = []
 
     for product in products:
+
+        image_url = ""
+
+        if product.image:
+            image_url = product.image.url
+
         data.append({
             "id": product.id,
-            "name": product.name
+            "name": product.name,
+            "price": str(product.price),
+            "image": image_url
         })
 
     return JsonResponse(data, safe=False)
