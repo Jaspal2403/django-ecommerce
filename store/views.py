@@ -67,23 +67,54 @@ def home(request):
         #"subcategories": subcategories
     })
 
-def search_products(request):
+# def search_products(request):
 
-    query = request.GET.get("q")
-    category_id = request.GET.get("category")
+#     query = request.GET.get("q")
+#     category_id = request.GET.get("category")
+
+#     products = Product.objects.all()
+
+#     if query:
+#         products = products.filter(name__icontains=query)
+
+#     if category_id and category_id != "all":
+#         products = products.filter(category_id=category_id)
+
+#     return render(request, "store/product_list.html", {
+#         "products": products
+#     })
+
+from django.db.models import Q
+
+def search_products(request):
+    query = request.GET.get("q", "").strip()
+    category_id = request.GET.get("category", "all")
 
     products = Product.objects.all()
 
+    # Search text
     if query:
-        products = products.filter(name__icontains=query)
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__name__icontains=query)
+        )
 
-    if category_id and category_id != "all":
-        products = products.filter(category_id=category_id)
+    # Category filter
+    if category_id != "all":
+
+        # If selected category is parent, include children
+        child_categories = Category.objects.filter(parent_id=category_id)
+
+        if child_categories.exists():
+            products = products.filter(category__in=child_categories)
+        else:
+            products = products.filter(category_id=category_id)
 
     return render(request, "store/product_list.html", {
-        "products": products
+        "products": products,
+        "query": query,
     })
-
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 def product_detail(request, product_id):
