@@ -1,38 +1,92 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+
 <div class="container mt-4">
 
-<div class="row g-4">
+    <!-- Heading -->
+    {% if query %}
+        <h4 class="mb-4">
+            Search Results for:
+            <span class="text-primary">"{{ query }}"</span>
+        </h4>
+    {% else %}
+        <h4 class="mb-4">All Products</h4>
+    {% endif %}
 
-{% for product in products %}
+    <!-- Products Found -->
+    {% if products %}
 
-<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+    <div class="row g-4">
 
-    <div class="card h-100 shadow-sm">
+        {% for product in products %}
 
-        <!-- ✅ PRODUCT IMAGE -->
-        {% if product.image %}
-            <img src="{{ product.image.url }}" 
-                 class="card-img-top">
-        {% else %}
-            <img src="https://via.placeholder.com/200"
-                 class="card-img-top">
-        {% endif %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
-        <div class="card-body text-center">
+            <div class="card h-100 shadow-sm">
 
-            <h5>{{ product.name }}</h5>
+                <!-- Image -->
+                <a href="{% url 'product_detail' product.id %}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             class="card-img-top"
+                             style="height:220px; object-fit:cover;">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x220"
+                             class="card-img-top">
+                    {% endif %}
+                </a>
 
-            <p class="text-success fw-bold">
-                ₹ {{ product.price }}
-            </p>
+                <div class="card-body text-center">
+
+                    <h5>{{ product.name }}</h5>
+
+                    <p class="text-success fw-bold mb-2">
+                        ₹ {{ product.price }}
+                    </p>
+
+                    <a href="{% url 'product_detail' product.id %}"
+                       class="btn btn-dark btn-sm">
+                       View Product
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- No Results -->
+    <div class="text-center mt-5">
+
+        <h3 class="text-danger">No products found</h3>
+
+        <p>Try searching for:</p>
+
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+
+            <a href="/search/?q=shoes" class="btn btn-outline-primary btn-sm">Shoes</a>
+
+            <a href="/search/?q=watch" class="btn btn-outline-primary btn-sm">Watch</a>
+
+            <a href="/search/?q=mobile" class="btn btn-outline-primary btn-sm">Mobile</a>
+
+            <a href="/search/?q=shirt" class="btn btn-outline-primary btn-sm">Shirt</a>
 
         </div>
 
     </div>
 
-</div>
-
-{% endfor %}
+    {% endif %}
 
 </div>
 
-</div>
+{% endblock %}

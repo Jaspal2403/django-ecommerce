@@ -5,7 +5,7 @@ from .models import Product, Category, ParentCategory
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem, Order, OrderItem, Address, Payment
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, JsonResponse
 import razorpay
 from django.conf import settings
 from django.contrib import messages
@@ -86,13 +86,17 @@ def home(request):
 
 from django.db.models import Q
 
+from django.db.models import Q
+
 def search_products(request):
     query = request.GET.get("q", "").strip()
     category_id = request.GET.get("category", "all")
+    price_range = request.GET.get("price", "")
+    sort_by = request.GET.get("sort", "")
 
     products = Product.objects.all()
 
-    # Search text
+    # Search
     if query:
         products = products.filter(
             Q(name__icontains=query) |
@@ -100,21 +104,71 @@ def search_products(request):
             Q(category__name__icontains=query)
         )
 
-    # Category filter
+    # Category
     if category_id != "all":
+        products = products.filter(category_id=category_id)
 
-        # If selected category is parent, include children
-        child_categories = Category.objects.filter(parent_id=category_id)
+    # Price
+    if price_range == "under_500":
+        products = products.filter(price__lt=500)
 
-        if child_categories.exists():
-            products = products.filter(category__in=child_categories)
-        else:
-            products = products.filter(category_id=category_id)
+    elif price_range == "500_2000":
+        products = products.filter(price__gte=500, price__lte=2000)
+
+    elif price_range == "above_2000":
+        products = products.filter(price__gt=2000)
+
+    # Sort
+    if sort_by == "low":
+        products = products.order_by("price")
+
+    elif sort_by == "high":
+        products = products.order_by("-price")
+
+    elif sort_by == "new":
+        products = products.order_by("-id")
+
+    categories = Category.objects.filter(parent__isnull=False)
+
+    # Suggestions if no results
+    suggestions = Product.objects.all()[:6]
 
     return render(request, "store/product_list.html", {
         "products": products,
         "query": query,
+        "categories": categories,
+        "suggestions": suggestions,
     })
+
+# def search_products(request):
+#     query = request.GET.get("q", "").strip()
+#     category_id = request.GET.get("category", "all")
+
+#     products = Product.objects.all()
+
+#     # Search text
+#     if query:
+#         products = products.filter(
+#             Q(name__icontains=query) |
+#             Q(description__icontains=query) |
+#             Q(category__name__icontains=query)
+#         )
+
+#     # Category filter
+#     if category_id != "all":
+
+#         # If selected category is parent, include children
+#         child_categories = Category.objects.filter(parent_id=category_id)
+
+#         if child_categories.exists():
+#             products = products.filter(category__in=child_categories)
+#         else:
+#             products = products.filter(category_id=category_id)
+
+#     return render(request, "store/product_list.html", {
+#         "products": products,
+#         "query": query,
+#     })
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 def product_detail(request, product_id):
@@ -372,22 +426,22 @@ def home(request):
     })
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
-def search_products(request):
+# def search_products(request):
 
-    query = request.GET.get("q")
-    category_id = request.GET.get("category")
+#     query = request.GET.get("q")
+#     category_id = request.GET.get("category")
 
-    products = Product.objects.all()
+#     products = Product.objects.all()
 
-    if query:
-        products = products.filter(name__icontains=query)
+#     if query:
+#         products = products.filter(name__icontains=query)
 
-    if category_id and category_id != "all":
-        products = products.filter(category_id=category_id)
+#     if category_id and category_id != "all":
+#         products = products.filter(category_id=category_id)
 
-    return render(request, "store/product_list.html", {
-        "products": products
-    })
+#     return render(request, "store/product_list.html", {
+#         "products": products
+#     })
 
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
@@ -827,3 +881,20 @@ def buy_now(request, product_id):
 
     # ✅ Redirect to create_order
     return redirect('store:create_order')
+
+def search_suggestions(request):
+    query = request.GET.get("q", "").strip()
+
+    products = Product.objects.filter(
+        name__icontains=query
+    )[:8]
+
+    data = []
+
+    for product in products:
+        data.append({
+            "id": product.id,
+            "name": product.name
+        })
+
+    return JsonResponse(data, safe=False)

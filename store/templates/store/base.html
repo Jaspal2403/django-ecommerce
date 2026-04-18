@@ -26,43 +26,61 @@
     <div class="collapse navbar-collapse">
 
         <!-- SEARCH -->
-        <form class="mx-auto w-100" style="max-width:700px;" method="GET" action="{% url 'search_products' %}">
+        <form class="mx-auto w-100 position-relative"
+            style="max-width:850px;"
+            method="GET"
+            action="{% url 'search_products' %}">
 
-            <div class="search-container">
+        <div class="d-flex gap-2">
 
-                <!-- CATEGORY -->
-                <div class="custom-dropdown" id="categoryDropdown">
+            <!-- Category -->
+            <select name="category" class="form-select" style="max-width:180px;">
+                <option value="all">All Category</option>
 
-                    <div class="dropdown-selected" id="selectedCategory">All</div>
+                {% for parent in parent_categories %}
+                    <option value="{{ parent.id }}">{{ parent.name }}</option>
+                {% endfor %}
+            </select>
 
-                    <div class="dropdown-list" id="dropdownList">
+            <!-- Search -->
+            <div class="position-relative flex-grow-1">
 
-                        <div class="dropdown-item" data-value="all">All</div>
-                        
-                        {% for parent in parent_categories %}
-                        <div class="dropdown-item"
-                            data-value="{{ parent.id }}"
-                            title="{{ parent.name }}">
-                            {{ parent.name }}
-                        </div>
-                        {% empty %}
-                        <div class="dropdown-item text-danger">
-                            No categories found
-                        </div>
-                        {% endfor %}
+                <input
+                    type="text"
+                    class="form-control"
+                    name="q"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
 
-                    </div>
-
+                <!-- Autocomplete -->
+                <div id="suggestionBox"
+                    class="list-group position-absolute w-100 shadow"
+                    style="z-index:999; display:none;">
                 </div>
 
-                <input type="hidden" name="category" id="categoryInput" value="all">
-
-                <!-- SEARCH INPUT -->
-                <input type="text" class="search-input" name="q" placeholder="Search products..." required>
-
-                <!-- BUTTON -->
-                <button class="search-btn">🔍</button>
             </div>
+
+            <!-- Price -->
+            <select name="price" class="form-select" style="max-width:170px;">
+                <option value="">Price</option>
+                <option value="under_500">Under ₹500</option>
+                <option value="500_2000">₹500 - ₹2000</option>
+                <option value="above_2000">Above ₹2000</option>
+            </select>
+
+            <!-- Sort -->
+            <select name="sort" class="form-select" style="max-width:170px;">
+                <option value="">Sort</option>
+                <option value="low">Low to High</option>
+                <option value="high">High to Low</option>
+                <option value="new">Newest</option>
+            </select>
+
+            <button class="btn btn-warning">Search</button>
+
+        </div>
         </form>
 
         <!-- RIGHT -->
@@ -235,6 +253,57 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
 
     });
 });
+
+const searchInput = document.getElementById("searchInput");
+const suggestionBox = document.getElementById("suggestionBox");
+
+if (searchInput) {
+
+searchInput.addEventListener("keyup", function () {
+
+    let query = this.value.trim();
+
+    if (query.length < 2) {
+        suggestionBox.style.display = "none";
+        return;
+    }
+
+    fetch("/search-suggestions/?q=" + query)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        suggestionBox.innerHTML = "";
+
+        if (data.length === 0) {
+            suggestionBox.innerHTML =
+            `<div class="list-group-item text-danger">
+                No products found
+             </div>`;
+        } else {
+
+            data.forEach(item => {
+                suggestionBox.innerHTML += `
+                    <a href="/product/${item.id}/"
+                       class="list-group-item list-group-item-action">
+                       ${item.name}
+                    </a>
+                `;
+            });
+
+        }
+
+        suggestionBox.style.display = "block";
+    });
+
+});
+
+document.addEventListener("click", function () {
+    suggestionBox.style.display = "none";
+});
+
+}
 </script>
 
 </body>

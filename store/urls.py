@@ -8,6 +8,8 @@ app_name = 'store'
 urlpatterns = [
     path("ajax/load-subcategories/", views.load_subcategories, name="ajax_load_subcategories"),
     path("", views.home, name="home"),
+    path("search/", views.search_products, name="search_products"),
+    path("search-suggestions/", views.search_suggestions, name="search_suggestions"),
     path("product/<int:product_id>/", views.product_detail, name="product_detail"),
     path("category/<int:subcategory_id>/", views.subcategory_products, name="subcategory_products"),
 
@@ -23,6 +25,8 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
 
     path('cancel-order/<int:order_id>/', views.cancel_order, name='cancel_order'),
+
+    
 ]
 
 def robots_txt(request):
