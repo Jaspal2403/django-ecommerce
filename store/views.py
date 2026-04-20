@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from .forms import SignUpForm
-from .models import Product, Category, ParentCategory
+from .models import Product, Category, ParentCategory, Wishlist
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Cart, CartItem, Order, OrderItem, Address, Payment
@@ -56,15 +56,19 @@ def get_success_url(self):
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 #@login_required
 def home(request):
-    #parent_categories = ParentCategory.objects.all()
-    #parent_categories = Category.objects.filter(parent__isnull=True)
-    #subcategories = Category.objects.filter(parent__isnull=False)
+    #products = Product.objects.all()
     products = Product.objects.all()
 
+    wishlist_ids = []
+
+    if request.user.is_authenticated:
+        wishlist_ids = Wishlist.objects.filter(
+            user=request.user
+        ).values_list("product_id", flat=True)
+
     return render(request, "store/home.html", {
-        #"parent_categories": parent_categories,
-        "products": products
-        #"subcategories": subcategories
+        "products": products,
+        "wishlist_ids": wishlist_ids
     })
 
 # def search_products(request):
@@ -909,3 +913,48 @@ def search_suggestions(request):
         })
 
     return JsonResponse(data, safe=False)
+
+@login_required
+def toggle_wishlist(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
+
+    item = Wishlist.objects.filter(
+        user=request.user,
+        product=product
+    )
+
+    if item.exists():
+        item.delete()
+    else:
+        Wishlist.objects.create(
+            user=request.user,
+            product=product
+        )
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def toggle_wishlist_ajax(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
+
+    item = Wishlist.objects.filter(
+        user=request.user,
+        product=product
+    )
+
+    if item.exists():
+        item.delete()
+        status = "removed"
+    else:
+        Wishlist.objects.create(
+            user=request.user,
+            product=product
+        )
+        status = "added"
+
+    return JsonResponse({
+        "status": status
+    })

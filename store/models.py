@@ -208,6 +208,15 @@ class Payment(models.Model):
     def __str__(self):
         return f"Payment {self.id} | {self.status} | ₹{self.amount/100}"
    
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('user', 'product')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
 
 

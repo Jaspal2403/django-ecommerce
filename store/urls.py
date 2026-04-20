@@ -15,6 +15,8 @@ urlpatterns = [
 
     path("buy-now/<int:product_id>/", views.buy_now, name="buy_now"),
     path("create-order/", views.create_order, name="create_order"),
+    path("toggle-wishlist/<int:product_id>/", views.toggle_wishlist, name="toggle_wishlist"),
+    path("toggle-wishlist-ajax/<int:product_id>/", views.toggle_wishlist_ajax, name="toggle_wishlist_ajax"),
 
     path('payment-success-api/', views.payment_success, name='payment_success'),
     path('payment-success/', views.payment_success_page, name='payment_success_page'),
