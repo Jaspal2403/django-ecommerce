@@ -50,8 +50,8 @@ def get_success_url(self):
     return self.request.GET.get('next', '/')
 
 
-def get_parent_categories():
-    return ParentCategory.objects.all()
+# def get_parent_categories():
+#     return ParentCategory.objects.all()
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 #@login_required

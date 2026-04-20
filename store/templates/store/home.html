@@ -32,6 +32,55 @@
 
 <div class="container mt-4">
 
+<!-- FILTER BAR -->
+<form method="GET" action="{% url 'search_products' %}" class="mb-4">
+
+<div class="row g-2 align-items-center">
+
+    <!-- Category -->
+    <div class="col-md-3">
+        <select name="category" class="form-select">
+            <option value="all">All Categories</option>
+
+            {% for parent in parent_categories %}
+                <option value="{{ parent.id }}">
+                    {{ parent.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Price -->
+    <div class="col-md-3">
+        <select name="price" class="form-select">
+            <option value="">Price</option>
+            <option value="under_500">Under ₹500</option>
+            <option value="500_2000">₹500 - ₹2000</option>
+            <option value="above_2000">Above ₹2000</option>
+        </select>
+    </div>
+
+    <!-- Sort -->
+    <div class="col-md-3">
+        <select name="sort" class="form-select">
+            <option value="">Sort By</option>
+            <option value="low">Price Low to High</option>
+            <option value="high">Price High to Low</option>
+            <option value="new">Newest</option>
+        </select>
+    </div>
+
+    <!-- Button -->
+    <div class="col-md-3">
+        <button class="btn btn-dark w-100">
+            Apply Filters
+        </button>
+    </div>
+
+</div>
+
+</form>
+
 <h4 class="mb-3">Products</h4>
 
 <div class="row g-4">

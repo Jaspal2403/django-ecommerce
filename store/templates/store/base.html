@@ -25,69 +25,45 @@
 
     <div class="collapse navbar-collapse">
 
-        <!-- SEARCH -->
+        <!-- Global Search -->
         <form class="mx-auto w-100 position-relative"
-            style="max-width:850px;"
-            method="GET"
-            action="{% url 'search_products' %}">
+                style="max-width:650px;"
+                method="GET"
+                action="{% url 'search_products' %}">
 
-        <div class="d-flex gap-2">
+        <div class="input-group">
 
-            <!-- Category -->
-            <select name="category" class="form-select" style="max-width:180px;">
-                <option value="all">All Category</option>
+            <!-- Search Input -->
+            <input
+                type="text"
+                class="form-control"
+                name="q"
+                id="searchInput"
+                placeholder="Search products..."
+                autocomplete="off"
+            >
 
-                {% for parent in parent_categories %}
-                    <option value="{{ parent.id }}">{{ parent.name }}</option>
-                {% endfor %}
-            </select>
-
-            <!-- Search -->
-            <div class="position-relative flex-grow-1">
-
-                <input
-                    type="text"
-                    class="form-control"
-                    name="q"
-                    id="searchInput"
-                    placeholder="Search products..."
-                    autocomplete="off"
-                >
-
-                <!-- Autocomplete -->
-                <div id="suggestionBox"
-                    class="list-group position-absolute w-100 shadow"
-                    style="z-index:999; display:none;">
-                </div>
-
-            </div>
-
-            <!-- Price -->
-            <select name="price" class="form-select" style="max-width:170px;">
-                <option value="">Price</option>
-                <option value="under_500">Under ₹500</option>
-                <option value="500_2000">₹500 - ₹2000</option>
-                <option value="above_2000">Above ₹2000</option>
-            </select>
-
-            <!-- Sort -->
-            <select name="sort" class="form-select" style="max-width:170px;">
-                <option value="">Sort</option>
-                <option value="low">Low to High</option>
-                <option value="high">High to Low</option>
-                <option value="new">Newest</option>
-            </select>
-
-            <button class="btn btn-warning">Search</button>
+            <!-- Search Button -->
+            <button class="btn btn-warning">
+                🔍
+            </button>
 
         </div>
+
+        <!-- Autocomplete -->
+        <div id="suggestionBox"
+            class="list-group position-absolute w-100 shadow"
+            style="z-index:999; display:none;">
+        </div>
+
         </form>
 
         <!-- RIGHT -->
         <ul class="navbar-nav align-items-center">
 
             <!-- ACCOUNT -->
-            <li class="nav-item dropdown position-relative">
+            <!-- <li class="nav-item dropdown position-relative"> -->
+            <li class="nav-item position-relative account-wrapper">
 
                 <a class="nav-link d-flex align-items-center">
                     <img src="{% static 'store/images/profile.jpg' %}"
@@ -215,17 +191,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // ACCOUNT DROPDOWN
-    const account = document.querySelector(".nav-item.dropdown.position-relative");
+    const account = document.querySelector(".account-wrapper");
     const accountMenu = document.querySelector(".account-dropdown");
 
     if (account && accountMenu) {
-        account.addEventListener("mouseenter", () => {
+
+        account.addEventListener("mouseenter", function () {
             accountMenu.style.display = "block";
         });
 
-        account.addEventListener("mouseleave", () => {
+        account.addEventListener("mouseleave", function () {
             accountMenu.style.display = "none";
         });
+
     }
 
 });
