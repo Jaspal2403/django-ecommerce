@@ -109,7 +109,7 @@
                                 <a href="#">Your Addresses</a>
                                 <a href="#">Payment Options</a>
 
-                                <form method="post" action="{% url 'logout' %}">
+                                <form method="post" action="{% url 'store:logout' %}">
                                     {% csrf_token %}
                                     <button class="btn btn-sm btn-danger mt-2 w-100">
                                         Logout

@@ -18,7 +18,6 @@ urlpatterns = [
     path('search/', views.search_products, name='search_products'),
     #path('cart/', views.cart, name='cart'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path('logout/', views.user_logout, name='logout'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
     path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.cart_view, name='cart'),

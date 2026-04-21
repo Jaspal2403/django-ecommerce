@@ -470,7 +470,7 @@ def subcategory_products(request, subcategory_id):
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('store:login')
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 #AJAX

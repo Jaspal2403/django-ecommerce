@@ -25,7 +25,7 @@ urlpatterns = [
 
     path('signup/', views.signup, name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
-
+    path('logout/', views.user_logout, name='logout'),
     path('cancel-order/<int:order_id>/', views.cancel_order, name='cancel_order'),
 
     
