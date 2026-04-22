@@ -1,43 +1,50 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const parentSelect = document.getElementById("id_parent_category");
-    const categorySelect = document.getElementById("id_category");
+// document.addEventListener("DOMContentLoaded", function () {
 
-    if (!parentSelect || !categorySelect) return;
+//     const parentField = document.getElementById("id_parent_category");
+//     const categoryField = document.getElementById("id_category");
 
-    // Disable category initially
-    categorySelect.disabled = true;
-    categorySelect.style.backgroundColor = "#f0f0f0";
+//     if (!parentField || !categoryField) return;
 
+//     function loadCategories(parentId, selectedId = null) {
 
-    parentSelect.addEventListener("change", function () {
-        const parentId = this.value;
+//         categoryField.disabled = false;
 
-        // Clear previous options
-        categorySelect.innerHTML = '<option value="">Select Product</option>';
+//         fetch("/ajax/load-subcategories/?parent_id=" + parentId)
+//         .then(response => response.json())
+//         .then(data => {
 
-        if (!parentId) {
-            categorySelect.disabled = true;
-            return;
-        }
+//             categoryField.innerHTML = '<option value="">---------</option>';
 
-        fetch(`/ajax/load-subcategories/?parent_id=${parentId}`)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(item => {
-                    const option = document.createElement("option");
-                    option.value = item.id;
-                    option.text = item.name;
-                    categorySelect.appendChild(option);
-                });
+//             data.forEach(item => {
 
-                // Enable category after loading
-                categorySelect.disabled = false;
-                categorySelect.style.backgroundColor = "";
+//                 let option = document.createElement("option");
+//                 option.value = item.id;
+//                 option.textContent = item.name;
 
-            })
-            .catch(error => {
-                console.error("Error loading subcategories:", error);
-                categorySelect.disabled = true;
-            });
-    });
-});
+//                 if (selectedId && selectedId == item.id) {
+//                     option.selected = true;
+//                 }
+
+//                 categoryField.appendChild(option);
+
+//             });
+
+//         });
+
+//     }
+
+//     // On change
+//     parentField.addEventListener("change", function () {
+
+//         if (this.value) {
+//             loadCategories(this.value);
+//         }
+
+//     });
+
+//     // On edit page: preserve existing selected category
+//     if (parentField.value) {
+//         loadCategories(parentField.value, categoryField.value);
+//     }
+
+// });

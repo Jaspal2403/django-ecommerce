@@ -2,59 +2,101 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<!-- HERO BANNER -->
+
+<!-- DYNAMIC HERO BANNER -->
 <div class="container mb-4">
 
-    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+{% if featured_products|length > 0 %}
 
-        <div class="carousel-inner rounded shadow-sm">
+    <div id="heroSlider"
+        class="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+        data-bs-interval="3000">
 
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=1400"
-                    class="d-block w-100"
-                    style="height:420px; object-fit:cover;">
-                <div class="carousel-caption text-start">
-                    <h2>Big Summer Sale</h2>
-                    <p>Up to 70% Off</p>
-                </div>
-            </div>
+        <!-- Indicators -->
+        <div class="carousel-indicators">
 
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1400"
-                    class="d-block w-100"
-                    style="height:420px; object-fit:cover;">
-                <div class="carousel-caption text-start">
-                    <h2>Fashion Collection</h2>
-                    <p>Trending Styles</p>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1400"
-                    class="d-block w-100"
-                    style="height:420px; object-fit:cover;">
-                <div class="carousel-caption text-start">
-                    <h2>Electronics Deals</h2>
-                    <p>Smart Prices Today</p>
-                </div>
-            </div>
+            {% for product in featured_products %}
+            <button type="button"
+                    data-bs-target="#heroSlider"
+                    data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}">
+            </button>
+            {% endfor %}
 
         </div>
 
-    <button class="carousel-control-prev" type="button"
-            data-bs-target="#heroSlider" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-    </button>
+        <!-- Slides -->
+        <div class="carousel-inner rounded shadow-sm">
 
-    <button class="carousel-control-next" type="button"
-            data-bs-target="#heroSlider" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-    </button>
+            {% for product in featured_products %}
+
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+                {% if product.image %}
+                <img src="{{ product.image.url }}"
+                    class="d-block w-100"
+                    style="height:420px;object-fit:cover;">
+                {% else %}
+                <img src="https://via.placeholder.com/1400x420"
+                    class="d-block w-100">
+                {% endif %}
+
+                <div class="carousel-caption text-start bg-dark bg-opacity-50 p-3 rounded">
+
+                    <h2>
+                        {{ product.banner_title|default:product.name }}
+                    </h2>
+
+                    <p>
+                        {{ product.banner_subtitle|default:"Best Deals Available Now" }}
+                    </p>
+
+                    <a href="{% url 'product_detail' product.id %}"
+                    class="btn btn-warning">
+                        Shop Now
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#heroSlider"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#heroSlider"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
 
     </div>
+
+{% else %}
+
+<!-- Empty State -->
+<div class="bg-light text-center p-5 rounded shadow-sm">
+
+    <h3>Welcome to MyStore</h3>
+    <p>Add featured products from admin panel to show hero banner.</p>
+
+</div>
+
+{% endif %}
 
 </div>
 

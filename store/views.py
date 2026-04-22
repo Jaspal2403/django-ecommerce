@@ -56,8 +56,8 @@ def get_success_url(self):
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 #@login_required
 def home(request):
-    #products = Product.objects.all()
     products = Product.objects.all()
+    featured_products = Product.objects.filter(is_featured=True)[:5]
 
     wishlist_ids = []
 
@@ -68,7 +68,8 @@ def home(request):
 
     return render(request, "store/home.html", {
         "products": products,
-        "wishlist_ids": wishlist_ids
+        "featured_products": featured_products,
+        "wishlist_ids": wishlist_ids,        
     })
 
 # def search_products(request):
@@ -414,20 +415,6 @@ from .models import Product, Cart, CartItem, Order, OrderItem, Address
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 def get_parent_categories():
     return ParentCategory.objects.all()
-
-#STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
-#@login_required
-def home(request):
-    #parent_categories = ParentCategory.objects.all()
-    #parent_categories = Category.objects.filter(parent__isnull=True)
-    #subcategories = Category.objects.filter(parent__isnull=False)
-    products = Product.objects.all()
-
-    return render(request, "store/home.html", {
-        #"parent_categories": parent_categories,
-        "products": products
-        #"subcategories": subcategories
-    })
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 # def search_products(request):

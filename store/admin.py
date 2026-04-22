@@ -53,12 +53,11 @@ class ProductImageInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
-    list_display = ('name', 'category', 'price', 'image')
+    list_display = ('name', 'category', 'price', 'image', 'is_featured', 'banner_title', 'banner_subtitle')
     list_filter = ('category',)
     search_fields = ('name', 'description')
     inlines = [ProductImageInline]
 
-  
 
     # 🔑 THIS CONTROLS FORM ORDER
     fields = (
@@ -68,10 +67,13 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'description',
         'image',
+        'is_featured',
+        'banner_title',
+        'banner_subtitle',
     )
 
-    class Media:
-        js = ('store/js/product_category_filter.js',)
+    # class Media:
+    #     js = ('store/js/product_category_filter.js',)
 
 
 #@admin.register(SubCategory)

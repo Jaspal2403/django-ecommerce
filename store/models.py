@@ -47,6 +47,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
 
+    #for dynamic banners
+    is_featured = models.BooleanField(default=False)
+    banner_title = models.CharField(max_length=200, blank=True, null=True)
+    banner_subtitle = models.CharField(max_length=255, blank=True, null=True)
+
     image = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def save(self, *args, **kwargs):

@@ -101,20 +101,31 @@ class ProductAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Initially empty subcategory
-        self.fields['category'].queryset = Category.objects.none()
+        # Default subcategory queryset
+        self.fields['category'].queryset = Category.objects.filter(parent__isnull=False)
 
-        # When user selects parent category
+        # Add page / parent selected
         if 'parent_category' in self.data:
+
             try:
                 parent_id = int(self.data.get('parent_category'))
-                self.fields['category'].queryset = Category.objects.filter(parent_id=parent_id)
+
+                self.fields['category'].queryset = Category.objects.filter(
+                    parent_id=parent_id
+                )
+
             except (ValueError, TypeError):
                 pass
 
-        # When editing existing product
+        # Edit page
         elif self.instance.pk and self.instance.category:
-            self.fields['parent_category'].initial = self.instance.category.parent
+
+            parent = self.instance.category.parent
+
+            self.fields['parent_category'].initial = parent
+
             self.fields['category'].queryset = Category.objects.filter(
-                parent=self.instance.category.parent
+                parent=parent
             )
+
+            self.fields['category'].initial = self.instance.category
