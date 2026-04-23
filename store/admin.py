@@ -1,92 +1,273 @@
-# Register your models here.
-
 from django.contrib import admin
-from .models import (Category, ParentCategory, SubCategory, Product, ProductImage, Order)
+from django.http import HttpResponse
+from django.utils.html import format_html
+from .models import Address, Cart, CartItem, OrderItem
+import csv
 
-# admin.site.register(Category)
-# admin.site.register(Product)
+from .models import (
+    Category,
+    ParentCategory,
+    SubCategory,
+    Product,
+    ProductImage,
+    Order,
+    Payment,
+    Wishlist
+)
 
 
+# =========================
+# CATEGORY ADMIN
+# =========================
 @admin.register(ParentCategory)
 class ParentCategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+    list_display = ("name",)
+    search_fields = ("name",)
 
-    # IMPORTANT: hide parent field
-    fields = ('name',)
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).filter(parent__isnull=True)
-
-    def save_model(self, request, obj, form, change):
-        obj.parent = None  # enforce parent = NULL
-        super().save_model(request, obj, form, change)
-
-#@admin.register(Category)
-#class CategoryAdmin(admin.ModelAdmin):
- #   list_display = ('name', 'parent')
-  #  list_filter = ('parent',)
-   # search_fields = ('name',)
 
 @admin.register(SubCategory)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')
-    list_filter = ('parent',)
-    search_fields = ('name',)
-    fields = ('parent', 'name')
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "parent")
+    list_filter = ("parent",)
+    search_fields = ("name",)
 
-    def get_queryset(self, request):
-        return super().get_queryset(request).filter(parent__isnull=False)
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ("user", "name", "city", "pincode", "phone")
+    search_fields = ("name", "city", "phone", "user__username")
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == "parent":
-            # ONLY Parent Categories (parent IS NULL)
-            kwargs["queryset"] = Category.objects.filter(parent__isnull=True)
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
-from .forms import ProductAdminForm
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ("order", "product", "quantity", "price")
+    search_fields = ("order__id", "product__name")
 
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ("id", "user")
+    search_fields = ("user__username",)
+
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ("cart", "product", "quantity")
+    search_fields = ("product__name", "cart__user__username")
+
+# =========================
+# PRODUCT IMAGE INLINE
+# =========================
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 10
+    extra = 2
 
+
+# =========================
+# PRODUCT ACTIONS
+# =========================
+@admin.action(description="Mark selected as Featured")
+def make_featured(modeladmin, request, queryset):
+    queryset.update(is_featured=True)
+
+
+@admin.action(description="Remove Featured")
+def remove_featured(modeladmin, request, queryset):
+    queryset.update(is_featured=False)
+
+
+# =========================
+# PRODUCT ADMIN
+# =========================
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    form = ProductAdminForm
-    list_display = ('name', 'category', 'price', 'image', 'is_featured', 'banner_title', 'banner_subtitle')
-    list_filter = ('category',)
-    search_fields = ('name', 'description')
-    inlines = [ProductImageInline]
 
-
-    # 🔑 THIS CONTROLS FORM ORDER
-    fields = (
-        'parent_category',  # custom field FIRST
-        'category',
-        'name',
-        'price',
-        'description',
-        'image',
-        'is_featured',
-        'banner_title',
-        'banner_subtitle',
+    list_display = (
+        "thumbnail",
+        "name",
+        "category",
+        "price",
+        "is_featured",
     )
 
-    # class Media:
-    #     js = ('store/js/product_category_filter.js',)
+    list_filter = (
+        "category",
+        "is_featured",
+    )
+
+    search_fields = (
+        "name",
+        "description",
+    )
+
+    actions = [
+        make_featured,
+        remove_featured,
+    ]
+
+    inlines = [ProductImageInline]
+
+    fieldsets = (
+
+        ("Basic Details", {
+            "fields": (
+                "category",
+                "name",
+                "price",
+                "description",
+            )
+        }),
+
+        ("Images", {
+            "fields": (
+                "image",
+            )
+        }),
+
+        ("Hero Banner", {
+            "fields": (
+                "is_featured",
+                "banner_title",
+                "banner_subtitle",
+            )
+        }),
+    )
+
+    def thumbnail(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" width="55" height="55" style="object-fit:cover;border-radius:6px;" />',
+                obj.image.url
+            )
+        return "-"
+    thumbnail.short_description = "Image"
 
 
-#@admin.register(SubCategory)
-#class CategoryAdmin(admin.ModelAdmin):
- #   list_display = ('name', 'parent')
-  #  list_filter = ('parent',)
-   # search_fields = ('name',)
-
-    #def get_queryset(self, request):
-     #   return super().get_queryset(request).filter(parent__isnull=False)
+# =========================
+# ORDER ACTIONS
+# =========================
+@admin.action(description="Mark selected as Processing")
+def mark_processing(modeladmin, request, queryset):
+    queryset.update(status="processing")
 
 
+@admin.action(description="Mark selected as Shipped")
+def mark_shipped(modeladmin, request, queryset):
+    queryset.update(status="shipped")
+
+
+@admin.action(description="Mark selected as Delivered")
+def mark_delivered(modeladmin, request, queryset):
+    queryset.update(status="delivered")
+
+
+@admin.action(description="Cancel selected orders")
+def mark_cancelled(modeladmin, request, queryset):
+    queryset.update(status="cancelled")
+
+
+@admin.action(description="Export selected orders to CSV")
+def export_orders_csv(modeladmin, request, queryset):
+
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = "attachment; filename=orders.csv"
+
+    writer = csv.writer(response)
+
+    writer.writerow([
+        "Order ID",
+        "User",
+        "Status",
+        "Amount",
+        "Created"
+    ])
+
+    for order in queryset:
+        writer.writerow([
+            order.id,
+            order.user.username,
+            order.status,
+            order.total_amount,
+            order.created_at
+        ])
+
+    return response
+
+
+# =========================
+# ORDER ADMIN
+# =========================
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'status', 'created_at')
-    list_filter = ('status',)
+
+    list_display = (
+        "id",
+        "user",
+        "status",
+        "total_amount",
+        "created_at",
+    )
+
+    list_filter = (
+        "status",
+        "created_at",
+    )
+
+    search_fields = (
+        "id",
+        "user__username",
+    )
+
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
+
+    actions = [
+        mark_processing,
+        mark_shipped,
+        mark_delivered,
+        mark_cancelled,
+        export_orders_csv,
+    ]
+
+
+# =========================
+# PAYMENT ADMIN
+# =========================
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "id",
+        "user",
+        "status",
+        "amount",
+        "created_at",
+    )
+
+    list_filter = (
+        "status",
+    )
+
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
+
+
+# =========================
+# WISHLIST ADMIN
+# =========================
+@admin.register(Wishlist)
+class WishlistAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "user",
+        "product",
+        "created_at",
+    )
+
+    search_fields = (
+        "user__username",
+        "product__name",
+    )

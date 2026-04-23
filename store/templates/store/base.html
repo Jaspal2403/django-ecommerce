@@ -18,7 +18,7 @@
 <body class="d-flex flex-column min-vh-100">
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light main-navbar">
 <div class="container">
 
     <a class="navbar-brand" href="{% url 'home' %}">MyStore</a>
@@ -147,8 +147,40 @@
 </div>
 
 <!-- FOOTER -->
-<footer class="bg-dark text-white text-center p-3 mt-auto">
-    © 2026 MyStore
+<footer class="main-footer mt-auto">
+
+    <div class="container py-4">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+                <h5>MyStore</h5>
+                <p>Your trusted online shopping destination.</p>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <h6>Quick Links</h6>
+                <p><a href="/">Home</a></p>
+                <p><a href="/cart/">Cart</a></p>
+                <p><a href="/orders/">Orders</a></p>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <h6>Contact</h6>
+                <p>Email: support@mystore.com</p>
+                <p>Phone: +91 99999 99999</p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+            © 2026 MyStore. All Rights Reserved.
+        </div>
+
+    </div>
+
 </footer>
 
 <!-- JS -->
@@ -238,7 +270,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+
+setTimeout(function(){
+   document.getElementById("couponPopup").style.display="flex";
+}, 7000);
+
+function closeCoupon(){
+   document.getElementById("couponPopup").style.display="none";
+}
+
+
 </script>
+
+ 
+<a href="#"
+class="whatsapp-float">
+💬
+</a>
+
+<div class="mobile-nav">
+
+    <a href="/">🏠<span>Home</span></a>
+    <a href="/cart/">🛒<span>Cart</span></a>
+    <a href="/orders/">📦<span>Orders</span></a>
+    <a href="#">👤<span>Account</span></a>
+
+</div>
+
+
+<div id="couponPopup" class="coupon-popup">
+
+    <div class="coupon-box">
+        <h3>🎁 Special Offer</h3>
+        <p>Use code <strong>WELCOME10</strong></p>
+        <p>Get 10% OFF Today</p>
+        <button onclick="closeCoupon()" class="btn btn-warning">
+            Claim Now
+        </button>
+    </div>
+
+</div>
 
 </body>
 </html>

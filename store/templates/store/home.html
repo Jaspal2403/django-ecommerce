@@ -36,13 +36,13 @@
                 {% if product.image %}
                 <img src="{{ product.image.url }}"
                     class="d-block w-100"
-                    style="height:420px;object-fit:cover;">
+                    style="height:540px;object-fit:cover;border-radius: 20px;">
                 {% else %}
                 <img src="https://via.placeholder.com/1400x420"
                     class="d-block w-100">
                 {% endif %}
 
-                <div class="carousel-caption text-start bg-dark bg-opacity-50 p-3 rounded">
+                <div class="carousel-caption text-start premium-caption">
 
                     <h2>
                         {{ product.banner_title|default:product.name }}
@@ -99,6 +99,67 @@
 {% endif %}
 
 </div>
+
+<!-- HOME PAGE -Trust Badges  -->
+<div class="container mb-5">
+
+    <div class="row g-3 text-center">
+
+    <div class="col-md-3">
+        <div class="trust-box">🚚 Free Delivery</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="trust-box">🔒 Secure Payments</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="trust-box">↩ Easy Returns</div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="trust-box">⭐ Premium Quality</div>
+    </div>
+
+    </div>
+</div>
+
+<!-- ================= HOME PAGE - Featured Categories & Products (Animated Stats) ================= -->
+<div class="container mb-5">
+
+    <div class="row text-center">
+
+    <div class="col-md-4">
+        <h2 class="counter">10K+</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2 class="counter">500+</h2>
+        <p>Products Sold</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2 class="counter">99%</h2>
+        <p>Positive Reviews</p>
+    </div>
+
+    </div>
+
+</div>
+
+<div class="container mb-5">
+
+    <div class="testimonial-box">
+
+        “Absolutely beautiful handcrafted collection. Fast delivery and premium packaging.”
+
+    <strong>- Verified Customer</strong>
+
+    </div>
+
+</div>
+
 
 <!-- FLASH SALE -->
 <div class="container mb-5">
@@ -257,7 +318,7 @@
 
                 <div class="col-md-4">
 
-                    <div class="card shadow-sm text-center p-3 h-100">
+                    <div class="trending-box h-100">
                         <h6>{{ parent.name }}</h6>
                     </div>
 
@@ -302,6 +363,8 @@
                                 </span>
 
                             </div>
+
+                            <div class="sale-badge">Only Few Left</div>
 
                             {% if product.image %}
                             <img src="{{ product.image.url }}"
@@ -385,7 +448,54 @@
 
         </div>
 
+
+<div class="mb-5">
+
+    <h4 class="mb-3">Recently Viewed</h4>
+
+    <div class="row g-4">
+
+        {% for product in products|slice:":4" %}
+
+            <div class="col-md-3">
+
+                <div class="card h-100 shadow-sm">
+
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" style="height:220px;object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body text-center">
+                    <h6>{{ product.name }}</h6>
+                    <p class="text-success fw-bold">₹ {{ product.price }}</p>
+                </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
     </div>
+</div>
+
+<div class="container mb-5">
+
+<div class="newsletter-box text-center">
+
+<h3>Get Exclusive Offers</h3>
+<p>Subscribe for deals & launches</p>
+
+<div class="d-flex justify-content-center gap-2 mt-3">
+<input type="email" class="form-control w-50" placeholder="Enter email">
+<button class="btn btn-warning">Subscribe</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
