@@ -46,12 +46,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
-
-    #for dynamic banners
-    is_featured = models.BooleanField(default=False)
-    banner_title = models.CharField(max_length=200, blank=True, null=True)
-    banner_subtitle = models.CharField(max_length=255, blank=True, null=True)
-
+   
     image = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -62,7 +57,7 @@ class Product(models.Model):
                 img = Image.open(self.image.path)
 
                 # 🔧 Resize (recommended size)
-                max_size = (500, 500)
+                max_size = (1920, 1080)  # Updated size for better quality
                 img.thumbnail(max_size)
 
                 # 🔧 Compress & save
@@ -225,3 +220,40 @@ class Wishlist(models.Model):
         return f"{self.user.username} - {self.product.name}"
 
 
+class HeroBanner(models.Model):
+
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=255, blank=True, null=True)
+
+    image = models.ImageField(upload_to='hero_banners/')
+
+    button_text = models.CharField(
+        max_length=50,
+        default="Shop Now"
+    )
+
+    linked_product = models.ForeignKey(
+        Product,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    custom_link = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    display_order = models.PositiveIntegerField(default=1)
+
+    is_active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['display_order']
+
+    def __str__(self):
+        return self.title
+    

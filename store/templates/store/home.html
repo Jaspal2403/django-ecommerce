@@ -6,85 +6,93 @@
 <!-- DYNAMIC HERO BANNER -->
 <div class="container mb-4">
 
-{% if featured_products|length > 0 %}
+{% if hero_banners|length > 0 %}
 
-    <div id="heroSlider"
-        class="carousel slide carousel-fade"
-        data-bs-ride="carousel"
-        data-bs-interval="3000">
+<div id="heroSlider"
+     class="carousel slide carousel-fade"
+     data-bs-ride="carousel"
+     data-bs-interval="3000">
 
-        <!-- Indicators -->
-        <div class="carousel-indicators">
+    <!-- Indicators -->
+    <div class="carousel-indicators">
 
-            {% for product in featured_products %}
-            <button type="button"
-                    data-bs-target="#heroSlider"
-                    data-bs-slide-to="{{ forloop.counter0 }}"
-                    class="{% if forloop.first %}active{% endif %}">
-            </button>
-            {% endfor %}
+        {% for banner in hero_banners %}
+        <button type="button"
+                data-bs-target="#heroSlider"
+                data-bs-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}">
+        </button>
+        {% endfor %}
 
-        </div>
+    </div>
 
-        <!-- Slides -->
-        <div class="carousel-inner rounded shadow-sm">
+    <!-- Slides -->
+    <div class="carousel-inner rounded shadow-sm">
 
-            {% for product in featured_products %}
+        {% for banner in hero_banners %}
 
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
 
-                {% if product.image %}
-                <img src="{{ product.image.url }}"
-                    class="d-block w-100"
-                    style="height:540px;object-fit:cover;border-radius: 20px;">
-                {% else %}
-                <img src="https://via.placeholder.com/1400x420"
-                    class="d-block w-100">
-                {% endif %}
+            {% if banner.image %}
+            <img src="{{ banner.image.url }}"
+                 class="d-block w-100"
+                 style="height:540px;object-fit:cover;border-radius:20px;">
+            {% else %}
+            <img src="https://via.placeholder.com/1400x540"
+                 class="d-block w-100">
+            {% endif %}
 
-                <div class="carousel-caption text-start premium-caption">
+            <div class="carousel-caption text-start premium-caption">
 
-                    <h2>
-                        {{ product.banner_title|default:product.name }}
-                    </h2>
+                <h2>
+                    {{ banner.title }}
+                </h2>
 
-                    <p>
-                        {{ product.banner_subtitle|default:"Best Deals Available Now" }}
-                    </p>
+                <p>
+                    {{ banner.subtitle|default:"Best Deals Available Now" }}
+                </p>
 
-                    <a href="{% url 'product_detail' product.id %}"
-                    class="btn btn-warning">
-                        Shop Now
+                {% if banner.linked_product %}
+                    <a href="{% url 'product_detail' banner.linked_product.id %}"
+                       class="btn btn-warning">
+                        {{ banner.button_text|default:"Shop Now" }}
                     </a>
 
-                </div>
+                {% elif banner.custom_link %}
+                    <a href="{{ banner.custom_link }}"
+                       class="btn btn-warning">
+                        {{ banner.button_text|default:"Shop Now" }}
+                    </a>
+                {% endif %}
 
             </div>
 
-            {% endfor %}
-
         </div>
 
-        <!-- Controls -->
-        <button class="carousel-control-prev"
-                type="button"
-                data-bs-target="#heroSlider"
-                data-bs-slide="prev">
-
-            <span class="carousel-control-prev-icon"></span>
-
-        </button>
-
-        <button class="carousel-control-next"
-                type="button"
-                data-bs-target="#heroSlider"
-                data-bs-slide="next">
-
-            <span class="carousel-control-next-icon"></span>
-
-        </button>
+        {% endfor %}
 
     </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#heroSlider"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#heroSlider"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+</div>
 
 {% else %}
 
@@ -92,7 +100,7 @@
 <div class="bg-light text-center p-5 rounded shadow-sm">
 
     <h3>Welcome to MyStore</h3>
-    <p>Add featured products from admin panel to show hero banner.</p>
+    <p>Add Hero Banners from admin panel to show hero banner.</p>
 
 </div>
 
@@ -481,28 +489,29 @@
 
 <div class="container mb-5">
 
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <div class="newsletter-box text-center">
 
 <h3>Get Exclusive Offers</h3>
 <p>Subscribe for deals & launches</p>
 
-<div class="d-flex justify-content-center gap-2 mt-3">
-<input type="email" class="form-control w-50" placeholder="Enter email">
-<button class="btn btn-warning">Subscribe</button>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    <div class="d-flex justify-content-center gap-2 mt-3">
+    <input type="email" class="form-control w-50" placeholder="Enter email">
+    <button class="btn btn-warning">Subscribe</button>
+    </div>
 
 </div>
 
 <script>
-
 
 
 document.querySelectorAll(".wishlist-btn").forEach(btn => {

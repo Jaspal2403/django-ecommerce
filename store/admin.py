@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.html import format_html
-from .models import Address, Cart, CartItem, OrderItem
+from .models import Address, Cart, CartItem, OrderItem, HeroBanner
 import csv
 
 from .models import (
@@ -86,12 +86,10 @@ class ProductAdmin(admin.ModelAdmin):
         "name",
         "category",
         "price",
-        "is_featured",
     )
 
     list_filter = (
         "category",
-        "is_featured",
     )
 
     search_fields = (
@@ -99,39 +97,10 @@ class ProductAdmin(admin.ModelAdmin):
         "description",
     )
 
-    actions = [
-        make_featured,
-        remove_featured,
-    ]
-
+    
     inlines = [ProductImageInline]
 
-    fieldsets = (
-
-        ("Basic Details", {
-            "fields": (
-                "category",
-                "name",
-                "price",
-                "description",
-            )
-        }),
-
-        ("Images", {
-            "fields": (
-                "image",
-            )
-        }),
-
-        ("Hero Banner", {
-            "fields": (
-                "is_featured",
-                "banner_title",
-                "banner_subtitle",
-            )
-        }),
-    )
-
+    
     def thumbnail(self, obj):
         if obj.image:
             return format_html(
@@ -270,4 +239,37 @@ class WishlistAdmin(admin.ModelAdmin):
     search_fields = (
         "user__username",
         "product__name",
+    )
+
+@admin.register(HeroBanner)
+class HeroBannerAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "display_order",
+        "is_active",
+        "linked_product",
+        "created_at",
+    )
+
+    list_filter = (
+        "is_active",
+    )
+
+    search_fields = (
+        "title",
+        "subtitle",
+    )
+
+    list_editable = (
+        "display_order",
+        "is_active",
+    )
+
+    ordering = (
+        "display_order",
+    )
+
+    readonly_fields = (
+        "created_at",
     )

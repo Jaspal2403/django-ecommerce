@@ -4,7 +4,7 @@ from .forms import SignUpForm
 from .models import Product, Category, ParentCategory, Wishlist
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .models import Product, Cart, CartItem, Order, OrderItem, Address, Payment
+from .models import Cart, CartItem, Order, OrderItem, Address, Payment, HeroBanner
 from django.http import HttpResponseBadRequest, JsonResponse
 import razorpay
 from django.conf import settings
@@ -56,20 +56,16 @@ def get_success_url(self):
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 #@login_required
 def home(request):
+
     products = Product.objects.all()
-    featured_products = Product.objects.filter(is_featured=True)[:5]
 
-    wishlist_ids = []
-
-    if request.user.is_authenticated:
-        wishlist_ids = Wishlist.objects.filter(
-            user=request.user
-        ).values_list("product_id", flat=True)
+    hero_banners = HeroBanner.objects.filter(
+        is_active=True
+    ).order_by("display_order")
 
     return render(request, "store/home.html", {
         "products": products,
-        "featured_products": featured_products,
-        "wishlist_ids": wishlist_ids,        
+        "hero_banners": hero_banners,
     })
 
 # def search_products(request):
