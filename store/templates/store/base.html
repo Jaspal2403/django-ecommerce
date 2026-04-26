@@ -21,7 +21,15 @@
 <nav class="navbar navbar-expand-lg navbar-light main-navbar">
 <div class="container">
 
-    <a class="navbar-brand" href="{% url 'home' %}">MyStore</a>
+    <!-- <a class="navbar-brand brand-logo" href="{% url 'home' %}">
+        PreetCraft<span>Studio</span>
+    </a> -->
+
+    <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'store/images/brandlogo1.png' %}" 
+         alt="PreetCraft Studio"
+         class="pcs-logo">
+    </a>
 
     <div class="collapse navbar-collapse">
 
@@ -154,7 +162,7 @@
         <div class="row">
 
             <div class="col-md-4 mb-3">
-                <h5>MyStore</h5>
+                <h5>PreetCraftStudio</h5>
                 <p>Your trusted online shopping destination.</p>
             </div>
 
@@ -167,7 +175,7 @@
 
             <div class="col-md-4 mb-3">
                 <h6>Contact</h6>
-                <p>Email: support@mystore.com</p>
+                <p>Email: support@preetcollections.com</p>
                 <p>Phone: +91 99999 99999</p>
             </div>
 
@@ -176,7 +184,7 @@
         <hr>
 
         <div class="text-center">
-            © 2026 MyStore. All Rights Reserved.
+            © 2026 PreetCraftStudio. All Rights Reserved.
         </div>
 
     </div>

@@ -8,6 +8,67 @@ body {
     margin-bottom: 20px;
 }
 
+/* ===============================
+   PREETCRAFT STUDIO HEADER LOGO
+   Safe CSS (won't disturb searchbar)
+   =============================== */
+
+/* Brand container */
+.navbar-brand{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 !important;
+    margin-right: 18px;
+    min-width: 210px;   /* keeps logo area only */
+    overflow: hidden;
+}
+
+/* Logo image */
+.navbar-brand img,
+.pcs-logo{
+    height: 60px;       /* desktop size */
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Prevent navbar row stretch */
+.navbar .navbar-brand{
+    flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 991px){
+    .navbar-brand{
+        min-width: 180px;
+        margin-right: 12px;
+    }
+
+    .navbar-brand img,
+    .pcs-logo{
+        height: 48px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px){
+    .navbar-brand{
+        min-width: 145px;
+        margin-right: 8px;
+    }
+
+    .navbar-brand img,
+    .pcs-logo{
+        height: 40px;
+    }
+}
+
+
+
+
+
 /* =========================
    LOGIN PAGE
 ========================= */
@@ -144,7 +205,7 @@ body {
 .main-navbar{
     background:#ffffff !important;
     box-shadow:0 4px 18px rgba(0,0,0,0.06);
-    padding:14px 0;
+    padding:4px 0;
 }
 
 .main-navbar .navbar-brand{
