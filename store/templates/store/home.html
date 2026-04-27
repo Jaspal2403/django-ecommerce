@@ -35,11 +35,11 @@
 
             {% if banner.image %}
             <img src="{{ banner.image.url }}"
-                 class="d-block w-100"
+                 class="d-block w-100 hero-banner-img"
                  style="height:540px;object-fit:cover;border-radius:20px;">
             {% else %}
             <img src="https://via.placeholder.com/1400x540"
-                 class="d-block w-100">
+                 class="d-block w-100 hero-banner-img">
             {% endif %}
 
             <div class="carousel-caption text-start premium-caption">
@@ -113,19 +113,19 @@
 
     <div class="row g-3 text-center">
 
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <div class="trust-box">🚚 Free Delivery</div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <div class="trust-box">🔒 Secure Payments</div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <div class="trust-box">↩ Easy Returns</div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <div class="trust-box">⭐ Premium Quality</div>
     </div>
 
@@ -265,7 +265,7 @@
 <div class="row">
 
     <!-- SIDEBAR -->
-    <div class="col-lg-3 mb-4">
+    <div class="col-12 col-lg-3 mb-4">
 
         <div class="card shadow-sm p-3">
 
@@ -313,7 +313,7 @@
     </div>
 
     <!-- MAIN CONTENT -->
-    <div class="col-lg-9">
+    <div class="col-12 col-lg-9">
 
         <!-- TRENDING 
         <div class="mb-5">
@@ -347,7 +347,7 @@
 
                 {% for product in products|slice:":8" %}
 
-                <div class="col-md-3">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
 
                     <a href="{% url 'product_detail' product.id %}"
                        style="text-decoration:none;color:black;">
@@ -421,7 +421,7 @@
 
                 {% for product in products|slice:"8:12" %}
 
-                <div class="col-md-3">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
 
                     <a href="{% url 'product_detail' product.id %}"
                        style="text-decoration:none;color:black;">
@@ -465,7 +465,7 @@
 
         {% for product in products|slice:":4" %}
 
-            <div class="col-md-3">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
 
                 <div class="card h-100 shadow-sm">
 
@@ -504,7 +504,7 @@
 <h3>Get Exclusive Offers</h3>
 <p>Subscribe for deals & launches</p>
 
-    <div class="d-flex justify-content-center gap-2 mt-3">
+    <div class="newsletter-form d-flex justify-content-center gap-2 mt-3">
     <input type="email" class="form-control w-50" placeholder="Enter email">
     <button class="btn btn-warning">Subscribe</button>
     </div>

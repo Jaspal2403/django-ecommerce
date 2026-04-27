@@ -725,3 +725,732 @@ body{
     color:#000;
     font-weight:700;
 }
+
+/* ---------- Responsive Base ---------- */
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+.pcs-logo{
+    max-height:70px;
+    width:auto;
+}
+
+@media (max-width: 991px){
+
+    .navbar .container{
+        align-items:flex-start;
+    }
+
+    .pcs-logo{
+        max-height:55px;
+    }
+
+    .navbar-collapse{
+        width:100%;
+    }
+
+    .account-wrapper .nav-link{
+        padding-left:0;
+    }
+
+    .account-dropdown{
+        position:static !important;
+        width:100%;
+        margin-top:10px;
+    }
+
+    #searchInput{
+        font-size:14px;
+    }
+
+}
+
+@media (max-width: 576px){
+
+    .pcs-logo{
+        max-height:48px;
+    }
+
+    .main-footer{
+        text-align:center;
+    }
+
+    .container{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+}
+
+/* ================= HOME RESPONSIVE ================= */
+
+.hero-banner-img{
+    height:540px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+@media (max-width:991px){
+    .hero-banner-img{
+        height:380px;
+        border-radius:14px;
+    }
+}
+
+@media (max-width:768px){
+
+    .hero-banner-img{
+        height:260px;
+        border-radius:12px;
+    }
+
+    .premium-caption{
+        padding:15px;
+    }
+
+    .premium-caption h2{
+        font-size:22px;
+    }
+
+    .premium-caption p{
+        font-size:14px;
+        margin-bottom:10px;
+    }
+
+    .trust-box,
+    .testimonial-box{
+        font-size:14px;
+    }
+
+    #flashTimer{
+        text-align:center;
+        margin-top:10px;
+    }
+
+    .newsletter-form{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button{
+        width:100% !important;
+        max-width:420px;
+    }
+
+    .card-img-top{
+        height:180px !important;
+    }
+}
+
+@media (max-width:576px){
+
+    .hero-banner-img{
+        height:220px;
+    }
+
+    .premium-caption h2{
+        font-size:18px;
+    }
+
+    .premium-caption p{
+        display:none;
+    }
+
+    .counter{
+        font-size:26px;
+    }
+
+    .card-body h6{
+        font-size:14px;
+        min-height:38px;
+    }
+
+    .btn-sm{
+        font-size:13px;
+    }
+}
+
+/* ================= PRODUCT DETAIL RESPONSIVE ================= */
+
+.product-main-image{
+    border-radius:16px;
+}
+
+@media (max-width:768px){
+
+    .thumb-img{
+        width:65px;
+        height:65px !important;
+    }
+
+    .col-md-2 .thumb-img,
+    .order-2{
+        display:inline-block;
+    }
+
+    #zoomResult,
+    #lens{
+        display:none !important;
+    }
+
+    .qty-wrap label{
+        width:100%;
+        margin-bottom:4px;
+    }
+
+    .qty-wrap input{
+        width:55px !important;
+    }
+
+    h3{
+        font-size:24px;
+    }
+
+    h4{
+        font-size:26px;
+    }
+
+    .btn.w-100{
+        padding:12px;
+    }
+}
+
+@media (max-width:576px){
+
+    .product-main-image{
+        max-height:280px !important;
+        object-fit:contain !important;
+    }
+
+    .thumb-img{
+        width:58px;
+        height:58px !important;
+    }
+
+    #quantity{
+        height:40px;
+    }
+
+    .container.mt-5{
+        margin-top:1.5rem !important;
+    }
+}
+
+/* ================= CART RESPONSIVE ================= */
+
+.cart-img{
+    border-radius:10px;
+    object-fit:cover;
+}
+
+.qty-cart-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:nowrap;
+}
+
+.cart-table td,
+.cart-table th{
+    vertical-align:middle;
+    white-space:nowrap;
+}
+
+.cart-checkout-btn{
+    padding:14px;
+    font-weight:700;
+    border-radius:14px;
+}
+
+@media (max-width:768px){
+
+    .cart-table{
+        font-size:14px;
+    }
+
+    .cart-img{
+        width:50px;
+    }
+
+    .qty-cart-wrap .btn{
+        padding:2px 8px;
+    }
+
+    h3{
+        font-size:24px;
+    }
+}
+
+@media (max-width:576px){
+
+    .table-responsive{
+        border-radius:12px;
+    }
+
+    .cart-table td,
+    .cart-table th{
+        padding:10px 8px;
+        font-size:13px;
+    }
+
+    .cart-checkout-btn{
+        font-size:15px;
+    }
+
+    .container.mt-5{
+        margin-top:1.5rem !important;
+    }
+}
+
+/* ================= CHECKOUT RESPONSIVE ================= */
+
+.checkout-form .form-control{
+    min-height:48px;
+    border-radius:12px;
+}
+
+.checkout-form textarea.form-control{
+    min-height:110px;
+}
+
+.checkout-form .btn-success{
+    padding:14px;
+    font-weight:700;
+    border-radius:14px;
+}
+
+.checkout-summary .list-group-item{
+    font-size:15px;
+}
+
+.form-check{
+    padding:12px 12px 12px 2rem;
+    border-radius:10px;
+}
+
+.form-check:hover{
+    background:#f8f9fa;
+}
+
+@media (max-width:768px){
+
+    .checkout-summary{
+        margin-top:10px;
+    }
+
+    h3{
+        font-size:24px;
+    }
+
+    h5{
+        font-size:20px;
+    }
+
+    .checkout-summary .list-group-item{
+        font-size:14px;
+    }
+}
+
+@media (max-width:576px){
+
+    .checkout-form .form-control{
+        font-size:14px;
+    }
+
+    .checkout-form .btn-success{
+        font-size:15px;
+    }
+
+    .form-check-label{
+        font-size:14px;
+        line-height:1.4;
+    }
+
+    .container.mt-5{
+        margin-top:1.5rem !important;
+    }
+}
+
+/* ================= PRODUCT LIST RESPONSIVE ================= */
+
+.search-card-img{
+    height:220px;
+    object-fit:cover;
+}
+
+.product-list-title{
+    font-size:18px;
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+@media (max-width:768px){
+
+    .search-card-img{
+        height:180px;
+    }
+
+    .product-list-title{
+        font-size:15px;
+        min-height:42px;
+    }
+
+    .container.mt-4 h4{
+        font-size:24px;
+    }
+}
+
+@media (max-width:576px){
+
+    .search-card-img{
+        height:150px;
+    }
+
+    .product-list-title{
+        font-size:14px;
+        min-height:38px;
+    }
+
+    .btn.btn-sm{
+        font-size:13px;
+        padding:8px 10px;
+    }
+
+    .container.mt-4 h4{
+        font-size:20px;
+    }
+}
+
+/* ================= AUTH PAGES RESPONSIVE ================= */
+
+.auth-page-row{
+    min-height:70vh;
+}
+
+.auth-card-body input{
+    width:100%;
+    min-height:46px;
+    border-radius:10px;
+    border:1px solid #ced4da;
+    padding:10px 12px;
+}
+
+.auth-title{
+    font-weight:700;
+}
+
+.auth-btn{
+    padding:12px;
+    font-weight:700;
+    border-radius:12px;
+}
+
+@media (max-width:768px){
+
+    .auth-page-row{
+        min-height:auto;
+        padding:30px 0;
+    }
+
+    .auth-title{
+        font-size:28px;
+    }
+}
+
+@media (max-width:576px){
+
+    .auth-card-body{
+        padding:22px !important;
+    }
+
+    .auth-title{
+        font-size:24px;
+    }
+
+    .auth-btn{
+        font-size:15px;
+    }
+}
+
+/* ================= AUTH BASE ================= */
+
+.auth-layout{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:#f8f9fa;
+    padding:20px 0;
+}
+
+.auth-container{
+    width:100%;
+}
+
+@media (max-width:768px){
+
+    .auth-layout{
+        align-items:flex-start;
+        padding:30px 0;
+    }
+}
+
+@media (max-width:576px){
+
+    .auth-layout{
+        padding:18px 0;
+    }
+
+    .auth-container{
+        padding-left:14px;
+        padding-right:14px;
+    }
+}
+
+/* ================= SIGNUP PAGE ================= */
+
+.signup-row{
+    min-height:90vh;
+}
+
+.signup-card-body{
+    min-height:500px;
+}
+
+.signup-card-body .alert{
+    font-size:14px;
+}
+
+.signup-card-body ul{
+    padding-left:18px;
+}
+
+@media (max-width:768px){
+
+    .signup-row{
+        min-height:auto;
+        padding:30px 0;
+    }
+
+    .signup-card-body{
+        min-height:auto;
+    }
+}
+
+@media (max-width:576px){
+
+    .signup-card-body{
+        padding:22px !important;
+    }
+
+    .signup-card-body .alert{
+        font-size:13px;
+    }
+
+    .signup-card-body small{
+        font-size:13px;
+    }
+}
+
+/* ================= ORDER HISTORY RESPONSIVE ================= */
+
+.order-filter-select{
+    min-width:180px;
+}
+
+.order-action-wrap form{
+    margin:0;
+}
+
+@media (max-width:768px){
+
+    .orders-topbar h4{
+        width:100%;
+        margin-bottom:0;
+    }
+
+    .order-filter-select{
+        width:100%;
+        min-width:auto;
+    }
+
+    .card-header{
+        padding:14px;
+    }
+
+    .card-body{
+        padding:16px;
+    }
+
+    .order-item-row strong{
+        font-size:15px;
+    }
+
+    .order-action-wrap .btn{
+        width:100%;
+    }
+
+    .order-action-wrap form{
+        width:100%;
+    }
+
+    .text-end h5{
+        text-align:left;
+        margin-top:10px;
+    }
+}
+
+@media (max-width:576px){
+
+    .order-item-row img{
+        height:70px !important;
+        width:100%;
+        object-fit:cover;
+    }
+
+    .badge{
+        font-size:11px;
+    }
+
+    .card{
+        border-radius:14px;
+    }
+
+    .card-body small{
+        font-size:12px;
+    }
+}
+
+/* ================= SUBCATEGORY PRODUCTS ================= */
+
+.subcat-heading{
+    font-weight:700;
+}
+
+.subcat-title{
+    font-size:18px;
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+@media (max-width:768px){
+
+    .subcat-heading{
+        font-size:26px;
+        line-height:1.3;
+    }
+
+    .subcat-title{
+        font-size:15px;
+        min-height:42px;
+    }
+}
+
+@media (max-width:576px){
+
+    .subcat-heading{
+        font-size:22px;
+    }
+
+    .subcat-title{
+        font-size:14px;
+        min-height:38px;
+    }
+
+    .card-text{
+        font-size:14px;
+    }
+
+    .btn.btn-sm{
+        font-size:13px;
+    }
+}
+
+/* ================= ORDER SUCCESS ================= */
+
+.order-success-wrap{
+    min-height:55vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.order-success-title{
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.order-success-btn{
+    padding:12px 22px;
+    border-radius:14px;
+    font-weight:700;
+}
+
+@media (max-width:768px){
+
+    .order-success-wrap{
+        min-height:48vh;
+    }
+
+    .order-success-title{
+        font-size:30px;
+        line-height:1.3;
+    }
+}
+
+@media (max-width:576px){
+
+    .order-success-wrap{
+        min-height:42vh;
+        margin-top:1rem !important;
+        padding:10px;
+    }
+
+    .order-success-title{
+        font-size:24px;
+    }
+
+    .order-success-btn{
+        width:100%;
+        max-width:320px;
+    }
+}
+
+/* ================= CUSTOM AUTH PAGE EXTRA ================= */
+
+.custom-auth-form input{
+    width:100%;
+}
+
+.auth-bottom-text{
+    line-height:1.5;
+}
+
+@media (max-width:576px){
+
+    .login-page{
+        padding:18px 12px;
+    }
+
+    .login-subtitle{
+        font-size:14px;
+        margin-bottom:22px;
+    }
+
+    .login-btn{
+        height:50px;
+    }
+
+    .auth-bottom-text{
+        font-size:13px;
+    }
+}

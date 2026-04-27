@@ -9,9 +9,9 @@
 <div class="row">
 
     <!-- LEFT: ADDRESS FORM -->
-    <div class="col-md-6">
+    <div class="col-12 col-md-6 mb-4">
 
-        <form method="post">
+        <form method="post" class="checkout-form">
             {% csrf_token %}
 
             <!-- EXISTING ADDRESS -->
@@ -66,14 +66,14 @@
     </div>
 
     <!-- RIGHT: ORDER SUMMARY -->
-    <div class="col-md-6">
+    <div class="col-12 col-md-6">
 
         <h5>Order Summary</h5>
 
-        <ul class="list-group">
+        <ul class="list-group checkout-summary">
 
             {% for item in items %}
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between align-items-start flex-wrap gap-2list-group-item d-flex justify-content-between">
                 {{ item.product.name }} × {{ item.quantity }}
                 <span>₹ {{ item.product.price }}</span>
             </li>

@@ -23,7 +23,7 @@
 
         {% for product in products %}
 
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
 
             <div class="card h-100 shadow-sm">
 
@@ -31,24 +31,24 @@
                 <a href="{% url 'product_detail' product.id %}">
                     {% if product.image %}
                         <img src="{{ product.image.url }}"
-                             class="card-img-top"
-                             style="height:220px; object-fit:cover;">
+                             class="card-img-top search-card-img"
+                             
                     {% else %}
                         <img src="https://via.placeholder.com/300x220"
-                             class="card-img-top">
+                             class="card-img-top search-card-img">
                     {% endif %}
                 </a>
 
                 <div class="card-body text-center">
 
-                    <h5>{{ product.name }}</h5>
+                    <h5 class="product-list-title">{{ product.name }}</h5>
 
                     <p class="text-success fw-bold mb-2">
                         ₹ {{ product.price }}
                     </p>
 
                     <a href="{% url 'product_detail' product.id %}"
-                       class="btn btn-dark btn-sm">
+                       class="btn btn-dark btn-sm w-100">
                        View Product
                     </a>
 

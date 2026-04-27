@@ -1,4 +1,6 @@
+
 {% extends "store/auth_base.html" %}
+
 {% load static %}
 
 {% block title %}Login{% endblock %}
@@ -31,7 +33,7 @@
         </p>
 
         <!-- LOGIN FORM -->
-        <form method="post" action="{% url 'store:login' %}">
+        <form method="post" action="{% url 'store:login' %}" class="custom-auth-form">
             {% csrf_token %}
 
             <div class="mb-3">
@@ -48,7 +50,7 @@
         </form>
 
         <!-- Bottom Text -->
-        <div class="login-bottom">
+        <div class="login-bottom auth-bottom-text">
             Don’t have an account?
             <a href="{% url 'store:signup' %}">
                 Create Account

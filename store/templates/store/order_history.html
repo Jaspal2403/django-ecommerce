@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3 orders-topbar">
     <h4>My Orders</h4>
 
     <form method="get">
-        <select name="status" class="form-select" onchange="this.form.submit()">
+        <select name="status" class="form-select order-filter-select" onchange="this.form.submit()">
 
             <option value="all" {% if status_filter == "all" %}selected{% endif %}>All Orders</option>
 
@@ -32,7 +32,7 @@
     <div class="card mb-4 shadow-sm">
 
         <!-- HEADER -->
-        <div class="card-header d-flex justify-content-between align-items-center bg-light">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2 bg-light">
 
             <div>
                 <strong>Order #{{ order.id }}</strong><br>
@@ -91,9 +91,9 @@
 
             <!-- ITEMS -->
             {% for item in order.items.all %}
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3 order-item-row">
 
-                <div class="col-md-2">
+                <div class="col-4 col-sm-3 col-md-2 mb-2 mb-md-0">
                     {% if item.product.image %}
                         <img src="{{ item.product.image.url }}"
                              class="img-fluid rounded"
@@ -101,12 +101,12 @@
                     {% endif %}
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-8 col-sm-6 col-md-6">
                     <strong>{{ item.product.name }}</strong><br>
                     <small>Qty: {{ item.quantity }}</small>
                 </div>
 
-                <div class="col-md-4 text-end">
+                <div class="col-12 col-sm-3 col-md-4 text-start text-sm-end mt-2 mt-sm-0">
                     ₹ {{ item.price }} × {{ item.quantity }}
                 </div>
 
@@ -120,7 +120,7 @@
                 <h5>Total: ₹ {{ data.total }}</h5>
             </div>
 
-            <div class="d-flex gap-2 mt-3">
+            <div class="d-flex gap-2 mt-3 flex-wrap order-action-wrap">
 
                 <!-- PAY NOW BUTTON -->
                 {% if not order.payment or order.payment.status != "SUCCESS" %}

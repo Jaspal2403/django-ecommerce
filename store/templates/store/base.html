@@ -18,7 +18,7 @@
 <body class="d-flex flex-column min-vh-100">
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light main-navbar">
+<nav class="navbar navbar-expand-lg navbar-light main-navbar sticky-top">
 <div class="container">
 
     <!-- <a class="navbar-brand brand-logo" href="{% url 'home' %}">
@@ -31,10 +31,21 @@
          class="pcs-logo">
     </a>
 
-    <div class="collapse navbar-collapse">
+
+    <button class="navbar-toggler border-0 shadow-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse"
+        aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse mt-3 mt-lg-0">
 
         <!-- Global Search -->
-        <form class="mx-auto w-100 position-relative"
+        <form class="mx-auto w-100 position-relative my-2 my-lg-0"
                 style="max-width:650px;"
                 method="GET"
                 action="{% url 'search_products' %}">
@@ -67,11 +78,11 @@
         </form>
 
         <!-- RIGHT -->
-        <ul class="navbar-nav align-items-center">
+        <ul class="navbar-nav align-items-center ms-lg-3">
 
             <!-- ACCOUNT -->
             <!-- <li class="nav-item dropdown position-relative"> -->
-            <li class="nav-item position-relative account-wrapper">
+            <li class="nav-item position-relative account-wrapper mt-2 mt-lg-0">
 
                 <a class="nav-link d-flex align-items-center">
                     <img src="{% static 'store/images/profile.jpg' %}"
@@ -138,7 +149,7 @@
             </li>
 
             <!-- CART -->
-            <li class="nav-item ms-3">
+            <li class="nav-item ms-3 mt-2 mt-lg-0">
                 <a href="{% url 'cart' %}" class="btn btn-outline-light">🛒</a>
             </li>
 

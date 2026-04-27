@@ -6,12 +6,12 @@
 <div class="row">
 
     <!-- LEFT: THUMBNAILS -->
-    <div class="col-md-2">
+    <div class="col-12 col-md-2 order-2 order-md-1">
 
         {% if product.images.all.exists %}
             {% for img in product.images.all %}
                 <img src="{{ img.image.url }}"
-                     class="img-thumbnail mb-2"
+                     class="img-thumbnail thumb-img me-2 mb-2"
                      style="cursor:pointer; height:70px; object-fit:cover;"
                      onclick="changeImage('{{ img.image.url }}')">
             {% endfor %}
@@ -20,14 +20,14 @@
     </div>
 
     <!-- CENTER: MAIN IMAGE -->
-    <div class="col-md-5">
+    <div class="col-12 col-md-5 order-1 order-md-2 mb-4">
 
         <div class="img-zoom-container">
 
             {% if product.image %}
                 <img id="mainImage"
                      src="{{ product.image.url }}"
-                     class="img-fluid border"
+                     class="img-fluid border product-main-image"
                      style="width:100%; max-height:400px; object-fit:cover;">
             {% else %}
                 <img id="mainImage"
@@ -42,7 +42,7 @@
     </div>
 
     <!-- RIGHT: PRODUCT DETAILS -->
-    <div class="col-md-5">
+    <div class="col-12 col-md-5 order-3">
 
         <h3 class="fw-bold">{{ product.name }}</h3>
 
@@ -53,7 +53,7 @@
         <p>{{ product.description }}</p>
 
         <!-- QUANTITY SELECTOR -->
-        <div class="d-flex align-items-center mb-3">
+        <div class="d-flex align-items-center flex-wrap gap-2 mb-3 qty-wrap">
 
             <label class="me-3 fw-bold">Quantity:</label>
 
