@@ -2,9 +2,8 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
-<!-- DYNAMIC HERO BANNER -->
-<div class="container mb-4">
+<!-- ================= HERO SECTION ================= -->
+<div class="mb-5">
 
 {% if hero_banners|length > 0 %}
 
@@ -15,7 +14,6 @@
 
     <!-- Indicators -->
     <div class="carousel-indicators">
-
         {% for banner in hero_banners %}
         <button type="button"
                 data-bs-target="#heroSlider"
@@ -23,52 +21,48 @@
                 class="{% if forloop.first %}active{% endif %}">
         </button>
         {% endfor %}
-
     </div>
 
     <!-- Slides -->
     <div class="carousel-inner rounded shadow-sm">
 
         {% for banner in hero_banners %}
-
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
 
             {% if banner.image %}
             <img src="{{ banner.image.url }}"
                  class="d-block w-100 hero-banner-img"
-                 style="height:540px;object-fit:cover;border-radius:20px;">
+                 alt="{{ banner.title }}">
             {% else %}
             <img src="https://via.placeholder.com/1400x540"
-                 class="d-block w-100 hero-banner-img">
+                 class="d-block w-100 hero-banner-img"
+                 alt="Banner">
             {% endif %}
 
             <div class="carousel-caption text-start premium-caption">
 
-                <h2>
-                    {{ banner.title }}
-                </h2>
+                <h2>{{ banner.title }}</h2>
 
                 <p>
                     {{ banner.subtitle|default:"Best Deals Available Now" }}
                 </p>
 
                 {% if banner.linked_product %}
-                    <a href="{% url 'product_detail' banner.linked_product.id %}"
-                       class="btn btn-warning">
-                        {{ banner.button_text|default:"Shop Now" }}
-                    </a>
+                <a href="{% url 'product_detail' banner.linked_product.id %}"
+                   class="btn btn-warning">
+                    {{ banner.button_text|default:"Shop Now" }}
+                </a>
 
                 {% elif banner.custom_link %}
-                    <a href="{{ banner.custom_link }}"
-                       class="btn btn-warning">
-                        {{ banner.button_text|default:"Shop Now" }}
-                    </a>
+                <a href="{{ banner.custom_link }}"
+                   class="btn btn-warning">
+                    {{ banner.button_text|default:"Shop Now" }}
+                </a>
                 {% endif %}
 
             </div>
 
         </div>
-
         {% endfor %}
 
     </div>
@@ -78,120 +72,91 @@
             type="button"
             data-bs-target="#heroSlider"
             data-bs-slide="prev">
-
         <span class="carousel-control-prev-icon"></span>
-
     </button>
 
     <button class="carousel-control-next"
             type="button"
             data-bs-target="#heroSlider"
             data-bs-slide="next">
-
         <span class="carousel-control-next-icon"></span>
-
     </button>
 
 </div>
 
 {% else %}
 
-<!-- Empty State -->
 <div class="bg-light text-center p-5 rounded shadow-sm">
-
     <h3>Welcome to PreetCraftStudio</h3>
     <p>Add Hero Banners from admin panel to show hero banner.</p>
-
 </div>
 
 {% endif %}
-
 </div>
 
-<!-- HOME PAGE -Trust Badges  -->
-<div class="container mb-5">
+<!-- ================= TRUST BADGES ================= -->
+<div class="row g-3 text-center mb-5">
 
-    <div class="row g-3 text-center">
-
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-md-3 col-6">
         <div class="trust-box">🚚 Free Delivery</div>
     </div>
 
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-md-3 col-6">
         <div class="trust-box">🔒 Secure Payments</div>
     </div>
 
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-md-3 col-6">
         <div class="trust-box">↩ Easy Returns</div>
     </div>
 
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+    <div class="col-md-3 col-6">
         <div class="trust-box">⭐ Premium Quality</div>
     </div>
 
-    </div>
 </div>
 
-<!-- ================= HOME PAGE - Featured Categories & Products (Animated Stats) ================= -->
-<div class="container mb-5">
+<!-- ================= COUNTERS ================= -->
+<div class="row text-center mb-5">
 
-    <div class="row text-center">
-
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
         <h2 class="counter">10K+</h2>
         <p>Happy Customers</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
         <h2 class="counter">500+</h2>
         <p>Products Sold</p>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
         <h2 class="counter">99%</h2>
         <p>Positive Reviews</p>
     </div>
 
-    </div>
-
 </div>
 
-<div class="container mb-5">
-
+<!-- ================= TESTIMONIAL ================= -->
+<div class="mb-5">
     <div class="testimonial-box">
-
         “Absolutely beautiful handcrafted collection. Fast delivery and premium packaging.”
-
-    <strong>- Verified Customer</strong>
-
+        <strong>- Verified Customer</strong>
     </div>
-
 </div>
 
-
-<!-- FLASH SALE -->
-<div class="container mb-5">
+<!-- ================= FLASH SALE ================= -->
+<div class="mb-5">
 
     <div class="card shadow-sm p-4 bg-danger text-white">
 
         <div class="row align-items-center">
 
             <div class="col-md-8">
-
                 <h3 class="mb-2">⚡ Flash Sale</h3>
-
-                <p class="mb-0">
-                    Hurry! Limited time deals ending in:
-                </p>
-
+                <p class="mb-0">Hurry! Limited time deals ending in:</p>
             </div>
 
             <div class="col-md-4 text-md-end">
-
-                <h2 id="flashTimer" class="mb-0">
-                    02:00:00
-                </h2>
-
+                <h2 id="flashTimer" class="mb-0">02:00:00</h2>
             </div>
 
         </div>
@@ -200,72 +165,11 @@
 
 </div>
 
-<!-- FLASH SALE PRODUCTS -->
-<!-- <div class="row g-4 mt-2">
-
-{% for product in products|slice:":4" %}
-
-<div class="col-md-3 col-sm-6">
-
-    <div class="card h-100 shadow-sm">
-
-        <a href="{% url 'product_detail' product.id %}"
-           style="text-decoration:none;color:black;">
-
-            {% if product.image %}
-            <img src="{{ product.image.url }}"
-                 class="card-img-top"
-                 style="height:220px;object-fit:cover;">
-            {% else %}
-            <img src="https://via.placeholder.com/300x220"
-                 class="card-img-top">
-            {% endif %}
-
-        </a>
-
-        <div class="card-body text-center">
-
-            <h6>{{ product.name }}</h6>
-
-            <!-- Pricing 
-            <p class="mb-2">
-
-                <span class="text-muted text-decoration-line-through me-2">
-                    ₹ {{ product.price|add:300 }}
-                </span>
-
-                <span class="text-danger fw-bold">
-                    ₹ {{ product.price }}
-                </span>
-
-            </p>
-
-            <!-- Add to Cart
-            <form method="POST"
-                  action="{% url 'add_to_cart' product.id %}">
-                {% csrf_token %}
-
-                <button class="btn btn-warning btn-sm w-100">
-                    Add to Cart
-                </button>
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
-
-{% endfor %}
-
-</div> -->
-
-<div class="container-fluid">
-
+<!-- ================= MAIN SECTION ================= -->
 <div class="row">
 
-    <!-- SIDEBAR -->
-    <div class="col-12 col-lg-3 mb-4">
+    <!-- Filters -->
+    <div class="col-lg-3 mb-4">
 
         <div class="card shadow-sm p-3">
 
@@ -274,19 +178,14 @@
             <form method="GET" action="{% url 'search_products' %}">
 
                 <label class="fw-bold mb-2">Category</label>
-
                 <select name="category" class="form-select mb-3">
                     <option value="all">All Categories</option>
-
                     {% for parent in parent_categories %}
-                    <option value="{{ parent.id }}">
-                        {{ parent.name }}
-                    </option>
+                    <option value="{{ parent.id }}">{{ parent.name }}</option>
                     {% endfor %}
                 </select>
 
                 <label class="fw-bold mb-2">Price Range</label>
-
                 <select name="price" class="form-select mb-3">
                     <option value="">Select</option>
                     <option value="under_500">Under ₹500</option>
@@ -295,7 +194,6 @@
                 </select>
 
                 <label class="fw-bold mb-2">Sort</label>
-
                 <select name="sort" class="form-select mb-3">
                     <option value="">Newest</option>
                     <option value="low">Low to High</option>
@@ -312,64 +210,29 @@
 
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="col-12 col-lg-9">
+    <!-- Products -->
+    <div class="col-lg-9">
 
-        <!-- TRENDING 
+        <!-- New Arrivals -->
         <div class="mb-5">
 
-            <h4 class="mb-3">Trending Categories</h4>
-
-            <div class="row g-3">
-
-                {% for parent in parent_categories %}
-
-                <div class="col-md-4">
-
-                    <div class="trending-box h-100">
-                        <h6>{{ parent.name }}</h6>
-                    </div>
-
-                </div>
-
-                {% endfor %}
-
-            </div>
-
-        </div>-->
-
-        <!-- NEW ARRIVALS -->
-        <div class="mb-5">
-
-            <h4 class="mb-3">New Arrivals</h4>
+            <h4>New Arrivals</h4>
 
             <div class="row g-4">
 
                 {% for product in products|slice:":8" %}
+                <div class="col-xl-3 col-md-4 col-sm-6">
 
-                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                    <a href="{% url 'product_detail' product.id %}" class="text-dark">
 
-                    <a href="{% url 'product_detail' product.id %}"
-                       style="text-decoration:none;color:black;">
+                        <div class="card h-100 position-relative">
 
-                        <div class="card h-100 shadow-sm">
-
-                            <!-- WISHLIST HEART -->
                             <div class="text-end p-2">
-
                                 <span class="wishlist-btn"
-                                    data-id="{{ product.id }}"
-                                    onclick="event.stopPropagation(); event.preventDefault();"
-                                    style="cursor:pointer;font-size:24px;position:relative;z-index:5;">
-
-                                {% if product.id in wishlist_ids %}
-                                ❤️
-                                {% else %}
-                                🤍
-                                {% endif %}
-
+                                      data-id="{{ product.id }}"
+                                      onclick="event.stopPropagation(); event.preventDefault();">
+                                    {% if product.id in wishlist_ids %}❤️{% else %}🤍{% endif %}
                                 </span>
-
                             </div>
 
                             <div class="sale-badge">Only Few Left</div>
@@ -377,61 +240,56 @@
                             {% if product.image %}
                             <img src="{{ product.image.url }}"
                                  class="card-img-top"
-                                 style="height:220px;object-fit:cover;">
+                                 alt="{{ product.name }}">
                             {% endif %}
 
                             <div class="card-body text-center">
 
-                                <h6>{{ product.name }}</h6>
+                                <h6 class="home-product-title">{{ product.name }}</h6>
 
                                 <p class="text-success fw-bold">
                                     ₹ {{ product.price }}
                                 </p>
 
-                            <!-- Add to Cart -->
-                            <form method="POST"
-                                action="{% url 'add_to_cart' product.id %}">
-                                {% csrf_token %}
-
-                                <button class="btn btn-warning btn-sm w-100">
-                                    Add to Cart
-                                </button>
-                            </form>
+                                <form method="POST"
+                                      action="{% url 'add_to_cart' product.id %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-warning btn-sm w-100">
+                                        Add to Cart
+                                    </button>
+                                </form>
 
                             </div>
-                            
+
                         </div>
 
                     </a>
 
                 </div>
-
                 {% endfor %}
 
             </div>
 
         </div>
 
-        <!-- BEST SELLERS -->
-        <div class="mb-4">
+        <!-- Best Sellers -->
+        <div class="mb-5">
 
-            <h4 class="mb-3">Best Sellers</h4>
+            <h4>Best Sellers</h4>
 
             <div class="row g-4">
 
                 {% for product in products|slice:"8:12" %}
+                <div class="col-xl-3 col-md-4 col-sm-6">
 
-                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                    <a href="{% url 'product_detail' product.id %}" class="text-dark">
 
-                    <a href="{% url 'product_detail' product.id %}"
-                       style="text-decoration:none;color:black;">
-
-                        <div class="card shadow-sm">
+                        <div class="card h-100">
 
                             {% if product.image %}
                             <img src="{{ product.image.url }}"
                                  class="card-img-top"
-                                 style="height:180px;object-fit:cover;">
+                                 alt="{{ product.name }}">
                             {% endif %}
 
                             <div class="card-body text-center">
@@ -449,123 +307,74 @@
                     </a>
 
                 </div>
-
                 {% endfor %}
 
             </div>
 
         </div>
 
-
-<div class="mb-5">
-
-    <h4 class="mb-3">Recently Viewed</h4>
-
-    <div class="row g-4">
-
-        {% for product in products|slice:":4" %}
-
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-
-                <div class="card h-100 shadow-sm">
-
-                {% if product.image %}
-                <img src="{{ product.image.url }}" class="card-img-top" style="height:220px;object-fit:cover;">
-                {% endif %}
-
-                <div class="card-body text-center">
-                    <h6>{{ product.name }}</h6>
-                    <p class="text-success fw-bold">₹ {{ product.price }}</p>
-                </div>
-
-                </div>
-
-            </div>
-
-        {% endfor %}
-
     </div>
 </div>
 
-<div class="container mb-5">
-
-
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- ================= NEWSLETTER ================= -->
 <div class="newsletter-box text-center">
 
-<h3>Get Exclusive Offers</h3>
-<p>Subscribe for deals & launches</p>
+    <h3>Get Exclusive Offers</h3>
+    <p>Subscribe for deals & launches</p>
 
-    <div class="newsletter-form d-flex justify-content-center gap-2 mt-3">
-    <input type="email" class="form-control w-50" placeholder="Enter email">
-    <button class="btn btn-warning">Subscribe</button>
+    <div class="newsletter-form">
+        <input type="email"
+               class="form-control"
+               placeholder="Enter email">
+
+        <button class="btn btn-warning">
+            Subscribe
+        </button>
     </div>
 
 </div>
 
+<!-- ================= JS ================= -->
 <script>
-
-
 document.querySelectorAll(".wishlist-btn").forEach(btn => {
 
-    btn.addEventListener("click", function (e) {
+btn.addEventListener("click", function (e) {
 
-        e.preventDefault();
-        e.stopPropagation();
+e.preventDefault();
+e.stopPropagation();
 
-        let productId = this.dataset.id;
-        let heart = this;
+let productId = this.dataset.id;
+let heart = this;
 
-        fetch("/toggle-wishlist-ajax/" + productId + "/")
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.status === "added") {
-                heart.innerHTML = "❤️";
-            } else {
-                heart.innerHTML = "🤍";
-            }
-
-        });
-
-    });
+fetch("/toggle-wishlist-ajax/" + productId + "/")
+.then(response => response.json())
+.then(data => {
+heart.innerHTML = data.status === "added" ? "❤️" : "🤍";
+});
 
 });
 
+});
 
-
-let time = 7200; // 2 hours
+let time = 7200;
 
 function updateTimer() {
 
-    let hrs = Math.floor(time / 3600);
-    let mins = Math.floor((time % 3600) / 60);
-    let secs = time % 60;
+let hrs = Math.floor(time / 3600);
+let mins = Math.floor((time % 3600) / 60);
+let secs = time % 60;
 
-    document.getElementById("flashTimer").innerText =
-        String(hrs).padStart(2, '0') + ":" +
-        String(mins).padStart(2, '0') + ":" +
-        String(secs).padStart(2, '0');
+document.getElementById("flashTimer").innerText =
+String(hrs).padStart(2,'0') + ":" +
+String(mins).padStart(2,'0') + ":" +
+String(secs).padStart(2,'0');
 
-    if (time > 0) {
-        time--;
-    }
+if(time > 0){ time--; }
 
 }
 
-setInterval(updateTimer, 1000);
-
+setInterval(updateTimer,1000);
 updateTimer();
-
 </script>
 
 {% endblock %}
-

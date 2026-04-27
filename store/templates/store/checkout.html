@@ -1,122 +1,208 @@
 {% extends "store/base.html" %}
 
+{% block title %}Checkout{% endblock %}
+
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5 checkout-page">
 
-<h3>Checkout</h3>
+    <h3 class="checkout-title">Checkout</h3>
 
-<div class="row">
+    <div class="row g-4">
 
-    <!-- LEFT: ADDRESS FORM -->
-    <div class="col-12 col-md-6 mb-4">
+        <!-- ================= LEFT : ADDRESS FORM ================= -->
+        <div class="col-lg-6">
 
-        <form method="post" class="checkout-form">
-            {% csrf_token %}
+            <div class="checkout-form-wrap">
 
-            <!-- EXISTING ADDRESS -->
-            {% if addresses %}
+                <form method="post" class="checkout-form">
+                    {% csrf_token %}
 
-            <h5>Select Address</h5>
+                    <!-- Existing Address -->
+                    {% if addresses %}
 
-            {% for addr in addresses %}
-            <div class="form-check mb-2">
-                <input class="form-check-input"
-                       type="radio"
-                       name="address_id"
-                       value="{{ addr.id }}">
+                    <h5 class="checkout-section-title">
+                        Select Address
+                    </h5>
 
-                <label class="form-check-label">
-                    {{ addr.name }}, {{ addr.address }}, {{ addr.city }} - {{ addr.pincode }}
-                    ({{ addr.phone }})
-                </label>
+                    {% for addr in addresses %}
+                    <div class="form-check">
+
+                        <input class="form-check-input"
+                               type="radio"
+                               name="address_id"
+                               value="{{ addr.id }}"
+                               id="addr{{ addr.id }}">
+
+                        <label class="form-check-label"
+                               for="addr{{ addr.id }}">
+
+                            {{ addr.name }},
+                            {{ addr.address }},
+                            {{ addr.city }} -
+                            {{ addr.pincode }}
+                            ({{ addr.phone }})
+
+                        </label>
+
+                    </div>
+                    {% endfor %}
+
+                    <div class="form-check mt-3">
+
+                        <input class="form-check-input address-radio"
+                               type="radio"
+                               name="address_option"
+                               value="new"
+                               checked
+                               id="newAddress">
+
+                        <label class="form-check-label text-primary fw-bold"
+                               for="newAddress">
+                            Add New Address
+                        </label>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    {% endif %}
+
+                    <!-- New Address -->
+                    <h5 class="checkout-section-title">
+                        Delivery Details
+                    </h5>
+
+                    <input type="text"
+                           name="name"
+                           class="form-control mb-3"
+                           placeholder="Full Name">
+
+                    <textarea name="address"
+                              class="form-control mb-3"
+                              placeholder="Address"></textarea>
+
+                    <input type="text"
+                           name="city"
+                           class="form-control mb-3"
+                           placeholder="City">
+
+                    <input type="text"
+                           name="pincode"
+                           class="form-control mb-3"
+                           placeholder="Pincode">
+
+                    <input type="text"
+                           name="phone"
+                           class="form-control mb-3"
+                           placeholder="Phone Number">
+
+                    <button class="btn btn-success">
+                        Place Order
+                    </button>
+
+                    <div class="checkout-note text-center">
+                        Safe & secure checkout experience
+                    </div>
+
+                </form>
+
             </div>
-            {% endfor %}
 
-            <!-- ✅ ADD THIS -->
-            <div class="form-check mt-3">
+        </div>
 
-                <input class="form-check-input address-radio"
-                    type="radio"
-                    name="address_option"
-                    value="new"
-                    checked>
+        <!-- ================= RIGHT : ORDER SUMMARY ================= -->
+        <div class="col-lg-6">
 
-                <label class="form-check-label fw-bold text-primary">
-                    Add New Address
-                </label>
+            <div class="checkout-summary-wrap">
+
+                <h5 class="checkout-section-title">
+                    Order Summary
+                </h5>
+
+                {% if items %}
+
+                <ul class="list-group checkout-summary">
+
+                    {% for item in items %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                        <span>
+                            {{ item.product.name }} × {{ item.quantity }}
+                        </span>
+
+                        <strong>
+                            ₹ {{ item.product.price }}
+                        </strong>
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+                <div class="checkout-total">
+                    Total: ₹ {{ total }}
+                </div>
+
+                {% else %}
+
+                <div class="checkout-empty">
+                    No items found in checkout.
+                </div>
+
+                {% endif %}
 
             </div>
 
-            <hr>
-
-            {% endif %}
-
-            <!-- NEW ADDRESS -->
-            <input type="text" name="name" class="form-control mb-2" placeholder="Full Name">
-            <textarea name="address" class="form-control mb-2" placeholder="Address"></textarea>
-            <input type="text" name="city" class="form-control mb-2" placeholder="City">
-            <input type="text" name="pincode" class="form-control mb-2" placeholder="Pincode">
-            <input type="text" name="phone" class="form-control mb-2" placeholder="Phone">
-
-            <button class="btn btn-success w-100">Place Order</button>
-
-        </form>
-
-    </div>
-
-    <!-- RIGHT: ORDER SUMMARY -->
-    <div class="col-12 col-md-6">
-
-        <h5>Order Summary</h5>
-
-        <ul class="list-group checkout-summary">
-
-            {% for item in items %}
-            <li class="list-group-item d-flex justify-content-between align-items-start flex-wrap gap-2list-group-item d-flex justify-content-between">
-                {{ item.product.name }} × {{ item.quantity }}
-                <span>₹ {{ item.product.price }}</span>
-            </li>
-            {% endfor %}
-
-        </ul>
-
-        <h4 class="mt-3">Total: ₹ {{ total }}</h4>
+        </div>
 
     </div>
 
 </div>
 
-</div>
-
-<!-- ✅ JS INSIDE BLOCK -->
+<!-- ================= VALIDATION JS ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const form = document.querySelector("form");
+    const form = document.querySelector(".checkout-form");
+
+    if (!form) return;
 
     form.addEventListener("submit", function(e) {
 
-        const selectedAddress = document.querySelector('input[name="address_id"]:checked');
+        const selectedAddress =
+            document.querySelector('input[name="address_id"]:checked');
 
-        const name = document.querySelector('[name="name"]').value.trim();
-        const address = document.querySelector('[name="address"]').value.trim();
-        const city = document.querySelector('[name="city"]').value.trim();
-        const pincode = document.querySelector('[name="pincode"]').value.trim();
-        const phone = document.querySelector('[name="phone"]').value.trim();
+        const name =
+            document.querySelector('[name="name"]').value.trim();
 
-        // Validate only if no existing address selected
+        const address =
+            document.querySelector('[name="address"]').value.trim();
+
+        const city =
+            document.querySelector('[name="city"]').value.trim();
+
+        const pincode =
+            document.querySelector('[name="pincode"]').value.trim();
+
+        const phone =
+            document.querySelector('[name="phone"]').value.trim();
+
         if (!selectedAddress) {
+
             if (!name || !address || !city || !pincode || !phone) {
-                alert("Please fill all address fields OR select an existing address.");
+
+                alert(
+                    "Please fill all address fields OR select an existing address."
+                );
+
                 e.preventDefault();
             }
         }
 
     });
-    
-});
 
+});
 </script>
 
 {% endblock %}

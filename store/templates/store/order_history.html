@@ -1,165 +1,232 @@
 {% extends "store/base.html" %}
 
+{% block title %}My Orders{% endblock %}
+
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3 orders-topbar">
-    <h4>My Orders</h4>
+<div class="container mt-4 orders-page">
 
-    <form method="get">
-        <select name="status" class="form-select order-filter-select" onchange="this.form.submit()">
+    <!-- ================= TOP BAR ================= -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 orders-topbar">
 
-            <option value="all" {% if status_filter == "all" %}selected{% endif %}>All Orders</option>
+        <h4 class="orders-title">My Orders</h4>
 
-            <option value="pending" {% if status_filter == "pending" %}selected{% endif %}>Pending</option>
+        <form method="get">
 
-            <option value="processing" {% if status_filter == "processing" %}selected{% endif %}>Processing</option>
+            <select name="status"
+                    class="form-select order-filter-select"
+                    onchange="this.form.submit()">
 
-            <option value="shipped" {% if status_filter == "shipped" %}selected{% endif %}>Shipped</option>
+                <option value="all" {% if status_filter == "all" %}selected{% endif %}>
+                    All Orders
+                </option>
 
-            <option value="delivered" {% if status_filter == "delivered" %}selected{% endif %}>Delivered</option>
+                <option value="pending" {% if status_filter == "pending" %}selected{% endif %}>
+                    Pending
+                </option>
 
-            <option value="cancelled" {% if status_filter == "cancelled" %}selected{% endif %}>Cancelled</option>
+                <option value="processing" {% if status_filter == "processing" %}selected{% endif %}>
+                    Processing
+                </option>
 
-        </select>
-    </form>
-</div>
+                <option value="shipped" {% if status_filter == "shipped" %}selected{% endif %}>
+                    Shipped
+                </option>
 
-{% if order_data %}
+                <option value="delivered" {% if status_filter == "delivered" %}selected{% endif %}>
+                    Delivered
+                </option>
 
-    {% for data in order_data %}
-    {% with order=data.order %}
+                <option value="cancelled" {% if status_filter == "cancelled" %}selected{% endif %}>
+                    Cancelled
+                </option>
 
-    <div class="card mb-4 shadow-sm">
+            </select>
 
-        <!-- HEADER -->
-        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2 bg-light">
+        </form>
 
-            <div>
-                <strong>Order #{{ order.id }}</strong><br>
-                <small>{{ order.created_at|date:"d M Y, H:i" }}</small>
-            </div>
+    </div>
 
-            <div>
-                <span class="badge
+    <!-- ================= ORDER DATA ================= -->
+    {% if order_data %}
+
+        {% for data in order_data %}
+        {% with order=data.order %}
+
+        <div class="card order-card mb-4">
+
+            <!-- HEADER -->
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+                <div>
+
+                    <div class="order-number">
+                        Order #{{ order.id }}
+                    </div>
+
+                    <div class="order-date">
+                        {{ order.created_at|date:"d M Y, H:i" }}
+                    </div>
+
+                </div>
+
+                <div class="text-end">
+
+                    <span class="badge
                     {% if order.status == 'pending' %}bg-warning text-dark
                     {% elif order.status == 'processing' %}bg-info text-dark
                     {% elif order.status == 'shipped' %}bg-primary text-white
                     {% elif order.status == 'delivered' %}bg-success text-white
                     {% elif order.status == 'cancelled' %}bg-danger text-white
                     {% else %}bg-secondary text-white
-                    {% endif %}
-                ">
-                    {{ order.status|title }} 
-                </span>
-                    
+                    {% endif %}">
+                        {{ order.status|title }}
+                    </span>
+
                     {% if order.payment %}
-                        <div style="margin-top: 6px; font-size: 13px; color: #555;">
-                            
-                            <span style="color:#777;">
-                                Payment:
-                            </span>
-
-                            <span style="
-                                margin-left: 5px;
-                                padding: 3px 10px;
-                                background-color: #28a745;
-                                color: white;
-                                border-radius: 12px;
-                                font-size: 11px;
-                                font-weight: 600;
-                            ">
-                                Paid
-                            </span>
-                        </div>
-                    {% endif %}                
-            </div>
-        </div>
-
-        <!-- BODY -->
-        <div class="card-body">
-
-            <!-- ADDRESS -->
-            <div class="mb-3">
-                <strong>Delivery Address:</strong><br>
-                {{ order.address.name }},
-                {{ order.address.address }},
-                {{ order.address.city }} - {{ order.address.pincode }}<br>
-                📞 {{ order.address.phone }}
-            </div>
-
-            <hr>
-
-            <!-- ITEMS -->
-            {% for item in order.items.all %}
-            <div class="row align-items-center mb-3 order-item-row">
-
-                <div class="col-4 col-sm-3 col-md-2 mb-2 mb-md-0">
-                    {% if item.product.image %}
-                        <img src="{{ item.product.image.url }}"
-                             class="img-fluid rounded"
-                             style="height:80px; object-fit:cover;">
+                    <div class="payment-status">
+                        Payment:
+                        <span class="payment-pill">
+                            Paid
+                        </span>
+                    </div>
                     {% endif %}
-                </div>
 
-                <div class="col-8 col-sm-6 col-md-6">
-                    <strong>{{ item.product.name }}</strong><br>
-                    <small>Qty: {{ item.quantity }}</small>
-                </div>
-
-                <div class="col-12 col-sm-3 col-md-4 text-start text-sm-end mt-2 mt-sm-0">
-                    ₹ {{ item.price }} × {{ item.quantity }}
                 </div>
 
             </div>
-            {% endfor %}
 
-            <hr>
+            <!-- BODY -->
+            <div class="card-body">
 
-            <!-- TOTAL -->
-            <div class="text-end">
-                <h5>Total: ₹ {{ data.total }}</h5>
-            </div>
+                <!-- Address -->
+                <div class="order-address mb-3">
 
-            <div class="d-flex gap-2 mt-3 flex-wrap order-action-wrap">
+                    <strong>Delivery Address:</strong>
 
-                <!-- PAY NOW BUTTON -->
-                {% if not order.payment or order.payment.status != "SUCCESS" %}
-                <form method="post" action="{% url 'store:pay_now' order.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">
-                        Pay Now
+                    {{ order.address.name }},
+                    {{ order.address.address }},
+                    {{ order.address.city }} -
+                    {{ order.address.pincode }}
+
+                    <br>
+
+                    📞 {{ order.address.phone }}
+
+                </div>
+
+                <hr>
+
+                <!-- Items -->
+                {% for item in order.items.all %}
+
+                <div class="row align-items-center order-item-row gy-3">
+
+                    <div class="col-md-2 col-4">
+
+                        {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}"
+                             class="order-item-image"
+                             alt="{{ item.product.name }}">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-md-6 col-8">
+
+                        <div class="order-item-name">
+                            {{ item.product.name }}
+                        </div>
+
+                        <div class="order-item-meta">
+                            Qty: {{ item.quantity }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 text-md-end">
+
+                        <div class="order-item-price">
+                            ₹ {{ item.price }} × {{ item.quantity }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+                <hr>
+
+                <!-- Total -->
+                <div class="order-total-wrap">
+                    <h5 class="order-total">
+                        Total: ₹ {{ data.total }}
+                    </h5>
+                </div>
+
+                <!-- Actions -->
+                <div class="order-action-wrap">
+
+                    {% if not order.payment or order.payment.status != "SUCCESS" %}
+
+                    <form method="post"
+                          action="{% url 'store:pay_now' order.id %}">
+                        {% csrf_token %}
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Pay Now
+                        </button>
+                    </form>
+
+                    <form method="post"
+                          action="{% url 'store:cancel_order' order.id %}">
+                        {% csrf_token %}
+
+                        <button type="submit"
+                                class="btn btn-danger"
+                                onclick="return confirm('Are you sure you want to cancel this order?')">
+                            Cancel Order
+                        </button>
+                    </form>
+
+                    {% else %}
+
+                    <button class="btn btn-secondary" disabled>
+                        Paid
                     </button>
-                </form>
-                {% endif %}
 
-                <!-- CANCEL BUTTON -->
-                {% if not order.payment or order.payment.status != "SUCCESS" %}
-                <form method="post" action="{% url 'store:cancel_order' order.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger"
-                        onclick="return confirm('Are you sure you want to cancel this order?')">
-                        Cancel Order
-                    </button>
-                </form>
-                {% else %}
-                <button class="btn btn-secondary" disabled>
-                    Paid
-                </button>
-                {% endif %}
+                    {% endif %}
+
+                </div>
 
             </div>
 
         </div>
+
+        {% endwith %}
+        {% endfor %}
+
+    {% else %}
+
+    <!-- Empty -->
+    <div class="empty-orders">
+
+        <h4 class="mb-2">No Orders Yet</h4>
+
+        <p>
+            Once you place orders, they will appear here.
+        </p>
+
+        <a href="{% url 'home' %}" class="btn btn-warning mt-3">
+            Continue Shopping
+        </a>
 
     </div>
 
-    {% endwith %}
-    {% endfor %}
+    {% endif %}
 
-{% else %}
-
-    <p>You have no orders yet.</p>
-
-{% endif %}
+</div>
 
 {% endblock %}

@@ -1,140 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment | PreetCraft Studio</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
 
-<title>Secure Payment</title>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<style>
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:#f8f9fa;
-}
-
-.payment-wrap{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.payment-card{
-    background:#fff;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    text-align:center;
-    width:100%;
-    max-width:420px;
-}
-
-.loader{
-    width:48px;
-    height:48px;
-    border:4px solid #eee;
-    border-top:4px solid #0d6efd;
-    border-radius:50%;
-    margin:0 auto 18px;
-    animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg);}
-}
-
-.pay-btn{
-    border:none;
-    background:#0d6efd;
-    color:#fff;
-    padding:12px 18px;
-    border-radius:12px;
-    font-weight:700;
-    width:100%;
-    cursor:pointer;
-    margin-top:15px;
-}
-
-@media(max-width:576px){
-    .payment-card{
-        padding:22px;
-    }
-}
-</style>
-
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
-<body>
 
-<div class="payment-wrap">
+<body class="payment-page">
+
+<div class="payment-wrapper">
+
     <div class="payment-card">
-        <div class="loader"></div>
-        <h3>Redirecting to Secure Payment</h3>
-        <p>Please wait while we open Razorpay checkout.</p>
 
-        <button class="pay-btn" onclick="rzp.open()">
-            Open Payment Window
+        <div class="loader"></div>
+
+        <div class="brand">PreetCraft Studio</div>
+
+        <p class="subtitle">
+            Redirecting to secure Razorpay checkout
+        </p>
+
+        <div class="amount-box">
+            <div class="amount-label">Payable Amount</div>
+            <div class="amount">₹ {{ amount|floatformat:2 }}</div>
+        </div>
+
+        <button class="btn btn-pay" onclick="openPayment()">
+            Proceed to Pay
         </button>
+
+        <button class="btn btn-cancel" onclick="goHome()">
+            Cancel Payment
+        </button>
+
+        <p class="small-text">
+            100% Secure Payment via Razorpay
+        </p>
+
     </div>
+
 </div>
 
 <script>
-var options = {
- "key": "{{ razorpay_key }}",
- "amount": parseInt("{{ amount }}"),
- "currency": "INR",
- "name": "My Store",
- "description": "Purchase",
- "order_id": "{{ order_id }}",
+const options = {
+    key: "{{ razorpay_key }}",
+    amount: parseInt("{{ amount }}"),
+    currency: "INR",
+    name: "PreetCraft Studio",
+    description: "Purchase Payment",
+    order_id: "{{ order_id }}",
 
- "method": {
- "card": true,
- "upi": true,
- "netbanking": true,
- "wallet": true
- },
+    method: {
+        card: true,
+        upi: true,
+        netbanking: true,
+        wallet: true
+    },
 
- "handler": function(response){
+    handler: function(response){
 
- fetch("/payment-success-api/", {
- method: "POST",
- headers: {
- "Content-Type": "application/json",
- "X-CSRFToken": "{{ csrf_token }}"
- },
- body: JSON.stringify(response)
- })
- .then(res => res.json())
- .then(data => {
-   if (data.status === "success") {
-     window.location.href =
-      "/payment-success/?order_id=" + response.razorpay_order_id;
-   } else {
-     alert("Payment verification failed");
-   }
- })
- .catch(() => {
-   alert("Something went wrong");
- });
+        fetch("/payment-success-api/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: JSON.stringify(response)
+        })
+        .then(res => res.json())
+        .then(data => {
 
- },
+            if(data.status === "success"){
+                window.location.href =
+                "/payment-success/?order_id=" +
+                response.razorpay_order_id;
+            }else{
+                alert("Payment verification failed.");
+            }
 
- "modal": {
- "ondismiss": function(){
-   window.location.href = "/";
- }
- }
+        })
+        .catch(error => {
+            alert("Something went wrong.");
+        });
+    },
+
+    modal: {
+        ondismiss: function(){
+            window.location.href = "/";
+        }
+    },
+
+    theme: {
+        color: "#f59e0b"
+    }
 };
 
-var rzp = new Razorpay(options);
+const rzp = new Razorpay(options);
 
-/* auto open */
+function openPayment(){
+    rzp.open();
+}
+
+function goHome(){
+    window.location.href = "/";
+}
+
 window.onload = function(){
-   rzp.open();
+    setTimeout(function(){
+        rzp.open();
+    }, 700);
 };
 </script>
 

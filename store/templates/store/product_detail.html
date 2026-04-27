@@ -1,106 +1,139 @@
 {% extends "store/base.html" %}
 
+{% block title %}{{ product.name }}{% endblock %}
+
 {% block content %}
 
 <div class="container mt-5">
-<div class="row">
 
-    <!-- LEFT: THUMBNAILS -->
-    <div class="col-12 col-md-2 order-2 order-md-1">
+    <div class="row g-4 align-items-start">
 
-        {% if product.images.all.exists %}
-            {% for img in product.images.all %}
-                <img src="{{ img.image.url }}"
-                     class="img-thumbnail thumb-img me-2 mb-2"
-                     style="cursor:pointer; height:70px; object-fit:cover;"
-                     onclick="changeImage('{{ img.image.url }}')">
-            {% endfor %}
-        {% endif %}
+        <!-- ================= THUMBNAILS ================= -->
+        <div class="col-lg-2 col-md-2 order-2 order-md-1">
 
-    </div>
+            <div class="d-flex d-md-block gap-2 flex-wrap">
 
-    <!-- CENTER: MAIN IMAGE -->
-    <div class="col-12 col-md-5 order-1 order-md-2 mb-4">
+                {% if product.images.all.exists %}
+                    {% for img in product.images.all %}
+                    <img src="{{ img.image.url }}"
+                         class="thumb-img mb-md-2"
+                         alt="{{ product.name }}"
+                         onclick="changeImage('{{ img.image.url }}')">
+                    {% endfor %}
+                {% endif %}
 
-        <div class="img-zoom-container">
+            </div>
 
-            {% if product.image %}
+        </div>
+
+        <!-- ================= MAIN IMAGE ================= -->
+        <div class="col-lg-5 col-md-5 order-1 order-md-2">
+
+            <div class="img-zoom-container">
+
+                {% if product.image %}
                 <img id="mainImage"
                      src="{{ product.image.url }}"
                      class="img-fluid border product-main-image"
-                     style="width:100%; max-height:400px; object-fit:cover;">
-            {% else %}
+                     alt="{{ product.name }}">
+                {% else %}
                 <img id="mainImage"
-                     src="https://via.placeholder.com/400"
-                     class="img-fluid">
+                     src="https://via.placeholder.com/500"
+                     class="img-fluid border product-main-image"
+                     alt="Product">
+                {% endif %}
+
+                <div id="lens"></div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= PRODUCT DETAILS ================= -->
+        <div class="col-lg-5 col-md-5 order-3">
+
+            <h3 class="fw-bold mb-2">{{ product.name }}</h3>
+
+            <div class="product-price mb-3">
+                ₹ {{ product.price }}
+            </div>
+
+            <hr>
+
+            <p class="product-description">
+                {{ product.description }}
+            </p>
+
+            <!-- Quantity -->
+            <div class="qty-wrap mb-4">
+
+                <label class="fw-bold me-2">
+                    Quantity:
+                </label>
+
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="decreaseQty()">
+                    -
+                </button>
+
+                <input type="text"
+                       id="quantity"
+                       value="1"
+                       class="form-control text-center">
+
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        onclick="increaseQty()">
+                    +
+                </button>
+
+            </div>
+
+            <!-- Add to Cart -->
+            {% if user.is_authenticated %}
+
+            <form method="post"
+                  action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+
+                <input type="hidden"
+                       name="quantity"
+                       id="hiddenQuantity"
+                       value="1">
+
+                <button class="btn btn-warning w-100 product-action-btn mb-3">
+                    Add to Cart
+                </button>
+            </form>
+
+            {% else %}
+
+            <a href="{% url 'store:login' %}?next={{ request.path }}"
+               class="btn btn-warning w-100 product-action-btn mb-3">
+                Login to Buy
+            </a>
+
             {% endif %}
 
-            <div id="lens"></div>
+            <!-- Buy Now -->
+            <a href="{% url 'store:buy_now' product.id %}"
+               class="btn btn-danger w-100 product-action-btn">
+                Buy Now
+            </a>
 
+        </div>
+
+        <!-- ================= ZOOM RESULT ================= -->
+        <div class="col-12 mt-4">
+            <div id="zoomResult"></div>
         </div>
 
     </div>
 
-    <!-- RIGHT: PRODUCT DETAILS -->
-    <div class="col-12 col-md-5 order-3">
-
-        <h3 class="fw-bold">{{ product.name }}</h3>
-
-        <h4 class="text-success mt-3">₹ {{ product.price }}</h4>
-
-        <hr>
-
-        <p>{{ product.description }}</p>
-
-        <!-- QUANTITY SELECTOR -->
-        <div class="d-flex align-items-center flex-wrap gap-2 mb-3 qty-wrap">
-
-            <label class="me-3 fw-bold">Quantity:</label>
-
-            <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty()">-</button>
-
-            <input type="text" id="quantity" value="1"
-                   class="form-control text-center mx-2"
-                   style="width:60px;">
-
-            <button type="button" class="btn btn-outline-secondary" onclick="increaseQty()">+</button>
-
-        </div>
-
-        {% if user.is_authenticated %}
-        <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-
-            <input type="hidden" name="quantity" id="hiddenQuantity" value="1">
-
-            <button class="btn btn-primary w-100 mb-2">
-                Add to Cart
-            </button>
-        </form>
-        {% else %}
-        <a href="{% url 'store:login' %}?next={{ request.path }}"
-           class="btn btn-warning w-100 mb-2">
-            Login to Buy
-        </a>
-        {% endif %}
-
-        
-        <a href="{% url 'store:buy_now' product.id %}" class="btn btn-danger w-100">
-               Buy Now
-        </a>
-        
-
-    </div>
-
-    <!-- ZOOM RESULT -->
-    <div class="col-md-12 mt-4">
-        <div id="zoomResult"></div>
-    </div>
-
-</div>
 </div>
 
-<!-- JS -->
+<!-- ================= JS ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -131,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const lensWidth = lens.offsetWidth / 2;
         const lensHeight = lens.offsetHeight / 2;
 
-        // Boundaries (REAL FIX)
         x = Math.max(lensWidth, Math.min(x, img.offsetWidth - lensWidth));
         y = Math.max(lensHeight, Math.min(y, img.offsetHeight - lensHeight));
 
@@ -139,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lens.style.top = (y - lensHeight) + "px";
 
         result.style.backgroundImage = `url('${img.src}')`;
+
         result.style.backgroundSize =
             (img.offsetWidth * zoom) + "px " +
             (img.offsetHeight * zoom) + "px";
@@ -156,9 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function hideLens() {
         lens.style.display = "none";
         result.style.display = "none";
-
-        // ✅ CLEAR ZOOM EFFECT
-    result.style.backgroundImage = "none";
+        result.style.backgroundImage = "none";
     }
 
     img.addEventListener("mouseenter", showLens);
@@ -167,13 +198,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/* Change image */
+/* Change Image */
 function changeImage(src) {
     document.getElementById("mainImage").src = src;
 }
 
-/* Quantity */
+/* Quantity Increase */
 function increaseQty() {
+
     let qty = document.getElementById("quantity");
     let hiddenQty = document.getElementById("hiddenQuantity");
 
@@ -181,11 +213,13 @@ function increaseQty() {
     hiddenQty.value = qty.value;
 }
 
+/* Quantity Decrease */
 function decreaseQty() {
+
     let qty = document.getElementById("quantity");
     let hiddenQty = document.getElementById("hiddenQuantity");
 
-    if (qty.value > 1) {
+    if (parseInt(qty.value) > 1) {
         qty.value = parseInt(qty.value) - 1;
         hiddenQty.value = qty.value;
     }

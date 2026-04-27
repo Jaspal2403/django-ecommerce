@@ -1,16 +1,45 @@
 {% extends "store/base.html" %}
 
+{% block title %}Order Success{% endblock %}
+
 {% block content %}
 
-<div class="container text-center mt-5 order-success-wrap">
+<div class="container mt-5">
 
-<h2 class="text-success order-success-title">
-🎉 Order Placed Successfully!
-</h2>
+    <div class="order-success-wrap text-center">
 
-<a href="{% url 'home' %}" class="btn btn-primary mt-3 order-success-btn">
- Continue Shopping
-</a>
+        <!-- Success Icon -->
+        <div class="mb-3" style="font-size:72px;">
+            🎉
+        </div>
+
+        <!-- Heading -->
+        <h2 class="text-success order-success-title">
+            Order Placed Successfully!
+        </h2>
+
+        <!-- Message -->
+        <p class="text-muted mb-4">
+            Thank you for shopping with us.  
+            Your order has been received and is being processed.
+        </p>
+
+        <!-- Actions -->
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+
+            <a href="{% url 'home' %}"
+               class="btn btn-primary order-success-btn">
+                Continue Shopping
+            </a>
+
+            <a href="{% url 'order_history' %}"
+               class="btn btn-outline-dark order-success-btn">
+                View Orders
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

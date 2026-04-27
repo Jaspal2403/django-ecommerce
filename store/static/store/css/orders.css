@@ -1,0 +1,271 @@
+/* ==================================================
+   ORDERS.CSS
+   Order History / Success / Payment Success
+   ================================================== */
+
+/* ================= ORDERS PAGE ================= */
+
+.orders-page{
+    padding-top:10px;
+}
+
+.orders-topbar{
+    margin-bottom:18px;
+}
+
+.orders-title{
+    font-weight:800;
+    margin-bottom:0;
+}
+
+.order-filter-select{
+    min-width:180px;
+    border-radius:12px;
+}
+
+/* ================= ORDER CARD ================= */
+
+.order-card{
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    background:#fff;
+}
+
+.order-card .card-header{
+    background:#f8f9fa;
+    border-bottom:1px solid rgba(0,0,0,.06);
+    padding:16px 20px;
+}
+
+.order-card .card-body{
+    padding:20px;
+}
+
+/* ================= ORDER META ================= */
+
+.order-number{
+    font-weight:800;
+    color:#111827;
+}
+
+.order-date{
+    font-size:13px;
+    color:#6b7280;
+}
+
+/* ================= PAYMENT STATUS ================= */
+
+.payment-status{
+    margin-top:6px;
+    font-size:13px;
+    color:#555;
+}
+
+.payment-pill{
+    display:inline-block;
+    margin-left:5px;
+    padding:3px 10px;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:700;
+    background:#28a745;
+    color:#fff;
+}
+
+/* ================= ADDRESS ================= */
+
+.order-address{
+    line-height:1.6;
+    color:#111827;
+}
+
+.order-address strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+/* ================= ORDER ITEMS ================= */
+
+.order-item-row{
+    padding:10px 0;
+}
+
+.order-item-image{
+    width:100%;
+    height:80px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.order-item-name{
+    font-weight:700;
+    color:#111827;
+    line-height:1.4;
+}
+
+.order-item-meta{
+    font-size:14px;
+    color:#6b7280;
+}
+
+.order-item-price{
+    font-weight:700;
+    color:#111827;
+}
+
+/* ================= TOTAL ================= */
+
+.order-total-wrap{
+    text-align:right;
+}
+
+.order-total{
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:0;
+}
+
+.order-total::after{
+    display:none;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.order-action-wrap{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+}
+
+.order-action-wrap form{
+    margin:0;
+}
+
+.order-action-wrap .btn{
+    border-radius:12px;
+    font-weight:700;
+    padding:10px 16px;
+}
+
+/* ================= EMPTY ORDERS ================= */
+
+.empty-orders{
+    background:#fff;
+    border-radius:20px;
+    padding:40px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.empty-orders p{
+    margin-bottom:0;
+    color:#6b7280;
+}
+
+/* ================= ORDER SUCCESS PAGE ================= */
+
+.order-success-wrap{
+    min-height:55vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.order-success-title{
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.order-success-btn{
+    padding:12px 22px;
+    border-radius:14px;
+    font-weight:700;
+}
+
+/* ================= PAYMENT SUCCESS PAGE ================= */
+
+.success-wrap{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:#f8f9fa;
+}
+
+.success-card{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    padding:30px;
+}
+
+.success-title{
+    color:#198754;
+    font-weight:800;
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.success-row{
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.store-btn{
+    display:block;
+    text-align:center;
+    margin-top:22px;
+    padding:12px;
+    border-radius:12px;
+    background:#0d6efd;
+    color:#fff;
+    font-weight:700;
+}
+
+.store-btn:hover{
+    color:#fff;
+}
+
+/* ================= PAYMENT SUCCESS ================= */
+
+.payment-success-card{
+    max-width:500px;
+    margin:auto;
+    border-radius:18px;
+}
+
+.payment-success-card .card-body{
+    padding:30px;
+}
+
+.payment-success-label{
+    font-size:14px;
+    color:#6b7280;
+    margin-bottom:4px;
+}
+
+.payment-success-value{
+    font-weight:700;
+    color:#111827;
+    word-break:break-word;
+}
+
+@media (max-width:576px){
+
+    .payment-success-card{
+        max-width:100%;
+        border-radius:14px;
+    }
+
+    .payment-success-card .card-body{
+        padding:22px;
+    }
+
+}

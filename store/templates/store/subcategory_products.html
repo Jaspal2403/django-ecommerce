@@ -4,30 +4,84 @@
 
 {% block content %}
 
-<h2 class="mb-4 subcat-heading">
-    {{ subcategory.parent.name }} → {{ subcategory.name }}
-</h2>
+<div class="container mt-4">
 
-<div class="row">
-    {% for product in products %}
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-body text-center">
-                    <h5 class="card-title subcat-title">{{ product.name }}</h5>
-                    <p class="card-text text-muted">
-                        ₹{{ product.price }}
+    <!-- ================= HEADING ================= -->
+    <h2 class="subcat-heading mb-4">
+        {{ subcategory.parent.name }} → {{ subcategory.name }}
+    </h2>
+
+    <!-- ================= PRODUCTS ================= -->
+    <div class="row g-4">
+
+        {% for product in products %}
+
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+
+            <div class="card h-100">
+
+                <!-- Image -->
+                <a href="{% url 'product_detail' product.id %}" class="text-dark">
+
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                         class="card-img-top search-card-img"
+                         alt="{{ product.name }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/300x220"
+                         class="card-img-top search-card-img"
+                         alt="Product">
+                    {% endif %}
+
+                </a>
+
+                <!-- Body -->
+                <div class="card-body text-center d-flex flex-column">
+
+                    <h5 class="subcat-title">
+                        {{ product.name }}
+                    </h5>
+
+                    <p class="card-text text-success fw-bold mb-3">
+                        ₹ {{ product.price }}
                     </p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary btn-sm w-100">
-                        View Details
-                    </a>
+
+                    <div class="mt-auto">
+                        <a href="{% url 'product_detail' product.id %}"
+                           class="btn btn-primary btn-sm w-100">
+                            View Details
+                        </a>
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
-    {% empty %}
+
+        {% empty %}
+
+        <!-- Empty State -->
         <div class="col-12">
-            <p class="text-center py-4">No products found.</p>
+
+            <div class="no-products-box">
+
+                <h3 class="mb-3 text-danger">
+                    No products found
+                </h3>
+
+                <p class="mb-0">
+                    Products will appear here once added to this category.
+                </p>
+
+            </div>
+
         </div>
-    {% endfor %}
+
+        {% endfor %}
+
+    </div>
+
 </div>
 
 {% endblock %}

@@ -19,7 +19,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('store:home')
         else:
             messages.error(request, "Signup failed")
 
@@ -35,7 +35,7 @@ def login_redirect(request):
 
     if request.user.is_staff:
         return redirect('/admin/')
-    return redirect('home')
+    return redirect('store:home')
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 class CustomLoginView(LoginView):
@@ -46,8 +46,8 @@ class CustomLoginView(LoginView):
         #context['signup_form'] = SignUpForm()
         return context
     
-def get_success_url(self):
-    return self.request.GET.get('next', '/')
+    def get_success_url(self):
+        return self.request.GET.get('next', '/')
 
 
 # def get_parent_categories():
@@ -193,7 +193,7 @@ def subcategory_products(request, subcategory_id):
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('store:login')
 
 
 #AJAX
@@ -334,12 +334,12 @@ def checkout(request):
 
         if product_id:
             #return redirect('pay')   # ⚠️ see note below
-            return redirect('create_order')   # ✅ redirect to create_order which will handle both Buy Now and Cart checkout flows
+            return redirect('store:create_order')   # ✅ redirect to create_order which will handle both Buy Now and Cart checkout flows
             
-        return redirect('home')  
+        return redirect('store:home')  
       
         # ✅ After saving address → go back to Buy Now flow
-        # return redirect(request.GET.get('next', 'home'))
+        # return redirect(request.GET.get('next', 'store:home'))
 
         order = Order.objects.create(
             user=request.user,
@@ -356,7 +356,7 @@ def checkout(request):
 
         items.delete()
 
-        return redirect('order_success')
+        return redirect('store:order_success')
 
     return render(request, "store/checkout.html", {
         "items": items,
@@ -493,7 +493,7 @@ def add_to_cart(request, product_id):
 
     item.save()
 
-    return redirect('cart')
+    return redirect('store:cart')
 
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
@@ -525,7 +525,7 @@ def increase_quantity(request, product_id):
     item.quantity += 1
     item.save()
 
-    return redirect('cart')
+    return redirect('store:cart')
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 # ➖ Decrease quantity
@@ -542,7 +542,7 @@ def decrease_quantity(request, product_id):
     else:
         item.delete()   # remove if quantity becomes 0
 
-    return redirect('cart')
+    return redirect('store:cart')
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 # ❌ Remove item
@@ -555,7 +555,7 @@ def remove_from_cart(request, product_id):
 
     item.delete()
 
-    return redirect('cart')
+    return redirect('store:cart')
 
 #STABLE MODULE - DO NOT EDIT UNLESS NECESSARY
 @login_required
@@ -602,7 +602,7 @@ def checkout(request):
 
         items.delete()
 
-        return redirect('order_success')
+        return redirect('store:order_success')
 
     return render(request, "store/checkout.html", {
         "items": items,
@@ -652,7 +652,7 @@ def cancel_order(request, order_id):
             order.status = 'cancelled'
             order.save()
 
-    return redirect('order_history')
+    return redirect('store:order_history')
 
 
 client = razorpay.Client(auth=(
@@ -678,7 +678,7 @@ def create_order(request):
         print("PRODUCT ID FROM SESSION:", product_id)
 
         if not product_id:
-            return redirect('home')
+            return redirect('store:home')
 
         # ✅ Get product
         product = Product.objects.get(id=product_id)
@@ -691,7 +691,7 @@ def create_order(request):
 
         if not address:
             # 🔥 Redirect to checkout to add address
-            return redirect(f'/checkout/?next=/create-order/')
+            return redirect(f'/store/checkout/?next=/store/create-order/')
 
         # ✅ Create Order
         order = Order.objects.create(
@@ -861,7 +861,7 @@ def buy_now(request, product_id):
 
     # ✅ If not logged in → redirect to login
     if not request.user.is_authenticated:
-        return redirect(f'/login/?next=/buy-now/{product_id}/')
+        return redirect(f'/store/login/?next=/buy-now/{product_id}/')
 
     # ✅ Store product in session
     request.session['buy_product_id'] = product_id

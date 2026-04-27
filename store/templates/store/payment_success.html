@@ -1,114 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "store/base.html" %}
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}Payment Success{% endblock %}
 
-<title>Payment Success</title>
+{% block content %}
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-5">
 
-<style>
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:#f8f9fa;
-}
+    <div class="order-success-wrap text-center">
 
-.success-wrap{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
+        <!-- ================= ICON ================= -->
+        <div class="mb-3 payment-success-icon">
+            ✅
+        </div>
 
-.success-card{
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 12px 30px rgba(0,0,0,.08);
-    padding:30px;
-    width:100%;
-    max-width:520px;
-}
+        <!-- ================= TITLE ================= -->
+        <h2 class="text-success order-success-title">
+            Payment Successful
+        </h2>
 
-.success-title{
-    color:#198754;
-    font-weight:800;
-    text-align:center;
-    margin-bottom:24px;
-}
+        <p class="text-muted mb-4">
+            Your transaction has been completed successfully.
+        </p>
 
-.success-row{
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-}
+        {% if payment %}
 
-.store-btn{
-    display:block;
-    text-align:center;
-    text-decoration:none;
-    margin-top:22px;
-    background:#0d6efd;
-    color:#fff;
-    padding:12px;
-    border-radius:12px;
-    font-weight:700;
-}
+        <!-- ================= PAYMENT DETAILS ================= -->
+        <div class="card shadow-sm border-0 payment-success-card mb-4">
 
-.store-btn:hover{
-    color:#fff;
-}
+            <div class="card-body text-start">
 
-@media(max-width:576px){
-    .success-card{
-        padding:22px;
-    }
+                <div class="mb-3">
+                    <div class="payment-success-label">
+                        Order ID
+                    </div>
 
-    .success-title{
-        font-size:24px;
-    }
-}
-</style>
+                    <div class="payment-success-value">
+                        {{ payment.razorpay_order_id }}
+                    </div>
+                </div>
 
-</head>
-<body>
+                <div class="mb-3">
+                    <div class="payment-success-label">
+                        Payment ID
+                    </div>
 
-<div class="success-wrap">
+                    <div class="payment-success-value">
+                        {{ payment.razorpay_payment_id }}
+                    </div>
+                </div>
 
-<div class="success-card">
+                <div class="mb-3">
+                    <div class="payment-success-label">
+                        Amount
+                    </div>
 
-<h2 class="success-title">✅ Payment Successful</h2>
+                    <div class="payment-success-value">
+                        ₹ {{ payment.amount_in_rupees }}
+                    </div>
+                </div>
 
-{% if payment %}
+                <div class="mb-0">
+                    <div class="payment-success-label">
+                        Status
+                    </div>
 
-<div class="success-row">
-<strong>Order ID:</strong> {{ payment.razorpay_order_id }}
-</div>
+                    <span class="badge bg-success">
+                        {{ payment.status }}
+                    </span>
+                </div>
 
-<div class="success-row">
-<strong>Payment ID:</strong> {{ payment.razorpay_payment_id }}
-</div>
+            </div>
 
-<div class="success-row">
-<strong>Amount:</strong> ₹{{ payment.amount_in_rupees }}
-</div>
+        </div>
 
-<div class="success-row border-0">
-<strong>Status:</strong> {{ payment.status }}
-</div>
+        {% else %}
 
-{% else %}
+        <!-- ================= NO DATA ================= -->
+        <div class="alert alert-warning payment-alert-box mx-auto mb-4">
+            Payment details not found.
+        </div>
 
-<p class="text-center mb-0">Payment details not found.</p>
+        {% endif %}
 
-{% endif %}
+        <!-- ================= ACTIONS ================= -->
+        <div class="d-flex flex-wrap justify-content-center gap-3">
 
-<a href="/" class="store-btn">Go to Store</a>
+            <a href="{% url 'home' %}"
+               class="btn btn-primary order-success-btn">
+                Go to Store
+            </a>
+
+            <a href="{% url 'order_history' %}"
+               class="btn btn-outline-dark order-success-btn">
+                View Orders
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
-</div>
 
-</body>
-</html>
+{% endblock %}

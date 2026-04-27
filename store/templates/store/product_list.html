@@ -1,4 +1,4 @@
-{% extends 'store/base.html' %}
+{% extends "store/base.html" %}
 
 {% block title %}Search Results{% endblock %}
 
@@ -6,7 +6,7 @@
 
 <div class="container mt-4">
 
-    <!-- Heading -->
+    <!-- ================= PAGE HEADING ================= -->
     {% if query %}
         <h4 class="mb-4">
             Search Results for:
@@ -16,41 +16,49 @@
         <h4 class="mb-4">All Products</h4>
     {% endif %}
 
-    <!-- Products Found -->
+    <!-- ================= PRODUCTS ================= -->
     {% if products %}
 
     <div class="row g-4">
 
         {% for product in products %}
 
-        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100">
 
                 <!-- Image -->
-                <a href="{% url 'product_detail' product.id %}">
+                <a href="{% url 'product_detail' product.id %}" class="text-dark">
+
                     {% if product.image %}
-                        <img src="{{ product.image.url }}"
-                             class="card-img-top search-card-img"
-                             
+                    <img src="{{ product.image.url }}"
+                         class="card-img-top search-card-img"
+                         alt="{{ product.name }}">
                     {% else %}
-                        <img src="https://via.placeholder.com/300x220"
-                             class="card-img-top search-card-img">
+                    <img src="https://via.placeholder.com/300x220"
+                         class="card-img-top search-card-img"
+                         alt="Product">
                     {% endif %}
+
                 </a>
 
-                <div class="card-body text-center">
+                <!-- Body -->
+                <div class="card-body text-center d-flex flex-column">
 
-                    <h5 class="product-list-title">{{ product.name }}</h5>
+                    <h5 class="product-list-title">
+                        {{ product.name }}
+                    </h5>
 
-                    <p class="text-success fw-bold mb-2">
+                    <p class="text-success fw-bold mb-3">
                         ₹ {{ product.price }}
                     </p>
 
-                    <a href="{% url 'product_detail' product.id %}"
-                       class="btn btn-dark btn-sm w-100">
-                       View Product
-                    </a>
+                    <div class="mt-auto">
+                        <a href="{% url 'product_detail' product.id %}"
+                           class="btn btn-dark btn-sm w-100">
+                            View Product
+                        </a>
+                    </div>
 
                 </div>
 
@@ -64,22 +72,38 @@
 
     {% else %}
 
-    <!-- No Results -->
-    <div class="text-center mt-5">
+    <!-- ================= EMPTY STATE ================= -->
+    <div class="no-products-box mt-5">
 
-        <h3 class="text-danger">No products found</h3>
+        <h3 class="text-danger mb-3">
+            No products found
+        </h3>
 
-        <p>Try searching for:</p>
+        <p class="mb-4">
+            Try searching for:
+        </p>
 
         <div class="d-flex justify-content-center gap-2 flex-wrap">
 
-            <a href="/search/?q=shoes" class="btn btn-outline-primary btn-sm">Shoes</a>
+            <a href="/search/?q=shoes"
+               class="btn btn-outline-primary btn-sm">
+               Shoes
+            </a>
 
-            <a href="/search/?q=watch" class="btn btn-outline-primary btn-sm">Watch</a>
+            <a href="/search/?q=watch"
+               class="btn btn-outline-primary btn-sm">
+               Watch
+            </a>
 
-            <a href="/search/?q=mobile" class="btn btn-outline-primary btn-sm">Mobile</a>
+            <a href="/search/?q=mobile"
+               class="btn btn-outline-primary btn-sm">
+               Mobile
+            </a>
 
-            <a href="/search/?q=shirt" class="btn btn-outline-primary btn-sm">Shirt</a>
+            <a href="/search/?q=shirt"
+               class="btn btn-outline-primary btn-sm">
+               Shirt
+            </a>
 
         </div>
 
