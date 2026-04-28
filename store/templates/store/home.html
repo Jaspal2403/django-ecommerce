@@ -48,7 +48,7 @@
                 </p>
 
                 {% if banner.linked_product %}
-                <a href="{% url 'product_detail' banner.linked_product.id %}"
+                <a href="{% url 'store:product_detail' banner.linked_product.id %}"
                    class="btn btn-warning">
                     {{ banner.button_text|default:"Shop Now" }}
                 </a>
@@ -175,7 +175,7 @@
 
             <h5 class="mb-3">Filters</h5>
 
-            <form method="GET" action="{% url 'search_products' %}">
+            <form method="GET" action="{% url 'store:search_products' %}">
 
                 <label class="fw-bold mb-2">Category</label>
                 <select name="category" class="form-select mb-3">
@@ -223,7 +223,7 @@
                 {% for product in products|slice:":8" %}
                 <div class="col-xl-3 col-md-4 col-sm-6">
 
-                    <a href="{% url 'product_detail' product.id %}" class="text-dark">
+                    <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
 
                         <div class="card h-100 position-relative">
 
@@ -252,7 +252,7 @@
                                 </p>
 
                                 <form method="POST"
-                                      action="{% url 'add_to_cart' product.id %}">
+                                      action="{% url 'store:add_to_cart' product.id %}">
                                     {% csrf_token %}
                                     <button class="btn btn-warning btn-sm w-100">
                                         Add to Cart
@@ -282,7 +282,7 @@
                 {% for product in products|slice:"8:12" %}
                 <div class="col-xl-3 col-md-4 col-sm-6">
 
-                    <a href="{% url 'product_detail' product.id %}" class="text-dark">
+                    <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
 
                         <div class="card h-100">
 

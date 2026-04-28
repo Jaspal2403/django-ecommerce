@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Payment | PreetCraft Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Payment | PreetCraft Studio</title>
 
-    {% load static %}
+{% load static %}
 
-    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
 <body class="payment-page">
 
 <div class="payment-wrapper">
-
     <div class="payment-card">
 
         <div class="loader"></div>
@@ -27,7 +26,10 @@
 
         <div class="amount-box">
             <div class="amount-label">Payable Amount</div>
-            <div class="amount">₹ {{ amount|floatformat:2 }}</div>
+            <div class="amount">
+                <!-- ₹ {{ amount|floatformat:0|add:"0" }} -->
+                 {{ display_amount }}
+            </div>
         </div>
 
         <button class="btn btn-pay" onclick="openPayment()">
@@ -43,78 +45,107 @@
         </p>
 
     </div>
-
 </div>
 
 <script>
+
 const options = {
     key: "{{ razorpay_key }}",
-    amount: parseInt("{{ amount }}"),
+    amount: parseInt("{{ amount }}"),   // paise
     currency: "INR",
     name: "PreetCraft Studio",
     description: "Purchase Payment",
     order_id: "{{ order_id }}",
 
     method: {
-        card: true,
         upi: true,
-        netbanking: true,
-        wallet: true
+        card: true,
+        netbanking: true
     },
 
     handler: function(response){
 
-        fetch("/payment-success-api/", {
+        fetch("{% url 'store:payment_success' %}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": "{{ csrf_token }}"
+                //"X-CSRFToken": "{{ csrf_token }}"
             },
             body: JSON.stringify(response)
         })
-        .then(res => res.json())
+
+        .then(res => {
+            if(!res.ok){
+                throw new Error("Server error");
+            }
+            return res.json();
+        })
+
         .then(data => {
 
             if(data.status === "success"){
                 window.location.href =
-                "/payment-success/?order_id=" +
+                "{% url 'store:payment_success_page' %}?order_id=" +
                 response.razorpay_order_id;
-            }else{
-                alert("Payment verification failed.");
+            } else {
+                alert("Payment verification failed: " + (data.message || "Unknown error"));
             }
 
         })
+
         .catch(error => {
-            alert("Something went wrong.");
+            alert("Payment processed but verification failed.");
+            console.log(error);
         });
     },
 
     modal: {
         ondismiss: function(){
-            window.location.href = "/";
+            window.location.href = "{% url 'store:home' %}";
         }
     },
 
     theme: {
         color: "#f59e0b"
+    },
+
+    prefill: {
+        name: "{{ request.user.get_full_name }}",
+        email: "{{ request.user.email }}",
+        contact: "{{ request.user.profile.phone_number }}"
+    },
+
+    notes: {
+        address: "PreetCraft Studio"
     }
 };
 
 const rzp = new Razorpay(options);
 
+rzp.on('payment.failed', function (response){
+    alert("Payment Failed: " + response.error.description);
+});
+
+let paymentOpened = false;
+
 function openPayment(){
+    if (paymentOpened) return;
+
+    paymentOpened = true;
     rzp.open();
 }
 
 function goHome(){
-    window.location.href = "/";
+    window.location.href = "{% url 'store:home' %}";
 }
 
+/* Auto open only once */
 window.onload = function(){
     setTimeout(function(){
-        rzp.open();
+        openPayment();
     }, 700);
 };
+
 </script>
 
 </body>

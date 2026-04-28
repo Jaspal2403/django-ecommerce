@@ -94,7 +94,7 @@
             {% if user.is_authenticated %}
 
             <form method="post"
-                  action="{% url 'add_to_cart' product.id %}">
+                  action="{% url 'store:add_to_cart' product.id %}">
                 {% csrf_token %}
 
                 <input type="hidden"

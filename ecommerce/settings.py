@@ -153,9 +153,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Razorpay credentials (TEST)
-RAZORPAY_KEY_ID = "rzp_test_SbOdpNSRvRcDxj"
-RAZORPAY_KEY_SECRET = "G3toD4q4wMTJ40E01hTN7asI"
+RAZORPAY_KEY_ID = "rzp_test_SiWDlv4d8mie81"
+RAZORPAY_KEY_SECRET = "B4gjMraD2Dc1anrhnUaMUAXj"
 
 # Razorpay credentials (LIVE)
-#RAZORPAY_KEY_ID = "rzp_live_SbjiCAnOkRyFH7"
-#RAZORPAY_KEY_SECRET = "2e0aVnvJ68ZJv9BgEOMOrk10"
+# RAZORPAY_KEY_ID = "rzp_live_SbjiCAnOkRyFH7"
+# RAZORPAY_KEY_SECRET = "2e0aVnvJ68ZJv9BgEOMOrk10"

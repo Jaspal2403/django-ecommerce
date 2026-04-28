@@ -1,100 +1,75 @@
 {% extends "store/base.html" %}
 
-{% block title %}Payment Success{% endblock %}
+{% load static %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/payment_success.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="success-page">
 
-    <div class="order-success-wrap text-center">
+    <div class="success-box">
 
-        <!-- ================= ICON ================= -->
-        <div class="mb-3 payment-success-icon">
-            ✅
-        </div>
+        <!-- Success Icon -->
+        <div class="success-icon">✓</div>
 
-        <!-- ================= TITLE ================= -->
-        <h2 class="text-success order-success-title">
-            Payment Successful
-        </h2>
+        <!-- Heading -->
+        <h1 class="success-title">Payment Successful</h1>
 
-        <p class="text-muted mb-4">
-            Your transaction has been completed successfully.
+        <p class="success-subtitle">
+            Thank you for shopping with <strong>PreetCraft Studio</strong>.<br>
+            Your payment has been received successfully.
         </p>
 
         {% if payment %}
+        <div class="summary-card">
 
-        <!-- ================= PAYMENT DETAILS ================= -->
-        <div class="card shadow-sm border-0 payment-success-card mb-4">
+            <div class="summary-row">
+                <span class="label">Order ID</span>
+                <span class="value">{{ payment.razorpay_order_id }}</span>
+            </div>
 
-            <div class="card-body text-start">
+            <div class="summary-row">
+                <span class="label">Payment ID</span>
+                <span class="value">{{ payment.razorpay_payment_id }}</span>
+            </div>
 
-                <div class="mb-3">
-                    <div class="payment-success-label">
-                        Order ID
-                    </div>
+            <div class="summary-row">
+                <span class="label">Amount Paid</span>
+                <span class="value">₹ {{ payment.amount_in_rupees }}</span>
+            </div>
 
-                    <div class="payment-success-value">
-                        {{ payment.razorpay_order_id }}
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <div class="payment-success-label">
-                        Payment ID
-                    </div>
-
-                    <div class="payment-success-value">
-                        {{ payment.razorpay_payment_id }}
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <div class="payment-success-label">
-                        Amount
-                    </div>
-
-                    <div class="payment-success-value">
-                        ₹ {{ payment.amount_in_rupees }}
-                    </div>
-                </div>
-
-                <div class="mb-0">
-                    <div class="payment-success-label">
-                        Status
-                    </div>
-
-                    <span class="badge bg-success">
-                        {{ payment.status }}
-                    </span>
-                </div>
-
+            <div class="summary-row">
+                <span class="label">Status</span>
+                <span class="status-badge">{{ payment.status }}</span>
             </div>
 
         </div>
-
-        {% else %}
-
-        <!-- ================= NO DATA ================= -->
-        <div class="alert alert-warning payment-alert-box mx-auto mb-4">
-            Payment details not found.
-        </div>
-
         {% endif %}
 
-        <!-- ================= ACTIONS ================= -->
-        <div class="d-flex flex-wrap justify-content-center gap-3">
+        <div class="next-step">
+            Your order has been confirmed and will be processed shortly.
+            You can track progress anytime from your Orders page.
+        </div>
 
-            <a href="{% url 'home' %}"
-               class="btn btn-primary order-success-btn">
-                Go to Store
+        <div class="action-wrap">
+
+            <a href="{% url 'store:home' %}" class="btn-premium btn-shop">
+                Continue Shopping
             </a>
 
-            <a href="{% url 'order_history' %}"
-               class="btn btn-outline-dark order-success-btn">
+            <a href="{% url 'store:order_history' %}" class="btn-premium btn-orders">
                 View Orders
             </a>
 
+        </div>
+
+        <div class="thank-note">
+            Need help? Contact our support anytime.
         </div>
 
     </div>
