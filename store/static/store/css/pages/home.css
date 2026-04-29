@@ -1,0 +1,295 @@
+/* ===============================
+   HOME PAGE
+================================= */
+
+/* HERO */
+.hero-banner-img{
+  height:540px;
+  width:100%;
+  object-fit:cover;
+  border-radius:22px;
+}
+
+.premium-caption{
+  left:7%;
+  right:auto;
+  bottom:16%;
+  width:460px;
+  background:rgba(0,0,0,.48);
+  backdrop-filter:blur(8px);
+  padding:34px;
+  border-radius:22px;
+}
+
+.premium-caption h2{
+  font-size:50px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.premium-caption p{
+  color:#f3f4f6;
+  font-size:18px;
+  margin-bottom:18px;
+}
+
+/* TRUST */
+.trust-box{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  font-weight:700;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+  transition:.25s;
+}
+
+.trust-box:hover{
+  transform:translateY(-4px);
+}
+
+/* COUNTERS */
+.counter{
+  font-size:48px;
+  font-weight:800;
+  color:#f59e0b;
+  margin-bottom:6px;
+}
+
+/* TESTIMONIAL */
+.testimonial-box{
+  background:#111827;
+  color:#fff;
+  border-radius:22px;
+  padding:36px;
+  text-align:center;
+  font-size:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.14);
+}
+
+.testimonial-box strong{
+  display:block;
+  margin-top:14px;
+  color:#f59e0b;
+}
+
+/* FLASH SALE */
+.flash-sale-card{
+  border-radius:22px;
+  background:linear-gradient(135deg,#ff3b30,#ff0055);
+  color:#fff;
+  padding:28px;
+}
+
+#flashTimer{
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+/* FILTER SIDEBAR */
+.filter-card{
+  border-radius:22px;
+  padding:22px;
+}
+
+.filter-card h5{
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.filter-card label{
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+/* PRODUCT GRID */
+.home-product-card{
+  height:100%;
+  position:relative;
+}
+
+.card-img-top{
+  height:240px;
+  object-fit:cover;
+}
+
+.home-product-title{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:15px;
+  font-weight:700;
+}
+
+.sale-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#ef4444;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:700;
+  z-index:5;
+}
+
+.wishlist-btn{
+  cursor:pointer;
+  font-size:22px;
+  transition:.25s;
+}
+
+.wishlist-btn:hover{
+  transform:scale(1.12);
+}
+
+/* NEWSLETTER */
+.newsletter-box{
+  background:#fffaf0;
+  border:2px solid #f8c200;
+  border-radius:24px;
+  padding:48px;
+  text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.newsletter-box h3{
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.newsletter-form{
+  margin-top:20px;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.newsletter-form input{
+  max-width:420px;
+}
+
+/* SECTION HEADINGS */
+.home-heading{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:22px;
+  color:#111827;
+}
+
+.home-heading::after{
+  content:"";
+  display:block;
+  width:70px;
+  height:4px;
+  margin-top:10px;
+  background:#f59e0b;
+  border-radius:30px;
+}
+
+/* TABLET */
+@media(max-width:991px){
+
+  .hero-banner-img{
+    height:380px;
+  }
+
+  .premium-caption{
+    width:380px;
+    padding:24px;
+  }
+
+  .premium-caption h2{
+    font-size:36px;
+  }
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .hero-banner-img{
+    height:260px;
+    border-radius:16px;
+  }
+
+  .premium-caption{
+    left:5%;
+    right:5%;
+    width:auto;
+    bottom:10%;
+    padding:16px;
+  }
+
+  .premium-caption h2{
+    font-size:24px;
+  }
+
+  .premium-caption p{
+    font-size:14px;
+    margin-bottom:10px;
+  }
+
+  .counter{
+    font-size:30px;
+  }
+
+  .testimonial-box{
+    font-size:16px;
+    padding:22px;
+  }
+
+  #flashTimer{
+    font-size:24px;
+    margin-top:10px;
+  }
+
+  .card-img-top{
+    height:190px;
+  }
+
+}
+
+@media(max-width:576px){
+
+  .hero-banner-img{
+    height:220px;
+  }
+
+  .premium-caption p{
+    display:none;
+  }
+
+  .premium-caption h2{
+    font-size:18px;
+  }
+
+  .home-heading{
+    font-size:24px;
+  }
+
+  .newsletter-box{
+    padding:26px 18px;
+  }
+
+  .newsletter-form{
+    flex-direction:column;
+  }
+
+  .newsletter-form input,
+  .newsletter-form button{
+    width:100%;
+    max-width:100%;
+  }
+
+  .card-img-top{
+    height:170px;
+  }
+
+}

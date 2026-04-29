@@ -1,0 +1,166 @@
+/* ===============================
+   PREETCRAFT CORE BASE
+================================= */
+
+:root{
+  --primary:#f59e0b;
+  --primary-dark:#d97706;
+  --dark:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --bg:#f8f9fa;
+  --white:#ffffff;
+  --success:#16a34a;
+  --danger:#dc3545;
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:24px;
+  --shadow-sm:0 8px 24px rgba(0,0,0,.05);
+  --shadow-md:0 12px 30px rgba(0,0,0,.08);
+  --shadow-lg:0 18px 45px rgba(0,0,0,.12);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  font-family:'Segoe UI',sans-serif;
+  color:var(--dark);
+  line-height:1.5;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+}
+
+main{
+  min-height:60vh;
+}
+
+/* Containers */
+.container,
+.container-fluid{
+  position:relative;
+}
+
+/* Generic Cards */
+.card{
+  border:none;
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--shadow-sm);
+  transition:.28s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+}
+
+.card-body{
+  padding:20px;
+}
+
+/* Generic Buttons */
+.btn{
+  border-radius:30px;
+  font-weight:700;
+}
+
+.btn-warning{
+  background:var(--primary);
+  border:none;
+  color:#111;
+}
+
+.btn-warning:hover{
+  background:var(--primary-dark);
+  color:#fff;
+}
+
+.btn-dark{
+  background:var(--dark);
+}
+
+/* Inputs */
+.form-control,
+.form-select{
+  min-height:46px;
+  border-radius:12px;
+}
+
+.form-control:focus,
+.form-select:focus{
+  box-shadow:0 0 0 4px rgba(245,158,11,.12);
+  border-color:var(--primary);
+}
+
+/* Headings */
+.section-title{
+  font-size:32px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:24px;
+}
+
+.section-title::after{
+  content:"";
+  width:70px;
+  height:4px;
+  background:var(--primary);
+  display:block;
+  margin-top:10px;
+  border-radius:20px;
+}
+
+/* Badge */
+.badge{
+  padding:7px 10px;
+  border-radius:30px;
+  font-size:12px;
+}
+
+/* Helpers */
+.shadow-soft{ box-shadow:var(--shadow-sm); }
+.rounded-soft{ border-radius:var(--radius-md); }
+.text-muted-custom{ color:var(--muted); }
+
+/* Mobile */
+@media(max-width:768px){
+
+  .section-title{
+    font-size:26px;
+  }
+
+  .card-body{
+    padding:16px;
+  }
+
+}
+
+@media(max-width:576px){
+
+  body{
+    padding-bottom:70px;
+  }
+
+  .section-title{
+    font-size:22px;
+  }
+
+}

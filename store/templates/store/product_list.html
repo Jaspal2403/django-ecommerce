@@ -1,22 +1,43 @@
 {% extends "store/base.html" %}
+{% load static %}
 
-{% block title %}Search Results{% endblock %}
+{% block title %}Products{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/search.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="container mt-4">
+<section class="search-page">
 
-    <!-- ================= PAGE HEADING ================= -->
-    {% if query %}
-        <h4 class="mb-4">
-            Search Results for:
-            <span class="text-primary">"{{ query }}"</span>
-        </h4>
-    {% else %}
-        <h4 class="mb-4">All Products</h4>
-    {% endif %}
+<div class="container">
 
-    <!-- ================= PRODUCTS ================= -->
+    <!-- ================= PAGE HEADER ================= -->
+    <div class="search-header">
+
+        {% if query %}
+            <h1 class="search-title">
+                Search Results for
+                <span>"{{ query }}"</span>
+            </h1>
+
+            <p class="search-subtitle">
+                {{ products|length }} product{{ products|length|pluralize }} found
+            </p>
+        {% else %}
+            <h1 class="search-title">
+                All Products
+            </h1>
+
+            <p class="search-subtitle">
+                Explore our latest collection
+            </p>
+        {% endif %}
+
+    </div>
+
+    <!-- ================= PRODUCT GRID ================= -->
     {% if products %}
 
     <div class="row g-4">
@@ -25,17 +46,18 @@
 
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 
-            <div class="card h-100">
+            <article class="card search-product-card h-100">
 
                 <!-- Image -->
-                <a href="{% url 'product_detail' product.id %}" class="text-dark">
+                <a href="{% url 'store:product_detail' product.id %}"
+                   class="search-image-link">
 
                     {% if product.image %}
                     <img src="{{ product.image.url }}"
                          class="card-img-top search-card-img"
                          alt="{{ product.name }}">
                     {% else %}
-                    <img src="https://via.placeholder.com/300x220"
+                    <img src="https://via.placeholder.com/500x500?text=Product"
                          class="card-img-top search-card-img"
                          alt="Product">
                     {% endif %}
@@ -43,26 +65,28 @@
                 </a>
 
                 <!-- Body -->
-                <div class="card-body text-center d-flex flex-column">
+                <div class="card-body d-flex flex-column text-center">
 
                     <h5 class="product-list-title">
                         {{ product.name }}
                     </h5>
 
-                    <p class="text-success fw-bold mb-3">
+                    <div class="search-price">
                         ₹ {{ product.price }}
-                    </p>
+                    </div>
 
                     <div class="mt-auto">
-                        <a href="{% url 'product_detail' product.id %}"
-                           class="btn btn-dark btn-sm w-100">
+
+                        <a href="{% url 'store:product_detail' product.id %}"
+                           class="btn btn-warning w-100 search-btn-view">
                             View Product
                         </a>
+
                     </div>
 
                 </div>
 
-            </div>
+            </article>
 
         </div>
 
@@ -73,37 +97,26 @@
     {% else %}
 
     <!-- ================= EMPTY STATE ================= -->
-    <div class="no-products-box mt-5">
+    <div class="no-products-box">
 
-        <h3 class="text-danger mb-3">
+        <div class="empty-icon">
+            🔍
+        </div>
+
+        <h3>
             No products found
         </h3>
 
-        <p class="mb-4">
-            Try searching for:
+        <p>
+            Try searching with these keywords
         </p>
 
-        <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <div class="search-tags">
 
-            <a href="/search/?q=shoes"
-               class="btn btn-outline-primary btn-sm">
-               Shoes
-            </a>
-
-            <a href="/search/?q=watch"
-               class="btn btn-outline-primary btn-sm">
-               Watch
-            </a>
-
-            <a href="/search/?q=mobile"
-               class="btn btn-outline-primary btn-sm">
-               Mobile
-            </a>
-
-            <a href="/search/?q=shirt"
-               class="btn btn-outline-primary btn-sm">
-               Shirt
-            </a>
+            <a href="/search/?q=kurti">Kurti</a>
+            <a href="/search/?q=navratri">Navratri</a>
+            <a href="/search/?q=gift">Gift</a>
+            <a href="/search/?q=handmade">Handmade</a>
 
         </div>
 
@@ -112,5 +125,7 @@
     {% endif %}
 
 </div>
+
+</section>
 
 {% endblock %}

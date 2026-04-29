@@ -1,133 +1,95 @@
 {% extends "store/auth_base.html" %}
+{% load static %}
 
 {% block title %}Sign Up{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/auth.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="row justify-content-center align-items-center signup-row">
+<div class="auth-layout">
 
-    <div class="col-xl-4 col-lg-5 col-md-6">
+  <div class="auth-container">
 
-        <div class="card shadow-lg border-0 auth-card">
+    <div class="auth-card">
 
-            <div class="card-body signup-card-body d-flex flex-column justify-content-between p-4">
+      <!-- Logo -->
+      <img src="{% static 'store/images/logo.png' %}"
+           alt="PreetCraft Studio"
+           class="auth-logo">
 
-                <!-- ================= TOP CONTENT ================= -->
-                <div>
+      <!-- Heading -->
+      <h2 class="auth-title">Create Account</h2>
 
-                    <!-- Heading -->
-                    <h3 class="text-center auth-title mb-4">
-                        Create Account
-                    </h3>
+      <p class="auth-subtitle">
+        Join PreetCraft Studio and start shopping premium handcrafted collections ✨
+      </p>
 
-                    <!-- All Errors -->
-                    {% if form.errors %}
-                    <div class="alert alert-danger">
+      <!-- Global Errors -->
+      {% if form.errors %}
+      <div class="alert alert-danger">
 
-                        <ul class="mb-0">
+        <ul class="mb-0">
 
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
 
-                            {% for error in form.non_field_errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
 
-                        </ul>
+        </ul>
 
-                    </div>
-                    {% endif %}
+      </div>
+      {% endif %}
 
-                    <!-- Form -->
-                    <form method="post">
-                        {% csrf_token %}
+      <!-- Form -->
+      <form method="post">
 
-                        <!-- Username -->
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">
-                                Username
-                            </label>
+        {% csrf_token %}
 
-                            {{ form.username }}
-
-                            <div class="auth-error-text mt-1">
-                                {{ form.username.errors }}
-                            </div>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">
-                                Email
-                            </label>
-
-                            {{ form.email }}
-
-                            <div class="auth-error-text mt-1">
-                                {{ form.email.errors }}
-                            </div>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">
-                                Password
-                            </label>
-
-                            {{ form.password1 }}
-
-                            <div class="auth-error-text mt-1">
-                                {{ form.password1.errors }}
-                            </div>
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">
-                                Confirm Password
-                            </label>
-
-                            {{ form.password2 }}
-
-                            <div class="auth-error-text mt-1">
-                                {{ form.password2.errors }}
-                            </div>
-                        </div>
-
-                        <button type="submit"
-                                class="btn btn-success w-100 auth-btn">
-                            Sign Up
-                        </button>
-
-                    </form>
-
-                </div>
-
-                <!-- ================= BOTTOM LINK ================= -->
-                <div>
-
-                    <hr class="mt-4">
-
-                    <div class="text-center auth-bottom-text">
-
-                        Already have an account?
-
-                        <a href="{% url 'store:login' %}">
-                            Login →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="mb-3">
+          <label>Username</label>
+          {{ form.username }}
         </div>
 
+        <div class="mb-3">
+          <label>Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+          <label>Password</label>
+          {{ form.password1 }}
+        </div>
+
+        <div class="mb-3">
+          <label>Confirm Password</label>
+          {{ form.password2 }}
+        </div>
+
+        <button type="submit" class="auth-btn">
+          Create Account
+        </button>
+
+      </form>
+
+      <!-- Bottom -->
+      <div class="auth-links">
+        Already have an account?
+        <a href="{% url 'store:login' %}">
+          Sign In
+        </a>
+      </div>
+
     </div>
+
+  </div>
 
 </div>
 

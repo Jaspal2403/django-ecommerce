@@ -1,6 +1,11 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 {% block title %}My Orders{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/orders.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -12,7 +17,6 @@
         <h4 class="orders-title">My Orders</h4>
 
         <form method="get">
-
             <select name="status"
                     class="form-select order-filter-select"
                     onchange="this.form.submit()">
@@ -42,7 +46,6 @@
                 </option>
 
             </select>
-
         </form>
 
     </div>
@@ -53,42 +56,43 @@
         {% for data in order_data %}
         {% with order=data.order %}
 
-        <div class="card order-card mb-4">
+        <div class="card order-card">
 
             <!-- HEADER -->
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-3">
 
                 <div>
-
                     <div class="order-number">
                         Order #{{ order.id }}
                     </div>
 
                     <div class="order-date">
-                        {{ order.created_at|date:"d M Y, H:i" }}
+                        {{ order.created_at|date:"d M Y, h:i A" }}
                     </div>
-
                 </div>
 
                 <div class="text-end">
 
-                    <span class="badge
-                    {% if order.status == 'pending' %}bg-warning text-dark
-                    {% elif order.status == 'processing' %}bg-info text-dark
-                    {% elif order.status == 'shipped' %}bg-primary text-white
-                    {% elif order.status == 'delivered' %}bg-success text-white
-                    {% elif order.status == 'cancelled' %}bg-danger text-white
-                    {% else %}bg-secondary text-white
-                    {% endif %}">
+                    <span class="badge px-3 py-2
+                        {% if order.status == 'pending' %}bg-warning text-dark
+                        {% elif order.status == 'processing' %}bg-info text-dark
+                        {% elif order.status == 'shipped' %}bg-primary text-white
+                        {% elif order.status == 'delivered' %}bg-success text-white
+                        {% elif order.status == 'cancelled' %}bg-danger text-white
+                        {% else %}bg-secondary text-white
+                        {% endif %}">
                         {{ order.status|title }}
                     </span>
 
-                    {% if order.payment %}
+                    {% if order.payment and order.payment.status == "SUCCESS" %}
                     <div class="payment-status">
                         Payment:
-                        <span class="payment-pill">
-                            Paid
-                        </span>
+                        <span class="payment-pill">Paid</span>
+                    </div>
+                    {% else %}
+                    <div class="payment-status">
+                        Payment:
+                        <span class="badge bg-light text-dark mt-1">Pending</span>
                     </div>
                     {% endif %}
 
@@ -99,10 +103,9 @@
             <!-- BODY -->
             <div class="card-body">
 
-                <!-- Address -->
+                <!-- ADDRESS -->
                 <div class="order-address mb-3">
-
-                    <strong>Delivery Address:</strong>
+                    <strong>Delivery Address:</strong><br>
 
                     {{ order.address.name }},
                     {{ order.address.address }},
@@ -112,12 +115,11 @@
                     <br>
 
                     📞 {{ order.address.phone }}
-
                 </div>
 
                 <hr>
 
-                <!-- Items -->
+                <!-- ITEMS -->
                 {% for item in order.items.all %}
 
                 <div class="row align-items-center order-item-row gy-3">
@@ -158,44 +160,49 @@
 
                 <hr>
 
-                <!-- Total -->
+                <!-- TOTAL -->
                 <div class="order-total-wrap">
                     <h5 class="order-total">
                         Total: ₹ {{ data.total }}
                     </h5>
                 </div>
 
-                <!-- Actions -->
+                <!-- ACTIONS -->
                 <div class="order-action-wrap">
 
                     {% if not order.payment or order.payment.status != "SUCCESS" %}
 
-                    <form method="post"
-                          action="{% url 'store:pay_now' order.id %}">
-                        {% csrf_token %}
+                        <form method="post"
+                              action="{% url 'store:pay_now' order.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">
+                                Pay Now
+                            </button>
+                        </form>
 
-                        <button type="submit"
-                                class="btn btn-primary">
-                            Pay Now
-                        </button>
-                    </form>
-
-                    <form method="post"
-                          action="{% url 'store:cancel_order' order.id %}">
-                        {% csrf_token %}
-
-                        <button type="submit"
-                                class="btn btn-danger"
-                                onclick="return confirm('Are you sure you want to cancel this order?')">
-                            Cancel Order
-                        </button>
-                    </form>
+                        {% if order.status != "cancelled" and order.status != "delivered" %}
+                        <form method="post"
+                              action="{% url 'store:cancel_order' order.id %}">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to cancel this order?')">
+                                Cancel Order
+                            </button>
+                        </form>
+                        {% endif %}
 
                     {% else %}
 
-                    <button class="btn btn-secondary" disabled>
-                        Paid
-                    </button>
+                        <button class="btn btn-secondary" disabled>
+                            Paid
+                        </button>
+
+                        {% if order.status == "delivered" %}
+                        <button class="btn btn-success" disabled>
+                            Delivered
+                        </button>
+                        {% endif %}
 
                     {% endif %}
 
@@ -210,7 +217,7 @@
 
     {% else %}
 
-    <!-- Empty -->
+    <!-- EMPTY -->
     <div class="empty-orders">
 
         <h4 class="mb-2">No Orders Yet</h4>

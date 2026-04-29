@@ -1,70 +1,66 @@
 {% extends "store/auth_base.html" %}
+{% load static %}
 
 {% block title %}Login{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/auth.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="row justify-content-center align-items-center auth-page-row">
+<div class="login-page">
 
-    <div class="col-xl-4 col-lg-5 col-md-6">
+  <div class="login-card">
 
-        <div class="card shadow-lg border-0 auth-card">
-
-            <div class="card-body auth-card-body p-4">
-
-                <!-- Heading -->
-                <h3 class="text-center auth-title mb-4">
-                    Login
-                </h3>
-
-                <!-- Errors -->
-                {% if form.errors %}
-                <div class="alert alert-danger">
-                    Invalid username or password.
-                </div>
-                {% endif %}
-
-                <!-- Form -->
-                <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Username
-                        </label>
-                        {{ form.username }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            Password
-                        </label>
-                        {{ form.password }}
-                    </div>
-
-                    <button type="submit"
-                            class="btn btn-primary w-100 auth-btn">
-                        Sign In
-                    </button>
-
-                </form>
-
-                <!-- Bottom -->
-                <div class="auth-bottom-text mt-4">
-
-                    Don’t have an account?
-
-                    <a href="{% url 'store:signup' %}">
-                        Create Account
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="text-center">
+      <img src="{% static 'store/images/logo.png' %}"
+           alt="PreetCraft Studio"
+           class="login-logo">
     </div>
+
+    <h2 class="login-title">Welcome Back</h2>
+
+    <p class="login-subtitle">
+      Sign in to continue shopping with PreetCraft Studio ✨
+    </p>
+
+    {% if form.errors %}
+    <div class="alert alert-danger mb-3">
+      Invalid username or password.
+    </div>
+    {% endif %}
+
+    <form method="post"
+          action="{% url 'store:login' %}"
+          class="custom-auth-form">
+
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label>Username</label>
+        {{ form.username }}
+      </div>
+
+      <div class="mb-3">
+        <label>Password</label>
+        {{ form.password }}
+      </div>
+
+      <button type="submit" class="login-btn">
+        Sign In
+      </button>
+
+    </form>
+
+    <div class="login-bottom auth-bottom-text">
+      Don’t have an account?
+      <a href="{% url 'store:signup' %}">
+        Create Account
+      </a>
+    </div>
+
+  </div>
 
 </div>
 

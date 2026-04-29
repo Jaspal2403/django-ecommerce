@@ -1,0 +1,76 @@
+/* ===============================
+   FOOTER
+================================= */
+
+.main-footer{
+  background:#111827;
+  color:#fff;
+}
+
+.main-footer a{
+  color:#f8c200;
+}
+
+.main-footer a:hover{
+  color:#fff;
+}
+
+.main-footer hr{
+  border-color:rgba(255,255,255,.14);
+}
+
+/* WhatsApp */
+.whatsapp-float{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#25D366;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  z-index:999;
+}
+
+/* Mobile Bottom Nav */
+.mobile-nav{
+  display:none;
+}
+
+@media(max-width:768px){
+
+  .mobile-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    background:#fff;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+    box-shadow:0 -5px 18px rgba(0,0,0,.08);
+    z-index:999;
+  }
+
+  .mobile-nav a{
+    color:#111;
+    font-size:14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+}
+
+@media(max-width:576px){
+
+  .main-footer{
+    text-align:center;
+  }
+
+}

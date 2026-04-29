@@ -1,19 +1,24 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 {% block title %}Checkout{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/checkout.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="container mt-5 checkout-page">
+<div class="container checkout-page py-4">
 
-    <h3 class="checkout-title">Checkout</h3>
+    <h1 class="checkout-title">Checkout</h1>
 
     <div class="row g-4">
 
         <!-- ================= LEFT : ADDRESS FORM ================= -->
         <div class="col-lg-6">
 
-            <div class="checkout-form-wrap">
+            <div class="checkout-card">
 
                 <form method="post" class="checkout-form">
                     {% csrf_token %}
@@ -52,7 +57,7 @@
 
                         <input class="form-check-input address-radio"
                                type="radio"
-                               name="address_option"
+                               name="address_id"
                                value="new"
                                checked
                                id="newAddress">
@@ -97,7 +102,7 @@
                            class="form-control mb-3"
                            placeholder="Phone Number">
 
-                    <button class="btn btn-success">
+                    <button class="btn btn-warning place-order-btn">
                         Place Order
                     </button>
 
@@ -114,7 +119,7 @@
         <!-- ================= RIGHT : ORDER SUMMARY ================= -->
         <div class="col-lg-6">
 
-            <div class="checkout-summary-wrap">
+            <div class="checkout-summary">
 
                 <h5 class="checkout-section-title">
                     Order Summary
@@ -122,7 +127,7 @@
 
                 {% if items %}
 
-                <ul class="list-group checkout-summary">
+                <ul class="list-group checkout-summary-list">
 
                     {% for item in items %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -162,47 +167,36 @@
 
 <!-- ================= VALIDATION JS ================= -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector(".checkout-form");
 
     if (!form) return;
 
-    form.addEventListener("submit", function(e) {
+        form.addEventListener("submit", function(e){
 
-        const selectedAddress =
-            document.querySelector('input[name="address_id"]:checked');
+        const selected = document.querySelector('input[name="address_id"]:checked');
 
-        const name =
-            document.querySelector('[name="name"]').value.trim();
-
-        const address =
-            document.querySelector('[name="address"]').value.trim();
-
-        const city =
-            document.querySelector('[name="city"]').value.trim();
-
-        const pincode =
-            document.querySelector('[name="pincode"]').value.trim();
-
-        const phone =
-            document.querySelector('[name="phone"]').value.trim();
-
-        if (!selectedAddress) {
-
-            if (!name || !address || !city || !pincode || !phone) {
-
-                alert(
-                    "Please fill all address fields OR select an existing address."
-                );
-
-                e.preventDefault();
-            }
+        if(selected && selected.value !== "new"){
+            return;
         }
 
-    });
+        const fields = ["name","address","city","pincode","phone"];
+        let valid = true;
 
-});
+        fields.forEach(name=>{
+            const el = document.querySelector(`[name="${name}"]`);
+            if(!el.value.trim()) valid = false;
+        });
+
+        if(!valid){
+            alert("Please fill all delivery details.");
+            e.preventDefault();
+        }
+
+        });
+
+    });
 </script>
 
 {% endblock %}

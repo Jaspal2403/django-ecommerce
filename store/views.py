@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.conf import settings
+from decimal import Decimal
 
 import json
 import razorpay
@@ -35,7 +36,6 @@ client = razorpay.Client(auth=(
     settings.RAZORPAY_KEY_SECRET
 ))
 
-
 # =====================================================
 # AUTH
 # =====================================================
@@ -58,7 +58,7 @@ def signup(request):
 
 
 class CustomLoginView(LoginView):
-    template_name = "store/auth.html"
+    template_name = "store/login.html"
 
     def get_success_url(self):
         return self.request.GET.get("next", "/")
@@ -344,19 +344,18 @@ def remove_from_cart(request, product_id):
 
 
 # =====================================================
-# ORDERS
+# CHECKOUT PAYMENT
 # =====================================================
 
 @login_required
 def checkout(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
-
     items = cart.items.all()
 
-    total = sum(
-        item.product.price * item.quantity
-        for item in items
-    )
+    if not items:
+        return redirect("store:cart")
+
+    total = sum(item.product.price * item.quantity for item in items)
 
     addresses = Address.objects.filter(user=request.user)
 
@@ -369,7 +368,6 @@ def checkout(request):
                 id=address_id,
                 user=request.user
             )
-
         else:
             address = Address.objects.create(
                 user=request.user,
@@ -383,7 +381,8 @@ def checkout(request):
         order = Order.objects.create(
             user=request.user,
             address=address,
-            status="pending"
+            status="pending",
+            total_amount=total
         )
 
         for item in items:
@@ -394,9 +393,7 @@ def checkout(request):
                 price=item.product.price
             )
 
-        items.delete()
-
-        return redirect("store:order_success")
+        return start_payment(request, order)
 
     return render(request, "store/checkout.html", {
         "items": items,
@@ -462,15 +459,75 @@ def cancel_order(request, order_id):
 
     return redirect("store:order_history")
 
+# =====================================================
+# UNIVERSAL PAYMENT STARTER
+# =====================================================
+
+@login_required
+def start_payment(request, order):
+    """
+    Reusable Razorpay creator for Buy Now + Checkout
+    """
+
+    amount = int(order.total_amount * 100)
+
+    if amount < 100:
+        amount = 100
+
+    razorpay_order = client.order.create({
+        "amount": amount,
+        "currency": "INR",
+        "payment_capture": "1"
+    })
+
+    payment = Payment.objects.create(
+        user=request.user,
+        product=order.items.first().product if order.items.exists() else None,
+        razorpay_order_id=razorpay_order["id"],
+        amount=amount,
+        status="CREATED"
+    )
+
+    order.payment = payment
+    order.save()
+
+    return render(request, "store/payment.html", {
+        "order_id": razorpay_order["id"],
+        "amount": amount,
+        "display_amount": amount / 100,
+        "razorpay_key": settings.RAZORPAY_KEY_ID,
+    })
+
 
 # =====================================================
-# PAYMENT
+# BUY NOW
 # =====================================================
 
 @login_required
 def buy_now(request, product_id):
-    request.session["buy_product_id"] = product_id
-    return redirect("store:create_order")
+    product = get_object_or_404(Product, id=product_id)
+
+    address = Address.objects.filter(user=request.user).first()
+
+    if not address:
+        return redirect("store:checkout")
+
+    order = Order.objects.create(
+        user=request.user,
+        address=address,
+        status="pending",
+        total_amount=product.price
+    )
+
+    OrderItem.objects.create(
+        order=order,
+        product=product,
+        quantity=1,
+        price=product.price
+    )
+
+    return start_payment(request, order)
+
 
 
 @login_required
@@ -605,15 +662,14 @@ def payment_success(request):
         client.utility.verify_payment_signature(params_dict)
 
         payment = Payment.objects.get(
-            razorpay_order_id=data.get("razorpay_order_id")
+            razorpay_order_id=data["razorpay_order_id"]
         )
 
-        # Prevent duplicate processing
         if payment.status == "SUCCESS":
             return JsonResponse({"status": "success"})
 
-        payment.razorpay_payment_id = data.get("razorpay_payment_id")
-        payment.razorpay_signature = data.get("razorpay_signature")
+        payment.razorpay_payment_id = data["razorpay_payment_id"]
+        payment.razorpay_signature = data["razorpay_signature"]
         payment.status = "SUCCESS"
         payment.save()
 
@@ -623,29 +679,16 @@ def payment_success(request):
             order.status = "processing"
             order.save()
 
+            # Clear cart after payment success
+            CartItem.objects.filter(cart__user=order.user).delete()
+
         return JsonResponse({"status": "success"})
 
     except Exception as e:
-        print("PAYMENT ERROR:", repr(e))
-
-    order_id = data.get("razorpay_order_id")
-
-    if order_id:
-        try:
-            payment = Payment.objects.get(
-                razorpay_order_id=order_id
-            )
-            payment.status = "FAILED"
-            payment.save()
-        except Payment.DoesNotExist:
-            print("Payment record not found for failed update")
-        except Exception as update_error:
-            print("FAILED status update error:", repr(update_error))
-
-    return JsonResponse({
-        "status": "failed",
-        "message": str(e)
-    })
+        return JsonResponse({
+            "status": "failed",
+            "message": str(e)
+        })
 
 
 def payment_success_page(request):

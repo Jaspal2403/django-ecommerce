@@ -1,0 +1,125 @@
+/* ===============================
+   NAVBAR
+================================= */
+
+.main-navbar{
+  background:#fff !important;
+  box-shadow:0 4px 18px rgba(0,0,0,.06);
+  padding:6px 0;
+}
+
+.navbar-brand{
+  display:flex;
+  align-items:center;
+  min-width:210px;
+  margin-right:18px;
+}
+
+.pcs-logo{
+  height:60px;
+  width:auto;
+  object-fit:contain;
+}
+
+/* Search */
+#searchInput{
+  border-radius:30px;
+  border:none;
+  height:48px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  padding-left:18px;
+}
+
+.input-group .btn{
+  margin-left:10px;
+  padding:0 22px;
+}
+
+/* Suggestion Box */
+#suggestionBox{
+  max-height:420px;
+  overflow-y:auto;
+  border-radius:14px;
+  top:100%;
+  left:0;
+  background:#fff;
+}
+
+#suggestionBox a:hover{
+  background:#f8f9fa;
+}
+
+/* Account */
+.account-wrapper{
+  position:relative;
+}
+
+.account-dropdown{
+  display:none;
+  position:absolute;
+  top:100%;
+  right:0;
+  width:420px;
+  background:#fff;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,.08);
+  z-index:9999;
+}
+
+.account-dropdown a{
+  display:block;
+  color:#111;
+  margin-bottom:8px;
+}
+
+.account-dropdown a:hover{
+  color:#f59e0b;
+}
+
+.account-wrapper:hover .account-dropdown{
+  display:block;
+}
+
+/* Tablet */
+@media(max-width:991px){
+
+  .navbar-brand{
+    min-width:180px;
+  }
+
+  .pcs-logo{
+    height:48px;
+  }
+
+  .navbar-collapse{
+    width:100%;
+    margin-top:12px;
+  }
+
+  .account-dropdown{
+    position:static;
+    width:100%;
+    margin-top:12px;
+  }
+
+}
+
+/* Mobile */
+@media(max-width:576px){
+
+  .navbar-brand{
+    min-width:145px;
+    margin-right:8px;
+  }
+
+  .pcs-logo{
+    height:40px;
+  }
+
+  #searchInput{
+    height:44px;
+    font-size:14px;
+  }
+
+}

@@ -1,25 +1,38 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/product.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="container mt-5">
+<div class="container product-page py-4 py-lg-5">
 
     <div class="row g-4 align-items-start">
 
         <!-- ================= THUMBNAILS ================= -->
         <div class="col-lg-2 col-md-2 order-2 order-md-1">
 
-            <div class="d-flex d-md-block gap-2 flex-wrap">
+            <div class="d-flex d-md-block gap-2 flex-wrap product-thumb-wrap">
 
                 {% if product.images.all.exists %}
                     {% for img in product.images.all %}
-                    <img src="{{ img.image.url }}"
-                         class="thumb-img mb-md-2"
-                         alt="{{ product.name }}"
-                         onclick="changeImage('{{ img.image.url }}')">
+                        <img src="{{ img.image.url }}"
+                             class="thumb-img mb-md-2 {% if forloop.first %}active-thumb{% endif %}"
+                             alt="{{ product.name }}"
+                             onclick="changeImage('{{ img.image.url }}', this)">
                     {% endfor %}
+
+                {% elif product.image %}
+
+                    <img src="{{ product.image.url }}"
+                         class="thumb-img mb-md-2 active-thumb"
+                         alt="{{ product.name }}"
+                         onclick="changeImage('{{ product.image.url }}', this)">
+
                 {% endif %}
 
             </div>
@@ -27,20 +40,20 @@
         </div>
 
         <!-- ================= MAIN IMAGE ================= -->
-        <div class="col-lg-5 col-md-5 order-1 order-md-2">
+        <div class="col-lg-5 col-md-5 order-1 order-md-2 pe-lg-2">
 
             <div class="img-zoom-container">
 
                 {% if product.image %}
-                <img id="mainImage"
-                     src="{{ product.image.url }}"
-                     class="img-fluid border product-main-image"
-                     alt="{{ product.name }}">
+                    <img id="mainImage"
+                         src="{{ product.image.url }}"
+                         class="img-fluid product-main-image"
+                         alt="{{ product.name }}">
                 {% else %}
-                <img id="mainImage"
-                     src="https://via.placeholder.com/500"
-                     class="img-fluid border product-main-image"
-                     alt="Product">
+                    <img id="mainImage"
+                         src="https://via.placeholder.com/700x700?text=Product"
+                         class="img-fluid product-main-image"
+                         alt="Product">
                 {% endif %}
 
                 <div id="lens"></div>
@@ -50,77 +63,131 @@
         </div>
 
         <!-- ================= PRODUCT DETAILS ================= -->
-        <div class="col-lg-5 col-md-5 order-3">
+        <div class="col-lg-5 col-md-5 order-3 ps-lg-2">
 
-            <h3 class="fw-bold mb-2">{{ product.name }}</h3>
+            <section class="product-detail-box">
 
-            <div class="product-price mb-3">
-                ₹ {{ product.price }}
-            </div>
+                <!-- TITLE + WISHLIST -->
+                <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
 
-            <hr>
+                    <h2 class="fw-bold mb-0 product-title">
+                        {{ product.name }}
+                    </h2>
 
-            <p class="product-description">
-                {{ product.description }}
-            </p>
+                    <span class="wishlist-btn" title="Wishlist">
+                        ♡
+                    </span>
 
-            <!-- Quantity -->
-            <div class="qty-wrap mb-4">
+                </div>
 
-                <label class="fw-bold me-2">
-                    Quantity:
-                </label>
+                <!-- RATING -->
+                <!-- <div class="mb-2 text-warning small">
+                    ★ ★ ★ ★ ☆
+                    <span class="text-muted">(124 reviews)</span>
+                </div> -->
 
-                <button type="button"
-                        class="btn btn-outline-secondary"
-                        onclick="decreaseQty()">
-                    -
-                </button>
+                <!-- PRICE -->
+                <div class="product-price mb-2">
+                    ₹ {{ product.price }}
+                </div>
 
-                <input type="text"
-                       id="quantity"
-                       value="1"
-                       class="form-control text-center">
+                <!-- STOCK -->
+                <div class="product-meta text-success fw-semibold mb-3">
+                    ✔ In Stock • Ready to Ship
+                </div>
 
-                <button type="button"
-                        class="btn btn-outline-secondary"
-                        onclick="increaseQty()">
-                    +
-                </button>
+                <hr class="my-4">
 
-            </div>
+                <!-- TRUST -->
+                <!-- <div class="product-trust-list mb-4 small text-muted">
+                    <div>🚚 Fast Delivery</div>
+                    <div>🔒 Secure Payment</div>
+                    <div>↩ Easy Returns</div>
+                </div> -->
 
-            <!-- Add to Cart -->
-            {% if user.is_authenticated %}
+                <!-- DETAILS -->
+                <h5 class="fw-bold mb-3">
+                    Product Details
+                </h5>
 
-            <form method="post"
-                  action="{% url 'store:add_to_cart' product.id %}">
-                {% csrf_token %}
+                <div class="product-description mb-4">
+                    {{ product.description|default:"Premium handcrafted product made with care and excellent finishing quality." }}
+                </div>
 
-                <input type="hidden"
-                       name="quantity"
-                       id="hiddenQuantity"
-                       value="1">
+                <!-- QUANTITY -->
+                <div class="qty-wrap mb-4">
 
-                <button class="btn btn-warning w-100 product-action-btn mb-3">
-                    Add to Cart
-                </button>
-            </form>
+                    <label class="qty-label fw-semibold mb-0 me-2">
+                        Quantity:
+                    </label>
 
-            {% else %}
+                    <button type="button"
+                            class="btn qty-btn"
+                            onclick="decreaseQty()">
+                        −
+                    </button>
 
-            <a href="{% url 'store:login' %}?next={{ request.path }}"
-               class="btn btn-warning w-100 product-action-btn mb-3">
-                Login to Buy
-            </a>
+                    <input type="number"
+                           min="1"
+                           id="quantity"
+                           value="1"
+                           class="form-control text-center qty-input">
 
-            {% endif %}
+                    <button type="button"
+                            class="btn qty-btn"
+                            onclick="increaseQty()">
+                        +
+                    </button>
 
-            <!-- Buy Now -->
-            <a href="{% url 'store:buy_now' product.id %}"
-               class="btn btn-danger w-100 product-action-btn">
-                Buy Now
-            </a>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="row g-2 mt-2">
+
+                    <div class="col-6">
+
+                        {% if user.is_authenticated %}
+
+                        <form method="post"
+                            action="{% url 'store:add_to_cart' product.id %}">
+
+                            {% csrf_token %}
+
+                            <input type="hidden"
+                                name="quantity"
+                                id="hiddenQuantity"
+                                value="1">
+
+                            <button type="submit"
+                                    class="btn btn-add-cart w-100 product-action-btn">
+                                Add to Cart
+                            </button>
+
+                        </form>
+
+                        {% else %}
+
+                        <a href="{% url 'store:login' %}?next={{ request.path }}"
+                        class="btn btn-add-cart w-100 product-action-btn">
+                            Login to Buy
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <a href="{% url 'store:buy_now' product.id %}"
+                        class="btn btn-buy-now w-100 product-action-btn">
+                            Buy Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 
@@ -140,89 +207,125 @@ document.addEventListener("DOMContentLoaded", function () {
     const img = document.getElementById("mainImage");
     const lens = document.getElementById("lens");
     const result = document.getElementById("zoomResult");
+    const qtyInput = document.getElementById("quantity");
 
-    if (!img) return;
+    if (img && lens && result) {
 
-    const zoom = 2;
+        const zoom = 2;
 
-    function getCursorPos(e) {
-        const rect = img.getBoundingClientRect();
+        function getCursorPos(e) {
+            const rect = img.getBoundingClientRect();
 
-        return {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function moveLens(e) {
+
+            const pos = getCursorPos(e);
+
+            let x = pos.x;
+            let y = pos.y;
+
+            const lensWidth = lens.offsetWidth / 2;
+            const lensHeight = lens.offsetHeight / 2;
+
+            x = Math.max(lensWidth, Math.min(x, img.offsetWidth - lensWidth));
+            y = Math.max(lensHeight, Math.min(y, img.offsetHeight - lensHeight));
+
+            lens.style.left = (x - lensWidth) + "px";
+            lens.style.top = (y - lensHeight) + "px";
+
+            result.style.backgroundImage = `url('${img.src}')`;
+
+            result.style.backgroundSize =
+                (img.offsetWidth * zoom) + "px " +
+                (img.offsetHeight * zoom) + "px";
+
+            result.style.backgroundPosition =
+                "-" + (x * zoom - result.offsetWidth / 2) + "px " +
+                "-" + (y * zoom - result.offsetHeight / 2) + "px";
+        }
+
+        function showLens() {
+            lens.style.display = "block";
+            result.style.display = "block";
+        }
+
+        function hideLens() {
+            lens.style.display = "none";
+            result.style.display = "none";
+            result.style.backgroundImage = "none";
+        }
+
+        img.addEventListener("mouseenter", showLens);
+        img.addEventListener("mousemove", moveLens);
+        img.addEventListener("mouseleave", hideLens);
     }
 
-    function moveLens(e) {
+    if (qtyInput) {
 
-        const pos = getCursorPos(e);
+        qtyInput.addEventListener("input", function () {
 
-        let x = pos.x;
-        let y = pos.y;
+            if (!this.value || parseInt(this.value) < 1) {
+                this.value = 1;
+            }
 
-        const lensWidth = lens.offsetWidth / 2;
-        const lensHeight = lens.offsetHeight / 2;
+            syncHiddenQty();
+        });
 
-        x = Math.max(lensWidth, Math.min(x, img.offsetWidth - lensWidth));
-        y = Math.max(lensHeight, Math.min(y, img.offsetHeight - lensHeight));
-
-        lens.style.left = (x - lensWidth) + "px";
-        lens.style.top = (y - lensHeight) + "px";
-
-        result.style.backgroundImage = `url('${img.src}')`;
-
-        result.style.backgroundSize =
-            (img.offsetWidth * zoom) + "px " +
-            (img.offsetHeight * zoom) + "px";
-
-        result.style.backgroundPosition =
-            "-" + (x * zoom - result.offsetWidth / 2) + "px " +
-            "-" + (y * zoom - result.offsetHeight / 2) + "px";
     }
-
-    function showLens() {
-        lens.style.display = "block";
-        result.style.display = "block";
-    }
-
-    function hideLens() {
-        lens.style.display = "none";
-        result.style.display = "none";
-        result.style.backgroundImage = "none";
-    }
-
-    img.addEventListener("mouseenter", showLens);
-    img.addEventListener("mousemove", moveLens);
-    img.addEventListener("mouseleave", hideLens);
 
 });
 
-/* Change Image */
-function changeImage(src) {
+/* ================= CHANGE IMAGE ================= */
+function changeImage(src, el) {
+
     document.getElementById("mainImage").src = src;
+
+    document.querySelectorAll(".thumb-img").forEach(item => {
+        item.classList.remove("active-thumb");
+    });
+
+    if (el) {
+        el.classList.add("active-thumb");
+    }
 }
 
-/* Quantity Increase */
-function increaseQty() {
+/* ================= SYNC HIDDEN QTY ================= */
+function syncHiddenQty() {
 
-    let qty = document.getElementById("quantity");
-    let hiddenQty = document.getElementById("hiddenQuantity");
+    const qty = document.getElementById("quantity");
+    const hiddenQty = document.getElementById("hiddenQuantity");
 
-    qty.value = parseInt(qty.value) + 1;
-    hiddenQty.value = qty.value;
-}
-
-/* Quantity Decrease */
-function decreaseQty() {
-
-    let qty = document.getElementById("quantity");
-    let hiddenQty = document.getElementById("hiddenQuantity");
-
-    if (parseInt(qty.value) > 1) {
-        qty.value = parseInt(qty.value) - 1;
+    if (hiddenQty && qty) {
         hiddenQty.value = qty.value;
     }
+}
+
+/* ================= INCREASE QTY ================= */
+function increaseQty() {
+
+    const qty = document.getElementById("quantity");
+
+    qty.value = parseInt(qty.value || 1) + 1;
+
+    syncHiddenQty();
+}
+
+/* ================= DECREASE QTY ================= */
+function decreaseQty() {
+
+    const qty = document.getElementById("quantity");
+    const current = parseInt(qty.value || 1);
+
+    if (current > 1) {
+        qty.value = current - 1;
+    }
+
+    syncHiddenQty();
 }
 </script>
 

@@ -1,5 +1,11 @@
 {% extends "store/base.html" %}
+{% load static %}
+
 {% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/home.css' %}">{% endblock %}
+
 {% block content %}
 
 <!-- ================= HERO SECTION ================= -->
@@ -146,7 +152,7 @@
 <!-- ================= FLASH SALE ================= -->
 <div class="mb-5">
 
-    <div class="card shadow-sm p-4 bg-danger text-white">
+    <div class="flash-sale-card">
 
         <div class="row align-items-center">
 
@@ -171,7 +177,7 @@
     <!-- Filters -->
     <div class="col-lg-3 mb-4">
 
-        <div class="card shadow-sm p-3">
+        <div class="card filter-card">
 
             <h5 class="mb-3">Filters</h5>
 
@@ -216,7 +222,7 @@
         <!-- New Arrivals -->
         <div class="mb-5">
 
-            <h4>New Arrivals</h4>
+            <h4 class="home-heading">New Arrivals</h4>
 
             <div class="row g-4">
 
@@ -225,7 +231,7 @@
 
                     <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
 
-                        <div class="card h-100 position-relative">
+                        <div class="card home-product-card">
 
                             <div class="text-end p-2">
                                 <span class="wishlist-btn"
@@ -275,7 +281,7 @@
         <!-- Best Sellers -->
         <div class="mb-5">
 
-            <h4>Best Sellers</h4>
+            <h4 class="home-heading">Best Sellers</h4>
 
             <div class="row g-4">
 

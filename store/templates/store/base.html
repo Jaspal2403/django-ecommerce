@@ -4,23 +4,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My Store{% endblock %}</title>
+    <title>{% block title %}PreetCraft Studio{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Modular CSS -->
-    <link rel="stylesheet" href="{% static 'store/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/product.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/cart.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/checkout.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/auth.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/orders.css' %}">
-    <link rel="stylesheet" href="{% static 'store/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/core/base.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/core/footer.css' %}">    
+    <!-- <link rel="stylesheet" href="{% static 'store/css/pages/home.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/product.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/orders.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/pages/payment.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/payment_success.css' %}">
+    <link rel="stylesheet" href="{% static 'store/css/responsive.css' %}"> -->
     
+    <!-- <link rel="stylesheet" href="{% static 'store/css/style.css' %}"> -->
     {% block extra_css %}{% endblock %} 
 </head>
 

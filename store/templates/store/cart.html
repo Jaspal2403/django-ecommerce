@@ -1,15 +1,22 @@
 {% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'store/css/pages/cart.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="container mt-5 cart-page">
+<div class="container cart-page">
 
-    <h3>Your Cart</h3>
+    <h1 class="cart-title">Your Cart</h1>
 
     {% if items %}
 
     <div class="table-responsive shadow-sm">
-        <table class="table align-middle cart-table mb-0">
+        <table class="table cart-table">
 
             <thead>
                 <tr>
