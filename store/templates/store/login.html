@@ -31,6 +31,15 @@
     </div>
     {% endif %}
 
+    <div class="social-login mt-3">
+        <a href="/accounts/google/login/" class="google-login-btn">
+            <span class="google-icon">G</span>
+            <span>Continue with Google</span>
+        </a>
+    </div>
+
+    <div class="text-center my-3">or</div>
+
     <form method="post"
           action="{% url 'store:login' %}"
           class="custom-auth-form">

@@ -6,7 +6,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # Your Store App
     path('', include(('store.urls', 'store'), namespace='store')),
+
+     # Allauth Accounts
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -275,6 +275,50 @@
   line-height:1.7;
 }
 
+/* Google login css */
+.social-login{
+    width:100%;
+}
+
+a.google-login-btn{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    padding:14px 18px;
+    background:#ffffff !important;
+    border:1px solid #dcdcdc !important;
+    border-radius:10px;
+    color:#222 !important;
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none !important;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+
+a.google-login-btn:hover{
+    background:#f8f8f8 !important;
+    border-color:#bdbdbd !important;
+    transform:translateY(-1px);
+}
+
+.google-icon{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#fff;
+    color:#db4437;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    line-height:1;
+}
+
+
 /* Responsive */
 @media(max-width:991px){
 
