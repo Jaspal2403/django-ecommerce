@@ -1,0 +1,105 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Processing Payment{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/payment_pending.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container payment-pending-wrap">
+
+    <div class="payment-card">
+
+        <!-- Loader -->
+        <div class="loader-ring"></div>
+
+        <!-- Title -->
+        <div class="payment-title">
+            Confirming Your Payment...
+        </div>
+
+        <div class="payment-sub">
+            Please wait while we securely verify your transaction
+        </div>
+
+        <!-- Status Steps -->
+        <div class="status-steps">
+
+            <div class="status-item done" id="step1">
+                <div class="status-dot"></div>
+                Payment Received
+            </div>
+
+            <div class="status-item active" id="step2">
+                <div class="status-dot"></div>
+                Verifying Payment
+            </div>
+
+            <div class="status-item" id="step3">
+                <div class="status-dot"></div>
+                Confirming Order
+            </div>
+
+        </div>
+
+        <div class="payment-footer">
+            Do not refresh or close this page
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let attempts = 0;
+const maxAttempts = 12; // ~36 seconds
+
+// Step animation
+setTimeout(() => {
+    document.getElementById("step2").classList.remove("active");
+    document.getElementById("step2").classList.add("done");
+
+    document.getElementById("step3").classList.add("active");
+}, 4000);
+
+
+// Polling logic
+const interval = setInterval(() => {
+
+    attempts++;
+
+    fetch("{% url 'store:payment_success_page' %}?order_id={{ payment.razorpay_order_id }}")
+        .then(res => res.text())
+        .then(html => {
+
+            if (html.includes("Payment Successful")) {
+                clearInterval(interval);
+                document.body.style.opacity = "0";
+                setTimeout(() => location.reload(), 300);
+            }
+
+            if (html.includes("Payment Failed")) {
+                clearInterval(interval);
+                location.reload();
+            }
+
+        });
+
+    if (attempts >= maxAttempts) {
+        clearInterval(interval);
+
+        document.querySelector(".payment-sub").innerText =
+            "Still processing... please wait or refresh.";
+
+    }
+
+}, 3000);
+
+</script>
+
+{% endblock %}

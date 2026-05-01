@@ -41,6 +41,7 @@ urlpatterns = [
     path("pay-now/<int:order_id>/", views.pay_now, name="pay_now"),
     path("payment-success-api/", views.payment_success, name="payment_success"),
     path("payment-success/", views.payment_success_page, name="payment_success_page"),
+    path('payment-failed/', views.payment_failed, name='payment_failed'),
 
     # Auth
     path("signup/", views.signup, name="signup"),

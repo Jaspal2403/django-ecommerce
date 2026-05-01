@@ -1,0 +1,84 @@
+/* ===== WRAPPER ===== */
+.payment-failed-wrap{
+    min-height:70vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ===== CARD ===== */
+.payment-failed-card{
+    background:#fff;
+    border-radius:24px;
+    padding:40px 30px;
+    max-width:420px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ===== ICON ===== */
+.fail-icon{
+    font-size:60px;
+    color:#ef4444;
+    margin-bottom:10px;
+}
+
+/* ===== TITLE ===== */
+.fail-title{
+    font-size:26px;
+    font-weight:700;
+    color:#111827;
+}
+
+/* ===== TEXT ===== */
+.fail-text{
+    margin-top:10px;
+    color:#6b7280;
+}
+
+/* ===== BUTTONS ===== */
+.fail-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.fail-actions a{
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* Retry */
+.btn-retry {
+    background: #2563eb;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-retry:hover {
+    background: #1e40af;
+}
+
+/* home */
+
+.btn-home {
+    background: #ef4444;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    background: #dc2626;
+}

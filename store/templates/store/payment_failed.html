@@ -1,0 +1,44 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/payment_failed.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container payment-failed-wrap">
+
+    <div class="payment-failed-card">
+
+        <div class="fail-icon">❌</div>
+
+        <div class="fail-title">
+            Payment Failed
+        </div>
+
+        <div class="fail-text">
+            {{ message|default:"Something went wrong while processing your payment." }}
+        </div>
+
+        <div class="fail-actions">
+
+            {% if order_id %}
+            <a href="{% url 'store:pay_now' order_id %}" class="btn-retry">
+                Try Again
+            </a>
+            {% endif %}
+
+            <a href="{% url 'store:home' %}" class="btn-home">
+                Go Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -521,11 +521,19 @@ def start_payment(request, order):
     order.payment = payment
     order.save()
 
+    # return render(request, "store/payment.html", {
+    #     "order_id": razorpay_order["id"],
+    #     "amount": amount,
+    #     "display_amount": amount / 100,
+    #     "razorpay_key": settings.RAZORPAY_KEY_ID,
+    # })
+
     return render(request, "store/payment.html", {
-        "order_id": razorpay_order["id"],
-        "amount": amount,
-        "display_amount": amount / 100,
-        "razorpay_key": settings.RAZORPAY_KEY_ID,
+    "order_id": razorpay_order["id"],      # Razorpay order id
+    "django_order_id": order.id,           # ✅ ADD THIS
+    "amount": amount,
+    "display_amount": amount / 100,
+    "razorpay_key": settings.RAZORPAY_KEY_ID,
     })
 
 
@@ -667,24 +675,33 @@ def pay_now(request, order_id):
     order.payment = payment
     order.save()
 
+    # return render(request, "store/payment.html", {
+    #     "order_id": razorpay_order["id"],
+    #     "amount": amount,
+    #     "razorpay_key": settings.RAZORPAY_KEY_ID,
+    # })
+
     return render(request, "store/payment.html", {
-        "order_id": razorpay_order["id"],
-        "amount": amount,
-        "razorpay_key": settings.RAZORPAY_KEY_ID,
+    "order_id": razorpay_order["id"],
+    "django_order_id": order.id,   # ✅ ADD THIS
+    "amount": amount,
+    "razorpay_key": settings.RAZORPAY_KEY_ID,
     })
 
 @csrf_exempt
 def razorpay_webhook(request):
 
     print("🔥 WEBHOOK HIT")
-    print("METHOD:", request.method)
 
     if request.method != "POST":
         return JsonResponse({"status": "invalid method"})
 
     webhook_secret = settings.RAZORPAY_WEBHOOK_SECRET
-
     received_signature = request.headers.get("X-Razorpay-Signature")
+
+    if not received_signature:
+        return JsonResponse({"status": "no signature"}, status=400)
+
     body = request.body
 
     expected_signature = hmac.new(
@@ -693,15 +710,14 @@ def razorpay_webhook(request):
         hashlib.sha256
     ).hexdigest()
 
-    # 🔐 Signature verification
     if not hmac.compare_digest(expected_signature, received_signature):
+        print("❌ Invalid signature")
         return JsonResponse({"status": "invalid signature"}, status=400)
 
     data = json.loads(body)
-
     event = data.get("event")
 
-    print("WEBHOOK EVENT:", event)
+    print("📩 EVENT:", event)
 
     # =============================
     # PAYMENT SUCCESS
@@ -718,10 +734,11 @@ def razorpay_webhook(request):
                 razorpay_order_id=razorpay_order_id
             )
 
-            # 🛑 Prevent duplicate processing
+            # 🛑 Idempotency protection
             if payment.status == "SUCCESS":
                 return JsonResponse({"status": "already processed"})
 
+            # payment_pending flow
             payment.razorpay_payment_id = razorpay_payment_id
             payment.status = "SUCCESS"
             payment.save()
@@ -732,10 +749,41 @@ def razorpay_webhook(request):
                 order.status = "processing"
                 order.save()
 
-            print("✅ PAYMENT CAPTURED & ORDER UPDATED")
+                # ✅ Clear cart here (NOT in frontend)
+                CartItem.objects.filter(cart__user=order.user).delete()
+
+            print("✅ Payment confirmed via webhook")
 
         except Payment.DoesNotExist:
             print("❌ Payment not found")
+
+    # =============================
+    # ❌ FAILURE (ADD THIS BLOCK)
+    # =============================
+    elif event == "payment.failed":
+
+        payment_entity = data["payload"]["payment"]["entity"]
+
+        razorpay_order_id = payment_entity["order_id"]
+
+        try:
+            payment = Payment.objects.get(
+                razorpay_order_id=razorpay_order_id
+            )
+
+            payment.status = "FAILED"
+            payment.save()
+
+            order = Order.objects.filter(payment=payment).first()
+
+            if order:
+                order.status = "cancelled"
+                order.save()
+
+            print("❌ PAYMENT FAILED UPDATED")
+
+        except Payment.DoesNotExist:
+            print("❌ Payment not found for failure")
 
     return JsonResponse({"status": "ok"})
 
@@ -786,20 +834,84 @@ def payment_success(request):
         })
 
 
+# def payment_success_page(request):
+#     order_id = request.GET.get("order_id")
+
+#     print("SUCCESS PAGE ORDER ID:", order_id)
+
+#     payment = Payment.objects.filter(
+#         razorpay_order_id=order_id
+#     ).first()
+
+#     print("PAYMENT FOUND:", payment)
+
+#     if payment:
+#         payment.amount_in_rupees = payment.amount / 100
+
+#     return render(request, "store/payment_success.html", {
+#         "payment": payment
+#     })
+
 def payment_success_page(request):
     order_id = request.GET.get("order_id")
 
-    print("SUCCESS PAGE ORDER ID:", order_id)
+    if not order_id:
+        return render(request, "store/payment_failed.html", {
+            "message": "Invalid payment request"
+        })
 
+    # Try fetching payment
     payment = Payment.objects.filter(
         razorpay_order_id=order_id
     ).first()
 
-    print("PAYMENT FOUND:", payment)
+    # If payment not found
+    if not payment:
+        return render(request, "store/payment_failed.html", {
+            "message": "Payment record not found"
+        })
 
-    if payment:
+    # =============================
+    # WAIT FOR WEBHOOK (POLLING)
+    # =============================
+    import time
+
+    max_wait = 5   # seconds
+    waited = 0
+
+    while payment.status == "CREATED" and waited < max_wait:
+        time.sleep(1)
+        waited += 1
+        payment.refresh_from_db()
+
+    # =============================
+    # FINAL STATE CHECK
+    # =============================
+
+    if payment.status == "SUCCESS":
+
         payment.amount_in_rupees = payment.amount / 100
 
-    return render(request, "store/payment_success.html", {
-        "payment": payment
+        return render(request, "store/payment_success.html", {
+            "payment": payment
+        })
+
+    elif payment.status == "FAILED":
+
+        return render(request, "store/payment_failed.html", {
+            "message": "Payment failed. Please try again."
+        })
+
+    else:
+        # Still not updated → webhook delay
+        return render(request, "store/payment_pending.html", {
+            "payment": payment
+        })
+    
+def payment_failed(request):
+    order_id = request.GET.get('order_id')
+
+    return render(request, 'store/payment_failed.html', {
+        'order_id': order_id,
+        'message': 'Payment failed. Please try again.'
     })
