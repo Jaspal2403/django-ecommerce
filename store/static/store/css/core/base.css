@@ -135,6 +135,11 @@ main{
   font-size:12px;
 }
 
+.cart-link {
+    font-weight: 600;
+    position: relative;
+}
+
 /* Helpers */
 .shadow-soft{ box-shadow:var(--shadow-sm); }
 .rounded-soft{ border-radius:var(--radius-md); }

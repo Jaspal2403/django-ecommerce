@@ -49,6 +49,9 @@ urlpatterns = [
 
     # AJAX
     path("ajax/load-subcategories/", views.load_subcategories, name="ajax_load_subcategories"),
+
+    # Razorpay webhook
+    path("razorpay/webhook/", views.razorpay_webhook, name="razorpay_webhook"),
 ]
 
 

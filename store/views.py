@@ -8,7 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.conf import settings
 from decimal import Decimal
+from .models import Payment, Order
 
+import hmac
+import hashlib
 import json
 import razorpay
 
@@ -256,34 +259,61 @@ def toggle_wishlist_ajax(request, product_id):
 # CART
 # =====================================================
 
-@login_required
+# @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-
-    cart, _ = Cart.objects.get_or_create(user=request.user)
-
-    item, created = CartItem.objects.get_or_create(
-        cart=cart,
-        product=product
-    )
-
     quantity = int(request.POST.get("quantity", 1))
 
-    if created:
-        item.quantity = quantity
-    else:
-        item.quantity += quantity
+    if request.user.is_authenticated:
+        # Existing DB logic
+        cart, _ = Cart.objects.get_or_create(user=request.user)
 
-    item.save()
+        item, created = CartItem.objects.get_or_create(
+            cart=cart,
+            product=product
+        )
+
+        if created:
+            item.quantity = quantity
+        else:
+            item.quantity += quantity
+
+        item.save()
+
+    else:
+        # NEW: Session Cart
+        cart = request.session.get('cart', {})
+
+        product_id_str = str(product_id)
+
+        if product_id_str in cart:
+            cart[product_id_str] += quantity
+        else:
+            cart[product_id_str] = quantity
+
+        request.session['cart'] = cart
 
     return redirect("store:cart")
 
 
 @login_required
 def cart_view(request):
-    cart, _ = Cart.objects.get_or_create(user=request.user)
 
-    items = cart.items.all()
+    if request.user.is_authenticated:
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        items = cart.items.all()
+
+    else:
+        session_cart = request.session.get('cart', {})
+        items = []
+
+        for product_id, qty in session_cart.items():
+            product = Product.objects.get(id=product_id)
+
+            items.append({
+                'product': product,
+                'quantity': qty
+            })
 
     total = sum(
         item.product.price * item.quantity
@@ -643,6 +673,71 @@ def pay_now(request, order_id):
         "razorpay_key": settings.RAZORPAY_KEY_ID,
     })
 
+@csrf_exempt
+def razorpay_webhook(request):
+
+    print("🔥 WEBHOOK HIT")
+    print("METHOD:", request.method)
+
+    if request.method != "POST":
+        return JsonResponse({"status": "invalid method"})
+
+    webhook_secret = settings.RAZORPAY_WEBHOOK_SECRET
+
+    received_signature = request.headers.get("X-Razorpay-Signature")
+    body = request.body
+
+    expected_signature = hmac.new(
+        webhook_secret.encode(),
+        body,
+        hashlib.sha256
+    ).hexdigest()
+
+    # 🔐 Signature verification
+    if not hmac.compare_digest(expected_signature, received_signature):
+        return JsonResponse({"status": "invalid signature"}, status=400)
+
+    data = json.loads(body)
+
+    event = data.get("event")
+
+    print("WEBHOOK EVENT:", event)
+
+    # =============================
+    # PAYMENT SUCCESS
+    # =============================
+    if event == "payment.captured":
+
+        payment_entity = data["payload"]["payment"]["entity"]
+
+        razorpay_order_id = payment_entity["order_id"]
+        razorpay_payment_id = payment_entity["id"]
+
+        try:
+            payment = Payment.objects.get(
+                razorpay_order_id=razorpay_order_id
+            )
+
+            # 🛑 Prevent duplicate processing
+            if payment.status == "SUCCESS":
+                return JsonResponse({"status": "already processed"})
+
+            payment.razorpay_payment_id = razorpay_payment_id
+            payment.status = "SUCCESS"
+            payment.save()
+
+            order = Order.objects.filter(payment=payment).first()
+
+            if order:
+                order.status = "processing"
+                order.save()
+
+            print("✅ PAYMENT CAPTURED & ORDER UPDATED")
+
+        except Payment.DoesNotExist:
+            print("❌ Payment not found")
+
+    return JsonResponse({"status": "ok"})
 
 @csrf_exempt
 def payment_success(request):

@@ -4,7 +4,7 @@
 {% block title %}Cart{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'store/css/pages/cart.css' %}">
+<link rel="stylesheet" href="{% static 'store/css/pages/cart.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,124 +15,103 @@
 
     {% if items %}
 
-    <div class="table-responsive shadow-sm">
-        <table class="table cart-table">
+    <!-- ================= CART ITEMS ================= -->
+    <div class="cart-items">
 
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        {% for item in items %}
+        <div class="cart-card d-flex align-items-center justify-content-between flex-wrap">
 
-            <tbody>
+            <!-- LEFT: IMAGE -->
+            <div class="cart-left d-flex align-items-center gap-3">
 
-            {% for item in items %}
-            <tr>
-                <!-- Product Image -->
-                <td>
-                    {% if item.product.image %}
-                        <img src="{{ item.product.image.url }}" width="60" class="cart-img">
-                    {% endif %}
-                </td>
-                
-                <!-- Product Name -->
-                <td>
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" class="cart-img">
+                {% endif %}
+
+                <div>
                     <div class="cart-product-name">
-                    {{ item.product.name }}
+                        {{ item.product.name }}
                     </div>
-                </td>
 
-                <!-- Unit Price -->
-                <td>
-                    <span class="cart-price">
-                    ₹ {{ item.product.price }}
-                    </span>
-                </td>
-
-                <!-- Quantity -->
-                <td>
-                    <div class="qty-cart-wrap">
-                        <!-- ➖ -->
-                        <a href="{% url 'store:decrease_quantity' item.product.id %}" 
-                            class="btn btn-sm btn-outline-secondary">
-                            -
-                        </a>
-
-                        <span>{{ item.quantity }}</span>
-
-                        <!-- ➕ -->
-                        <a href="{% url 'store:increase_quantity' item.product.id %}" 
-                            class="btn btn-sm btn-outline-secondary">
-                            +
-                        </a>
+                    <div class="cart-price mt-1">
+                        ₹ {{ item.product.price }}
                     </div>
-                </td>
+                </div>
 
-                <!-- Line Total -->
-                <td>
-                    <span class="cart-line-total">        
-                        ₹ {{ item.product.price|floatformat:2 }} × {{ item.quantity }}
-                    </span>
-                </td>
-                
-                <!-- Remove -->
-                <td>
-                    <a href="{% url 'store:remove_from_cart' item.product.id %}"
-                        class="btn btn-sm btn-danger cart-remove-btn"
-                        onclick="return confirm('Are you sure you want to remove this item?')">
-                        Remove
+            </div>
+
+            <!-- CENTER: QUANTITY -->
+            <div class="cart-middle">
+
+                <div class="qty-cart-wrap">
+
+                    <a href="{% url 'store:decrease_quantity' item.product.id %}" class="btn">
+                        -
                     </a>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
 
-        </table>
+                    <span>{{ item.quantity }}</span>
+
+                    <a href="{% url 'store:increase_quantity' item.product.id %}" class="btn">
+                        +
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT: TOTAL + REMOVE -->
+            <div class="cart-right text-end">
+
+                <div class="cart-item-total mb-2">
+                    ₹ {{ item.product.price|floatformat:2 }} × {{ item.quantity }}
+                </div>
+
+                <a href="{% url 'store:remove_from_cart' item.product.id %}"
+                   class="btn btn-danger cart-remove-btn"
+                   onclick="return confirm('Remove this item?')">
+                    Remove
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
 
     </div>
 
     <!-- ================= SUMMARY ================= -->
     <div class="cart-summary">
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="mb-0">Cart Total</h4>
 
             <div class="cart-grand-total">
                 ₹ {{ total }}
             </div>
+        </div>
 
-        </div>    
-
-        <a href="{% url 'store:checkout' %}" 
-            class="btn btn-success cart-checkout-btn">
+        <a href="{% url 'store:checkout' %}" class="btn cart-checkout-btn">
             Proceed to Checkout
         </a>
+
     </div>
 
     {% else %}
 
+    <!-- ================= EMPTY ================= -->
     <div class="empty-cart-box">
 
         <div class="empty-cart-icon">🛒</div>
 
         <h4>Your cart is empty</h4>
 
-        <p>
-            Looks like you haven’t added anything yet.
-        </p>
+        <p>Looks like you haven’t added anything yet.</p>
 
-        <a href="{% url 'store:home' %}"
-           class="btn btn-warning">
+        <a href="{% url 'store:home' %}" class="btn btn-warning">
             Continue Shopping
         </a>
 
-    </div>    
+    </div>
 
     {% endif %}
 

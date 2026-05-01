@@ -89,11 +89,12 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
                 'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'store.context_processors.categories_processor',
-                'store.context_processors.parent_categories',                    
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                    'store.context_processors.categories_processor',
+                    'store.context_processors.parent_categories',                    
+                    'store.context_processors.cart_count',
             ],
         },
     },
@@ -183,6 +184,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Razorpay webhook
+RAZORPAY_WEBHOOK_SECRET = "preetcraft_webhook_secret_2026"
 
 # Razorpay credentials (TEST)
 RAZORPAY_KEY_ID = "rzp_test_SiWDlv4d8mie81"
