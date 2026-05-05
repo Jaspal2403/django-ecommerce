@@ -140,12 +140,57 @@
     border-radius:20px;
     padding:24px 28px;
     box-shadow:0 10px 25px rgba(0,0,0,.05);
+    border:1px solid #eee;
+}
+
+.cart-summary .final-total{
+    font-size:22px;
+    font-weight:800;
+    color:#111827;
+}
+
+.final-total{
+    font-size:20px;
+    font-weight:800;
+    color:#111827;
+}
+
+.cart-summary hr{
+    opacity:0.2;
 }
 
 .cart-grand-total{
     font-size:26px;
     font-weight:800;
     color:#111827;
+}
+
+.save-banner{
+    background:#ecfdf5;
+    color:#059669;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.coupon-box{
+    display:flex;
+    gap:10px;
+}
+
+.coupon-box input{
+    flex:1;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+.coupon-box button{
+    background:#111827;
+    color:#fff;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
 }
 
 /* Checkout Button */

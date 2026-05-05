@@ -28,12 +28,14 @@ urlpatterns = [
     path("increase/<int:product_id>/", views.increase_quantity, name="increase_quantity"),
     path("decrease/<int:product_id>/", views.decrease_quantity, name="decrease_quantity"),
     path("remove/<int:product_id>/", views.remove_from_cart, name="remove_from_cart"),
+    path('apply-coupon/', views.apply_coupon, name='apply_coupon'),    
 
     # Checkout / Orders
     path("checkout/", views.checkout, name="checkout"),
     path("order-success/", views.order_success, name="order_success"),
     path("orders/", views.order_history, name="order_history"),
     path("cancel-order/<int:order_id>/", views.cancel_order, name="cancel_order"),
+    path('delete-address/<int:address_id>/', views.delete_address, name='delete_address'),
 
     # Payments
     path("buy-now/<int:product_id>/", views.buy_now, name="buy_now"),

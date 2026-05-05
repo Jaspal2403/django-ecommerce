@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.html import format_html
-from .models import Address, Cart, CartItem, OrderItem, HeroBanner
+from .models import Address, Cart, CartItem, OrderItem, HeroBanner, Coupon
 import csv
 
 from .models import (
@@ -53,6 +53,13 @@ class CartAdmin(admin.ModelAdmin):
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ("cart", "product", "quantity")
     search_fields = ("product__name", "cart__user__username")
+
+
+@admin.register(Coupon)
+class CouponAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount_percent', 'active')
+    search_fields = ('code',)
+    list_filter = ('active',)
 
 # =========================
 # PRODUCT IMAGE INLINE

@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.conf import settings
 from decimal import Decimal
-from .models import Payment, Order
+from .models import Payment, Order, Coupon, Address
 
 import hmac
 import hashlib
@@ -299,31 +299,99 @@ def add_to_cart(request, product_id):
 @login_required
 def cart_view(request):
 
+    items = []
+
+    # ===============================
+    # AUTHENTICATED USER (DB CART)
+    # ===============================
     if request.user.is_authenticated:
         cart, _ = Cart.objects.get_or_create(user=request.user)
-        items = cart.items.all()
+        db_items = cart.items.select_related('product')
 
+        for item in db_items:
+            product = item.product
+            qty = item.quantity
+
+            price = product.price
+            mrp = product.mrp if product.mrp else price
+
+            subtotal = price * qty
+            mrp_total = mrp * qty
+            saving = mrp_total - subtotal
+
+            item.subtotal = subtotal
+            item.mrp_total = mrp_total
+            item.saving = saving
+
+            items.append(item)
+
+    # ===============================
+    # GUEST USER (SESSION CART)
+    # ===============================
     else:
         session_cart = request.session.get('cart', {})
-        items = []
 
         for product_id, qty in session_cart.items():
             product = Product.objects.get(id=product_id)
 
-            items.append({
+            price = product.price
+            mrp = product.mrp if product.mrp else price
+
+            subtotal = price * qty
+            mrp_total = mrp * qty
+            saving = mrp_total - subtotal
+
+            # Create lightweight object-like dict
+            item = type('obj', (object,), {
                 'product': product,
-                'quantity': qty
+                'quantity': qty,
+                'subtotal': subtotal,
+                'mrp_total': mrp_total,
+                'saving': saving
             })
 
-    total = sum(
-        item.product.price * item.quantity
-        for item in items
-    )
+            items.append(item)
 
+    # ===============================
+    # TOTAL CALCULATIONS
+    # ===============================
+    total_mrp = sum(item.mrp_total for item in items)
+    total = sum(item.subtotal for item in items)
+    total_savings = total_mrp - total
+
+    # ===============================
+    # COUPON LOGIC
+    # ===============================
+    discount_percent = request.session.get('coupon', 0)
+
+    discount_amount = (total * discount_percent) / 100
+    final_total = total - discount_amount
+
+    # ===============================
+    # RENDER
+    # ===============================
     return render(request, "store/cart.html", {
         "items": items,
-        "total": total
+        "total": total,
+        "total_mrp": total_mrp,
+        "total_savings": total_savings,
+        "discount_amount": discount_amount,
+        "final_total": final_total,
+        "discount_percent": discount_percent,
     })
+
+def apply_coupon(request):
+    code = request.POST.get("coupon")
+
+    try:
+        coupon = Coupon.objects.get(code__iexact=code, active=True)
+        request.session['coupon'] = coupon.discount_percent
+        messages.success(request, "Coupon applied successfully")
+    except Coupon.DoesNotExist:
+        request.session['coupon'] = 0
+        messages.error(request, "Invalid coupon")
+
+    return redirect("store:cart")
 
 
 @login_required
@@ -379,40 +447,82 @@ def remove_from_cart(request, product_id):
 
 @login_required
 def checkout(request):
+
+    # ===============================
+    # CART & ITEMS
+    # ===============================
     cart, _ = Cart.objects.get_or_create(user=request.user)
-    items = cart.items.all()
+    items = cart.items.select_related('product')
 
     if not items:
         return redirect("store:cart")
 
-    total = sum(item.product.price * item.quantity for item in items)
+    # Add subtotal
+    for item in items:
+        item.subtotal = item.product.price * item.quantity
 
+    # ===============================
+    # PRICE CALCULATION
+    # ===============================
+    total = sum(item.subtotal for item in items)
+
+    discount_percent = request.session.get('coupon', 0)
+    discount_amount = (total * Decimal(discount_percent)) / 100
+    final_total = total - discount_amount
+
+    # ===============================
+    # USER ADDRESSES
+    # ===============================
     addresses = Address.objects.filter(user=request.user)
 
+    # ===============================
+    # HANDLE FORM SUBMIT
+    # ===============================
     if request.method == "POST":
 
         address_id = request.POST.get("address_id")
 
+        # ===============================
+        # EXISTING ADDRESS (priority)
+        # ===============================
         if address_id:
-            address = Address.objects.get(
+            address = get_object_or_404(
+                Address,
                 id=address_id,
                 user=request.user
             )
+
+        # ===============================
+        # NEW ADDRESS (fallback)
+        # ===============================
         else:
+            name = request.POST.get("name", "").strip()
+            address_text = request.POST.get("address", "").strip()
+            city = request.POST.get("city", "").strip()
+            pincode = request.POST.get("pincode", "").strip()
+            phone = request.POST.get("phone", "").strip()
+
+            if not all([name, address_text, city, pincode, phone]):
+                messages.error(request, "Please fill all address fields.")
+                return redirect("store:checkout")
+
             address = Address.objects.create(
                 user=request.user,
-                name=request.POST.get("name"),
-                address=request.POST.get("address"),
-                city=request.POST.get("city"),
-                pincode=request.POST.get("pincode"),
-                phone=request.POST.get("phone"),
+                name=name,
+                address=address_text,
+                city=city,
+                pincode=pincode,
+                phone=phone,
             )
 
+        # ===============================
+        # CREATE ORDER
+        # ===============================
         order = Order.objects.create(
             user=request.user,
             address=address,
             status="pending",
-            total_amount=total
+            total_amount=final_total
         )
 
         for item in items:
@@ -423,14 +533,37 @@ def checkout(request):
                 price=item.product.price
             )
 
+        # ===============================
+        # CLEAR COUPON
+        # ===============================
+        request.session['coupon'] = 0
+
+        # ===============================
+        # START PAYMENT
+        # ===============================
         return start_payment(request, order)
 
+    # ===============================
+    # RENDER PAGE
+    # ===============================
     return render(request, "store/checkout.html", {
         "items": items,
         "total": total,
-        "addresses": addresses
+        "discount_amount": discount_amount,
+        "final_total": final_total,
+        "addresses": addresses,
     })
 
+
+@login_required
+def delete_address(request, address_id):
+    address = get_object_or_404(Address, id=address_id, user=request.user)
+
+    if request.method == "POST":
+        address.delete()
+        return JsonResponse({"status": "success"})
+
+    return JsonResponse({"status": "error"})
 
 def order_success(request):
     return render(request, "store/order_success.html")

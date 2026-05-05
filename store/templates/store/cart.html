@@ -21,7 +21,7 @@
         {% for item in items %}
         <div class="cart-card d-flex align-items-center justify-content-between flex-wrap">
 
-            <!-- LEFT: IMAGE -->
+            <!-- LEFT -->
             <div class="cart-left d-flex align-items-center gap-3">
 
                 {% if item.product.image %}
@@ -40,30 +40,24 @@
 
             </div>
 
-            <!-- CENTER: QUANTITY -->
+            <!-- MIDDLE -->
             <div class="cart-middle">
-
                 <div class="qty-cart-wrap">
 
-                    <a href="{% url 'store:decrease_quantity' item.product.id %}" class="btn">
-                        -
-                    </a>
+                    <a href="{% url 'store:decrease_quantity' item.product.id %}" class="btn">-</a>
 
                     <span>{{ item.quantity }}</span>
 
-                    <a href="{% url 'store:increase_quantity' item.product.id %}" class="btn">
-                        +
-                    </a>
+                    <a href="{% url 'store:increase_quantity' item.product.id %}" class="btn">+</a>
 
                 </div>
-
             </div>
 
-            <!-- RIGHT: TOTAL + REMOVE -->
+            <!-- RIGHT -->
             <div class="cart-right text-end">
 
                 <div class="cart-item-total mb-2">
-                    ₹ {{ item.product.price|floatformat:2 }} × {{ item.quantity }}
+                    ₹ {{ item.subtotal|floatformat:2 }}
                 </div>
 
                 <a href="{% url 'store:remove_from_cart' item.product.id %}"
@@ -82,12 +76,51 @@
     <!-- ================= SUMMARY ================= -->
     <div class="cart-summary">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Cart Total</h4>
-
-            <div class="cart-grand-total">
-                ₹ {{ total }}
+        <!-- COUPON -->
+        <form method="POST" action="{% url 'store:apply_coupon' %}" class="mb-3">
+            {% csrf_token %}
+            <div class="coupon-box">
+                <input type="text" name="coupon" placeholder="Enter coupon code">
+                <button type="submit">Apply</button>
             </div>
+        </form>
+
+        <!-- SAVINGS BANNER -->
+        {% if total_savings > 0 or discount_amount > 0 %}
+        <div class="save-banner mb-3">
+            🎉 You saved ₹ {{ total_savings|add:discount_amount }}
+        </div>
+        {% endif %}
+
+        <!-- PRICE BREAKDOWN -->
+
+        <div class="d-flex justify-content-between mb-2">
+            <span>MRP Total</span>
+            <span>₹ {{ total_mrp }}</span>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2 text-success">
+            <span>Product Discount</span>
+            <span>- ₹ {{ total_savings }}</span>
+        </div>
+
+        <div class="d-flex justify-content-between mb-2">
+            <span>Cart Total</span>
+            <span>₹ {{ total }}</span>
+        </div>
+
+        {% if discount_amount > 0 %}
+        <div class="d-flex justify-content-between mb-2 text-success">
+            <span>Coupon Discount ({{ discount_percent }}%)</span>
+            <span>- ₹ {{ discount_amount }}</span>
+        </div>
+        {% endif %}
+
+        <hr>
+
+        <div class="d-flex justify-content-between mb-3 final-total">
+            <span>Total Payable</span>
+            <span>₹ {{ final_total }}</span>
         </div>
 
         <a href="{% url 'store:checkout' %}" class="btn cart-checkout-btn">
