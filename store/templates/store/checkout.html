@@ -11,185 +11,213 @@
 
 <div class="container checkout-page">
 
- <h1 class="checkout-title">Checkout</h1>
+    <h1 class="checkout-title">Checkout</h1>
 
- <form method="POST">
- {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
- <div class="row g-4">
+        <div class="row g-4">
 
- <!-- ================= LEFT ================= -->
- <div class="col-lg-7">
+            <!-- ================= LEFT ================= -->
+            <div class="col-lg-7">
 
- <!-- ITEMS -->
- <div class="checkout-card">
- <h5 class="mb-3">Order Items</h5>
+                <!-- ITEMS -->
+                <div class="checkout-card">
+                    <h5 class="mb-3">Order Items</h5>
 
- {% for item in items %}
- <div class="checkout-item">
- <div class="d-flex justify-content-between align-items-center">
+                    {% for item in items %}
+                    <div class="checkout-item">
+                        <div class="d-flex justify-content-between align-items-center">
 
- <div class="d-flex gap-3 align-items-center">
- {% if item.product.image %}
- <img src="{{ item.product.image.url }}" class="checkout-img">
- {% endif %}
+                            <div class="d-flex gap-3 align-items-center">
+                                {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" class="checkout-img">
+                                {% endif %}
 
- <div>
- <div class="checkout-product-name">
- {{ item.product.name }}
- </div>
- <small>Qty: {{ item.quantity }}</small>
- </div>
- </div>
+                                <div>
+                                    <div class="checkout-product-name">
+                                        {{ item.product.name }}
+                                    </div>
+                                    <small>Qty: {{ item.quantity }}</small>
+                                </div>
+                            </div>
 
- <div class="checkout-price">
- ₹ {{ item.subtotal|floatformat:2 }}
- </div>
+                            <div class="checkout-price">
+                                ₹ {{ item.subtotal|floatformat:2 }}
+                            </div>
 
- </div>
- </div>
- {% endfor %}
- </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
 
- <!-- ADDRESS -->
- <div class="checkout-card mt-4">
+                <!-- ADDRESS -->
+                <div class="checkout-card mt-4">
 
- <h5 class="mb-3">Delivery Address</h5>
+                    <h5 class="mb-3">Delivery Address</h5>
 
- <!-- EXISTING -->
- <div id="existing-addresses">
- {% for address in addresses %}
- <div class="address-card">
+                    <!-- ================= SAVED ADDRESSES ================= -->
+                    <div id="existing-addresses">
 
- <label class="address-content">
+                        {% for address in addresses %}
+                        <div class="address-card">
 
- <input type="radio"
- name="address_id"
- value="{{ address.id }}"
- class="address-radio"
- {% if forloop.first %}checked{% endif %}>
+                            <label class="address-content">
 
- <div class="address-text">
- <strong>{{ address.name }}</strong><br>
- {{ address.address }}<br>
- {{ address.city }} - {{ address.pincode }}<br>
- <small>{{ address.phone }}</small>
- </div>
+                                <input type="radio" 
+                                    name="address_id" 
+                                    value="{{ address.id }}" 
+                                    class="address-radio" 
+                                    {% if forloop.first %}checked{% endif %}>
 
- </label>
+                                <div class="address-text">
+                                    <strong>{{ address.name }}</strong><br>
+                                    {{ address.address }}<br>
+                                    {{ address.city }} - {{ address.pincode }}<br>
+                                    <small>{{ address.phone }}</small>
+                                </div>
 
- <button type="button"
- class="delete-address-btn"
- data-id="{{ address.id }}">
- ✕
- </button>
+                            </label>
 
- </div>
- {% endfor %}
- </div>
+                            <button type="button" class="delete-address-btn" data-id="{{ address.id }}">
+                                ✕
+                            </button>
 
- <!-- NEW ADDRESS -->
- <div id="new-address-form" class="mt-3">
+                        </div>
+                        {% endfor %}
 
- <h6>Add New Address</h6>
+                    </div>
 
- <input type="text" name="name" placeholder="Full Name" class="form-control mb-2">
- <textarea name="address" placeholder="Full Address" class="form-control mb-2"></textarea>
- <input type="text" name="city" placeholder="City" class="form-control mb-2">
- <input type="text" name="pincode" placeholder="Pincode" class="form-control mb-2">
- <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-2">
+                    <!-- ================= ADD NEW OPTION ================= -->
+                    <div class="address-card add-new-option mt-2">
 
- </div>
+                        <label class="address-content">
 
- </div>
+                            <input type="radio" name="address_id" value="" id="add-new-radio">
 
- </div>
+                            <div class="add-new-address">
+                                <strong>Add New Address</strong>
+                            </div>
 
- <!-- ================= RIGHT ================= -->
- <div class="col-lg-5">
+                        </label>
 
- <div class="checkout-summary">
+                    </div>
 
- <h5 class="mb-3">Price Details</h5>
+                    <!-- ================= NEW ADDRESS FORM ================= -->
+                    <div id="new-address-form" class="mt-3" style="display:none;">
 
- <div class="d-flex justify-content-between mb-2">
- <span>Subtotal</span>
- <span>₹ {{ total }}</span>
- </div>
+                        <input type="text" name="name" placeholder="Full Name" class="form-control mb-2">
+                        <textarea name="address" placeholder="Full Address" class="form-control mb-2"></textarea>
+                        <input type="text" name="city" placeholder="City" class="form-control mb-2">
+                        <input type="text" name="pincode" placeholder="Pincode" class="form-control mb-2">
+                        <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-2">
 
- {% if discount_amount > 0 %}
- <div class="d-flex justify-content-between mb-2 text-success">
- <span>Discount</span>
- <span>- ₹ {{ discount_amount }}</span>
- </div>
- {% endif %}
+                    </div>
 
- <hr>
+                </div>
 
- <div class="d-flex justify-content-between final-total mb-3">
- <span>Total Payable</span>
- <span>₹ {{ final_total }}</span>
- </div>
+            </div>
 
- <button type="submit" class="checkout-btn">
- Place Order
- </button>
+            <!-- ================= RIGHT ================= -->
+            <div class="col-lg-5">
 
- </div>
+                <div class="checkout-summary">
 
- </div>
+                    <h5 class="mb-3">Price Details</h5>
 
- </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal</span>
+                        <span>₹ {{ total }}</span>
+                    </div>
 
- </form>
+                    {% if discount_amount > 0 %}
+                    <div class="d-flex justify-content-between mb-2 text-success">
+                        <span>Discount</span>
+                        <span>- ₹ {{ discount_amount }}</span>
+                    </div>
+                    {% endif %}
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between final-total mb-3">
+                        <span>Total Payable</span>
+                        <span>₹ {{ final_total }}</span>
+                    </div>
+
+                    <button type="submit" class="checkout-btn">
+                        Place Order
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
 
 </div>
 
 <!-- ================= SCRIPT ================= -->
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("DOMContentLoaded", function () {
 
- const radios = document.querySelectorAll(".address-radio");
- const newForm = document.getElementById("new-address-form");
+        const radios = document.querySelectorAll("input[name='address_id']");
+        const newForm = document.getElementById("new-address-form");
 
- function toggleForm(){
- let selected = false;
+        function toggleForm() {
+            let selected = document.querySelector("input[name='address_id']:checked");
 
- radios.forEach(r => {
- if(r.checked) selected = true;
- });
+            if (selected && selected.value === "") {
+                newForm.style.display = "block";
+            } else {
+                newForm.style.display = "none";
+            }
+        }
 
- newForm.style.display = selected ? "none" : "block";
- }
+        // Radio change
+        radios.forEach(r => {
+            r.addEventListener("change", toggleForm);
+        });
 
- radios.forEach(r => {
- r.addEventListener("change", toggleForm);
- });
+        // Initial state
+        toggleForm();
 
- toggleForm();
+        // ================= DELETE ADDRESS =================
+        document.querySelectorAll(".delete-address-btn").forEach(btn => {
 
- // DELETE ADDRESS
- document.querySelectorAll(".delete-address-btn").forEach(btn=>{
- btn.addEventListener("click", function(){
+            btn.addEventListener("click", function () {
 
- if(!confirm("Delete this address?")) return;
+                if (!confirm("Are you sure you want to remove this address?")) return;
 
- fetch(`/delete-address/${this.dataset.id}/`, {
- method:"POST",
- headers:{
- "X-CSRFToken":"{{ csrf_token }}"
- }
- })
- .then(r=>r.json())
- .then(()=>{
- this.closest(".address-card").remove();
- toggleForm();
- });
+                fetch(`/delete-address/${this.dataset.id}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    }
+                })
+                    .then(r => r.json())
+                    .then(() => {
 
- });
- });
+                        const card = this.closest(".address-card");
+                        if (card) card.remove();
 
-});
+                        // If no addresses left → auto select new
+                        const remaining = document.querySelectorAll(".address-radio");
+
+                        if (remaining.length === 0) {
+                            document.getElementById("add-new-radio").checked = true;
+                        }
+
+                        toggleForm();
+                    });
+
+            });
+
+        });
+
+    });
 </script>
+
 
 {% endblock %}

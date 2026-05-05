@@ -25,6 +25,11 @@
     box-shadow:0 6px 18px rgba(0,0,0,.05);
 }
 
+.checkout-card h5{
+ font-weight:700;
+ margin-bottom:14px;
+}
+
 /* ===============================
  ITEMS
 ================================= */
@@ -83,8 +88,21 @@
 
 /* Highlight selected address */
 .address-card{
-    border:1px solid #e5e7eb;
-    transition:0.2s ease;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ border:1px solid #e5e7eb;
+ border-radius:12px;
+ padding:14px;
+ margin-bottom:12px;
+ cursor:pointer;
+ transition:0.25s ease;
+ background:#fff;
+}
+
+.address-card:hover{
+ border-color:#f59e0b;
+ background:#fffaf3;
 }
 
 .address-card.selected{
@@ -92,6 +110,16 @@
     background:#fffaf3;
 }
 
+.address-content{
+ display:flex;
+ gap:10px;
+}
+
+.address-text{
+ font-size:14px;
+ color:#374151;
+ line-height:1.5;
+}
 /* ===============================
  SUMMARY
 ================================= */
@@ -146,6 +174,30 @@
     cursor:not-allowed;
 }
 
+
+/* ===============================
+ Delete button
+================================= */
+
+.delete-address-btn{
+ border:none;
+ background:#fee2e2;
+ color:#dc2626;
+ font-weight:700;
+ border-radius:50%;
+ width:30px;
+ height:30px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ cursor:pointer;
+ transition:0.2s;
+}
+
+.delete-address-btn:hover{
+ background:#fecaca;
+}
+
 /* ===============================
  FORM INPUTS
 ================================= */
@@ -160,6 +212,16 @@
 
 .checkout-card textarea{
     resize:none;
+}
+
+/* ===============================
+ Form Visibility
+================================= */
+
+#new-address-form{
+ margin-top:10px;
+ padding-top:10px;
+ border-top:1px solid #eee;
 }
 
 /* ===============================
@@ -263,6 +325,15 @@
     .checkout-btn{
         font-size:14px;
         padding:12px;
+    }
+
+    address-card{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .delete-address-btn{
+        align-self:flex-end;
     }
 
 }
