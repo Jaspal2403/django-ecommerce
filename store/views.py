@@ -15,6 +15,9 @@ import hashlib
 import json
 import razorpay
 
+import logging
+logger=logging.getLogger(__name__)
+
 from .forms import SignUpForm
 from .models import (
     Product,
@@ -45,12 +48,17 @@ client = razorpay.Client(auth=(
 
 def signup(request):
     if request.method == "POST":
-        form = SignUpForm(request.POST)
+        logger.info("Signup Attempt")       #logs
 
+        form = SignUpForm(request.POST)
+        
         if form.is_valid():
             user = form.save()
             login(request, user)
+            logger.info(f"Signup success | user_id={user.id}")      #logs
             return redirect("store:home")
+        
+        logger.warning("Signup failed | invalid form")     #logs
 
         messages.error(request, "Signup failed")
 
@@ -68,6 +76,7 @@ class CustomLoginView(LoginView):
 
 
 def user_logout(request):
+    logger.info(f"Logout | user_id={request.user.id}")      #Logs
     logout(request)
     return redirect("store:login")
 
@@ -77,6 +86,8 @@ def user_logout(request):
 # =====================================================
 
 def home(request):
+    logger.debug(f"Home loaded | user={request.user}")      #logs
+
     products = Product.objects.all()
 
     hero_banners = HeroBanner.objects.filter(
@@ -103,6 +114,8 @@ def search_products(request):
     category_id = request.GET.get("category", "all")
     price_range = request.GET.get("price", "")
     sort_by = request.GET.get("sort", "")
+
+    logger.info(f"Search | query={query} | category={category_id} | price={price_range} | sort={sort_by}")      #logs
 
     products = Product.objects.all()
 
@@ -143,6 +156,8 @@ def search_products(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
+    logger.debug(f"Product viewed | product_id={product.id} | user={request.user}")     #logs
+
     return render(request, "store/product_detail.html", {
         "product": product
     })
@@ -150,6 +165,8 @@ def product_detail(request, product_id):
 
 @login_required
 def subcategory_products(request, subcategory_id):
+    logger.debug(f"Subcategory view | subcategory_id={subcategory_id} | user={request.user.id}")     #logs
+
     subcategory = get_object_or_404(
         Category,
         id=subcategory_id,
@@ -169,6 +186,8 @@ def subcategory_products(request, subcategory_id):
 # =====================================================
 
 def load_subcategories(request):
+    logger.debug(f"Load subcategory | parent_id={parent_id}")        #logs
+
     parent_id = request.GET.get("parent_id")
 
     subcategories = Category.objects.filter(parent_id=parent_id)
@@ -185,6 +204,8 @@ def load_subcategories(request):
 
 
 def search_suggestions(request):
+    logger.debug(f"Search suggestions | query={query}")     #logs
+
     query = request.GET.get("q", "").strip()
 
     if not query:
@@ -224,11 +245,13 @@ def toggle_wishlist(request, product_id):
 
     if item.exists():
         item.delete()
+        logger.info(f"Wishlist removed | user_id={request.user.id} | product_id={product_id}")      #logs
     else:
         Wishlist.objects.create(
             user=request.user,
             product=product
         )
+        logger.info(f"Wishlist added | user_id={request.user.id} | product_id={product.id}")        #logs
 
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
@@ -264,6 +287,8 @@ def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     quantity = int(request.POST.get("quantity", 1))
 
+    logger.info(f"AddToCart | user_id={request.user.id} | product_id={product.id}")     #logs
+
     if request.user.is_authenticated:
         # Existing DB logic
         cart, _ = Cart.objects.get_or_create(user=request.user)
@@ -298,6 +323,7 @@ def add_to_cart(request, product_id):
 
 @login_required
 def cart_view(request):
+    logger.info(f"Cart view | user_if={request.user.id}")       #logs
 
     items = []
 
@@ -385,9 +411,15 @@ def apply_coupon(request):
 
     try:
         coupon = Coupon.objects.get(code__iexact=code, active=True)
+
+        logger.info(f"Coupon applied | user_id={request.user.id} | code={code}")        #logs
+        
         request.session['coupon'] = coupon.discount_percent
         messages.success(request, "Coupon applied successfully")
     except Coupon.DoesNotExist:
+
+        logger.info(f"Invalid Coupon | user_id={request.user.id} | code={code}")        #logs
+
         request.session['coupon'] = 0
         messages.error(request, "Invalid coupon")
 
@@ -396,6 +428,8 @@ def apply_coupon(request):
 
 @login_required
 def increase_quantity(request, product_id):
+    logger.debug(f"Increase quantity | user_id={request.user.id} | product_id={product_id}")        #logs
+
     cart = Cart.objects.get(user=request.user)
 
     item = CartItem.objects.get(
@@ -411,6 +445,8 @@ def increase_quantity(request, product_id):
 
 @login_required
 def decrease_quantity(request, product_id):
+    logger.info(f"Remove from cart | user_id={request.user.id} | product_id={product_id}")
+
     cart = Cart.objects.get(user=request.user)
 
     item = CartItem.objects.get(
@@ -448,6 +484,8 @@ def remove_from_cart(request, product_id):
 @login_required
 def checkout(request):
 
+    logger.info(f"Checkout started | user_id={request.user.id}")    #logs
+
     # ===============================
     # CART & ITEMS
     # ===============================
@@ -455,6 +493,7 @@ def checkout(request):
     items = cart.items.select_related('product')
 
     if not items:
+        logger.warning(f"Checkout blocked | empty cart | user_id={request.user.id}")        #logs
         return redirect("store:cart")
 
     # Add subtotal
@@ -478,20 +517,22 @@ def checkout(request):
     # ===============================
     # HANDLE FORM SUBMIT
     # ===============================
-    if request.method == "POST":
+    if request.method == "POST":      
 
         address_id = request.POST.get("address_id")
-
+        
         # ===============================
         # EXISTING ADDRESS (priority)
         # ===============================
         if address_id:
+            logger.debug(f"Checkout address selected | address_id={address.id}")        #logs
+
             address = get_object_or_404(
                 Address,
                 id=address_id,
                 user=request.user
             )
-
+        
         # ===============================
         # NEW ADDRESS (fallback)
         # ===============================
@@ -525,6 +566,8 @@ def checkout(request):
             total_amount=final_total
         )
 
+        logger.info(f"Order created | order_id={order.id} | user_id={request.user.id} | amount={final_total}")      #logs
+
         for item in items:
             OrderItem.objects.create(
                 order=order,
@@ -532,6 +575,7 @@ def checkout(request):
                 quantity=item.quantity,
                 price=item.product.price
             )
+       
 
         # ===============================
         # CLEAR COUPON
@@ -557,6 +601,8 @@ def checkout(request):
 
 @login_required
 def delete_address(request, address_id):
+    logger.info(f"Address deleted | user_id={request.user.id} | address_id={address_id}")       #logs
+
     address = get_object_or_404(Address, id=address_id, user=request.user)
 
     if request.method == "POST":
@@ -571,7 +617,10 @@ def order_success(request):
 
 @login_required
 def order_history(request):
+    
     status_filter = request.GET.get("status", "all")
+
+    logger.debug(f"Order history viewed | user_id={request.user.id} | filter={status_filter}")      #logs
 
     orders = Order.objects.filter(
         user=request.user
@@ -620,6 +669,8 @@ def cancel_order(request, order_id):
             order.status = "cancelled"
             order.save()
 
+            logger.info(f"Order cancelled | order_id={order.id} | user_id={request.user.id}")       #logs
+
     return redirect("store:order_history")
 
 # =====================================================
@@ -628,6 +679,8 @@ def cancel_order(request, order_id):
 
 @login_required
 def start_payment(request, order):
+    logger.info(f"Payment start | order_id={order.id} | user_id={request.user.id}")     #logs
+
     """
     Reusable Razorpay creator for Buy Now + Checkout
     """
@@ -643,6 +696,8 @@ def start_payment(request, order):
         "payment_capture": "1"
     })
 
+    logger.debug(f"Razorpay order created | razorpay_order_id={razorpay_order['id']} | amount={amount}")        #logs
+
     payment = Payment.objects.create(
         user=request.user,
         product=order.items.first().product if order.items.exists() else None,
@@ -650,6 +705,8 @@ def start_payment(request, order):
         amount=amount,
         status="CREATED"
     )
+    
+    logger.info(f"Payment record created | payment_id={payment.id}")        #logs
 
     order.payment = payment
     order.save()
@@ -676,6 +733,8 @@ def start_payment(request, order):
 
 @login_required
 def buy_now(request, product_id):
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+
     product = get_object_or_404(Product, id=product_id)
 
     address = Address.objects.filter(user=request.user).first()
@@ -741,7 +800,10 @@ def create_order(request):
             "payment_capture": "1"            
         })
 
-        print("RAZORPAY ORDER:", razorpay_order)
+        #print("RAZORPAY ORDER:", razorpay_order)
+
+        logger.debug(f"Razorpay order created | data={razorpay_order}")     #logs
+        logger.info(f"Order created (BuyNow flow) | order_id={order.id} | user_id={request.user.id}")       #logs  
 
         payment = Payment.objects.create(
             razorpay_order_id=razorpay_order["id"],
@@ -765,12 +827,15 @@ def create_order(request):
             "razorpay_key": settings.RAZORPAY_KEY_ID,
         })
 
-    except Exception as e:
+    except Exception as e:        
         return HttpResponseBadRequest(str(e))
+        logger.error(f"Create order failed | error={str(e)}", exc_info=True)        #logs
 
 
 @login_required
 def pay_now(request, order_id):
+    logger.info(f"PayNow triggered | order_id={order.id} | user_id={request.user.id}")      #logs
+
     order = get_object_or_404(
         Order,
         id=order_id,
@@ -823,8 +888,9 @@ def pay_now(request, order_id):
 
 @csrf_exempt
 def razorpay_webhook(request):
+    logger.info("Webhook received")
 
-    print("🔥 WEBHOOK HIT")
+    # print("🔥 WEBHOOK HIT")
 
     if request.method != "POST":
         return JsonResponse({"status": "invalid method"})
@@ -833,7 +899,8 @@ def razorpay_webhook(request):
     received_signature = request.headers.get("X-Razorpay-Signature")
 
     if not received_signature:
-        return JsonResponse({"status": "no signature"}, status=400)
+        logger.error("Webhook invalid signature")               #logs
+        return JsonResponse({"status": "no signature"}, status=400)        
 
     body = request.body
 
@@ -850,7 +917,8 @@ def razorpay_webhook(request):
     data = json.loads(body)
     event = data.get("event")
 
-    print("📩 EVENT:", event)
+    # print("📩 EVENT:", event)
+    logger.info(f"Webhook event received | event={event}")          #logs
 
     # =============================
     # PAYMENT SUCCESS
@@ -858,7 +926,6 @@ def razorpay_webhook(request):
     if event == "payment.captured":
 
         payment_entity = data["payload"]["payment"]["entity"]
-
         razorpay_order_id = payment_entity["order_id"]
         razorpay_payment_id = payment_entity["id"]
 
@@ -876,6 +943,7 @@ def razorpay_webhook(request):
             payment.status = "SUCCESS"
             payment.save()
 
+            
             order = Order.objects.filter(payment=payment).first()
 
             if order:
@@ -885,10 +953,12 @@ def razorpay_webhook(request):
                 # ✅ Clear cart here (NOT in frontend)
                 CartItem.objects.filter(cart__user=order.user).delete()
 
-            print("✅ Payment confirmed via webhook")
+            # print("✅ Payment confirmed via webhook")
+            logger.info(f"Payment success webhook | razorpay_order_id={razorpay_order_id}")     #logs
 
         except Payment.DoesNotExist:
-            print("❌ Payment not found")
+            # print("❌ Payment not found")
+            logger.error(f"Webhook error | payment not found | razorpay_order_id={razorpay_order_id}")      #logs
 
     # =============================
     # ❌ FAILURE (ADD THIS BLOCK)
@@ -913,7 +983,8 @@ def razorpay_webhook(request):
                 order.status = "cancelled"
                 order.save()
 
-            print("❌ PAYMENT FAILED UPDATED")
+            # print("❌ PAYMENT FAILED UPDATED")
+            logger.warning(f"Payment failed webhook | razorpay_order_id={razorpay_order_id}")       #logs
 
         except Payment.DoesNotExist:
             print("❌ Payment not found for failure")
@@ -922,6 +993,7 @@ def razorpay_webhook(request):
 
 @csrf_exempt
 def payment_success(request):
+    logger.info("Payment success API called")       #logs
 
     if request.method != "POST":
         return JsonResponse({"status": "failed"})
@@ -942,7 +1014,8 @@ def payment_success(request):
         )
 
         if payment.status == "SUCCESS":
-            return JsonResponse({"status": "success"})
+            logger.info(f"Payment verified | razorpay_order_id={data['razorpay_order_id']}")        #logs
+            return JsonResponse({"status": "success"})            
 
         payment.razorpay_payment_id = data["razorpay_payment_id"]
         payment.razorpay_signature = data["razorpay_signature"]
@@ -961,10 +1034,12 @@ def payment_success(request):
         return JsonResponse({"status": "success"})
 
     except Exception as e:
+        logger.error(f"Payment verification failed | error={str(e)}", exc_info=True)        #logs
         return JsonResponse({
             "status": "failed",
             "message": str(e)
         })
+        
 
 
 # def payment_success_page(request):
@@ -987,6 +1062,8 @@ def payment_success(request):
 
 def payment_success_page(request):
     order_id = request.GET.get("order_id")
+
+    logger.info(f"Payment Success | order_id={order_id}")       #logs
 
     if not order_id:
         return render(request, "store/payment_failed.html", {
@@ -1022,13 +1099,13 @@ def payment_success_page(request):
     # =============================
 
     if payment.status == "SUCCESS":
-
+        logger.info(f"Payment confirmed page render | payment_id={payment.id}")     #logs
         payment.amount_in_rupees = payment.amount / 100
 
         return render(request, "store/payment_success.html", {
             "payment": payment
         })
-
+    
     elif payment.status == "FAILED":
 
         return render(request, "store/payment_failed.html", {
@@ -1043,6 +1120,10 @@ def payment_success_page(request):
     
 def payment_failed(request):
     order_id = request.GET.get('order_id')
+
+    logger.warning(f"Payment failed page | order_id={order_id}")        #logs
+
+    logger.info(f"Payment Failed | order_id={order_id}")    #logs
 
     return render(request, 'store/payment_failed.html', {
         'order_id': order_id,
