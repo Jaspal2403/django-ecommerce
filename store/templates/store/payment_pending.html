@@ -83,7 +83,10 @@ const interval = setInterval(() => {
                 setTimeout(() => location.reload(), 300);
             }
 
-            if (html.includes("Payment Failed")) {
+            if (html.includes("Payment Failed") ||
+                html.includes("payment-failed-card") ||
+                html.includes("fail-title")
+            ) {
                 clearInterval(interval);
                 location.reload();
             }

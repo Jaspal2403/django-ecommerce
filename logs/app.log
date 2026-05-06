@@ -1,1 +1,505 @@
 
+INFO 2026-05-06 15:08:57,365 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:09:03,254 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:09:05,361 basehttp "GET / HTTP/1.1" 200 23299
+INFO 2026-05-06 15:09:05,482 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-06 15:09:05,482 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-06 15:09:05,489 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-06 15:09:05,491 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-06 15:09:05,506 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-06 15:09:05,531 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-06 15:09:05,539 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-06 15:09:05,552 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-06 15:09:05,569 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-06 15:09:05,576 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-06 15:09:05,609 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+WARNING 2026-05-06 15:09:05,924 log Not Found: /favicon.ico
+WARNING 2026-05-06 15:09:05,925 basehttp "GET /favicon.ico HTTP/1.1" 404 10777
+WARNING 2026-05-06 15:09:18,631 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:09:18,632 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:09:27,527 basehttp "GET /signup/ HTTP/1.1" 200 2613
+WARNING 2026-05-06 15:09:27,554 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:09:27,555 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:09:27,556 basehttp "GET /static/store/css/pages/auth.css HTTP/1.1" 200 6352
+INFO 2026-05-06 15:09:27,556 basehttp "GET /static/store/css/responsive.css HTTP/1.1" 200 6987
+INFO 2026-05-06 15:09:27,564 basehttp "GET /static/store/images/logo.png HTTP/1.1" 200 531958
+INFO 2026-05-06 15:09:37,514 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-06 15:09:55,449 basehttp "GET /accounts/google/login/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:10:04,138 basehttp "GET /accounts/google/login/callback/?state=K75uxy2YVGrlGJrk&iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AeoWuM9JrTsB1o7v2DUzByShNy0hnKxlt9AwIUa_NZJQ-1RKW12jbYHrDHCzKseu1z9vdA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent HTTP/1.1" 302 0
+INFO 2026-05-06 15:10:04,163 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 15:10:09,295 views Cart view | user_if=4
+INFO 2026-05-06 15:10:09,322 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 15:10:09,339 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 200 4858
+INFO 2026-05-06 15:10:10,553 views Checkout started | user_id=4
+INFO 2026-05-06 15:10:10,582 basehttp "GET /checkout/ HTTP/1.1" 200 16106
+INFO 2026-05-06 15:10:10,600 basehttp "GET /static/store/css/pages/checkout.css HTTP/1.1" 200 5690
+INFO 2026-05-06 15:10:30,455 views Checkout started | user_id=4
+INFO 2026-05-06 15:10:30,479 views Order created | order_id=89 | user_id=4 | amount=1.00
+INFO 2026-05-06 15:10:30,486 views Payment start | order_id=89 | user_id=4
+INFO 2026-05-06 15:10:31,926 views Payment record created | payment_id=179
+INFO 2026-05-06 15:10:31,948 basehttp "POST /checkout/ HTTP/1.1" 200 14530
+INFO 2026-05-06 15:10:31,966 basehttp "GET /static/store/css/pages/payment.css HTTP/1.1" 200 3454
+WARNING 2026-05-06 15:13:25,107 views Payment failed page | order_id=89
+INFO 2026-05-06 15:13:25,108 views Payment Failed | order_id=89
+INFO 2026-05-06 15:13:25,164 basehttp "GET /payment-failed/?order_id=89 HTTP/1.1" 200 10772
+INFO 2026-05-06 15:13:25,185 basehttp "GET /static/store/css/pages/payment_failed.css HTTP/1.1" 200 1437
+ERROR 2026-05-06 15:13:54,839 log Internal Server Error: /pay-now/89/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 837, in pay_now
+    logger.info(f"PayNow triggered | order_id={order.id} | user_id={request.user.id}")      #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'order' where it is not associated with a value
+ERROR 2026-05-06 15:13:54,846 basehttp "GET /pay-now/89/ HTTP/1.1" 500 80546
+INFO 2026-05-06 15:15:43,074 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 15:15:44,494 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:15:46,215 views PayNow triggered | order_id=89 | user_id=4
+INFO 2026-05-06 15:15:47,815 basehttp "GET /pay-now/89/ HTTP/1.1" 200 14530
+WARNING 2026-05-06 15:16:17,314 views Payment failed page | order_id=89
+INFO 2026-05-06 15:16:17,315 views Payment Failed | order_id=89
+INFO 2026-05-06 15:16:17,332 basehttp "GET /payment-failed/?order_id=89 HTTP/1.1" 200 10772
+INFO 2026-05-06 15:16:21,102 views PayNow triggered | order_id=89 | user_id=4
+INFO 2026-05-06 15:16:21,205 basehttp "GET /pay-now/89/ HTTP/1.1" 200 14530
+WARNING 2026-05-06 15:16:55,131 views Payment failed page | order_id=89
+INFO 2026-05-06 15:16:55,132 views Payment Failed | order_id=89
+INFO 2026-05-06 15:16:55,156 basehttp "GET /payment-failed/?order_id=89 HTTP/1.1" 200 10772
+INFO 2026-05-06 15:17:03,267 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 15:19:09,044 views Cart view | user_if=4
+INFO 2026-05-06 15:19:09,068 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 15:19:10,388 views Checkout started | user_id=4
+INFO 2026-05-06 15:19:10,400 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 15:19:13,247 views Checkout started | user_id=4
+ERROR 2026-05-06 15:19:13,283 log Internal Server Error: /checkout/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 528, in checkout
+    logger.debug(f"Checkout address selected | address_id={address.id}")        #logs
+                                                           ^^^^^^^
+UnboundLocalError: cannot access local variable 'address' where it is not associated with a value
+ERROR 2026-05-06 15:19:13,290 basehttp "POST /checkout/ HTTP/1.1" 500 83662
+INFO 2026-05-06 15:20:07,505 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 15:20:08,941 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:20:09,656 views Checkout started | user_id=4
+INFO 2026-05-06 15:20:09,702 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 15:20:12,306 views Checkout started | user_id=4
+INFO 2026-05-06 15:20:12,322 views Order created | order_id=90 | user_id=4 | amount=1.00
+INFO 2026-05-06 15:20:12,328 views Payment start | order_id=90 | user_id=4
+INFO 2026-05-06 15:20:13,756 views Payment record created | payment_id=182
+INFO 2026-05-06 15:20:13,777 basehttp "POST /checkout/ HTTP/1.1" 200 14530
+WARNING 2026-05-06 15:22:26,064 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:22:26,066 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+WARNING 2026-05-06 15:22:26,903 views Payment failed page | order_id=90
+INFO 2026-05-06 15:22:26,904 views Payment Failed | order_id=90
+INFO 2026-05-06 15:22:26,965 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+WARNING 2026-05-06 15:22:27,031 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:22:27,033 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:22:31,158 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:22:31,256 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14550
+WARNING 2026-05-06 15:22:31,280 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:22:31,281 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+WARNING 2026-05-06 15:22:54,740 views Payment failed page | order_id=90
+INFO 2026-05-06 15:22:54,741 views Payment Failed | order_id=90
+INFO 2026-05-06 15:22:54,754 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+WARNING 2026-05-06 15:22:54,804 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:22:54,806 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:24:45,095 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:24:45,194 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14539
+WARNING 2026-05-06 15:24:45,233 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:24:45,234 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+WARNING 2026-05-06 15:25:41,411 views Payment failed page | order_id=90
+INFO 2026-05-06 15:25:41,412 views Payment Failed | order_id=90
+INFO 2026-05-06 15:25:41,443 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+WARNING 2026-05-06 15:25:41,536 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:25:41,538 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:27:32,116 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:27:32,216 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14539
+WARNING 2026-05-06 15:27:32,262 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:27:32,264 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+WARNING 2026-05-06 15:27:56,281 views Payment failed page | order_id=90
+INFO 2026-05-06 15:27:56,282 views Payment Failed | order_id=90
+INFO 2026-05-06 15:27:56,308 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+WARNING 2026-05-06 15:27:56,379 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:27:56,380 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:28:07,990 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:28:08,087 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14539
+WARNING 2026-05-06 15:28:08,113 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:28:08,114 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+WARNING 2026-05-06 15:28:32,393 views Payment failed page | order_id=90
+INFO 2026-05-06 15:28:32,394 views Payment Failed | order_id=90
+INFO 2026-05-06 15:28:32,404 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+WARNING 2026-05-06 15:28:32,448 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-06 15:28:32,449 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-06 15:33:35,164 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-06 15:33:36,581 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:33:41,182 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-06 15:33:42,585 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:33:46,475 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-06 15:33:47,888 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 15:34:00,490 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:34:02,148 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14522
+WARNING 2026-05-06 15:34:21,217 views Payment failed page | order_id=90
+INFO 2026-05-06 15:34:21,218 views Payment Failed | order_id=90
+INFO 2026-05-06 15:34:21,245 basehttp "GET /payment-failed/?order_id=90 HTTP/1.1" 200 10772
+INFO 2026-05-06 15:34:39,081 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:34:39,186 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14522
+INFO 2026-05-06 15:37:46,855 views PayNow triggered | order_id=90 | user_id=4
+INFO 2026-05-06 15:37:46,954 basehttp "GET /pay-now/90/ HTTP/1.1" 200 14522
+INFO 2026-05-06 15:40:53,932 basehttp "GET / HTTP/1.1" 200 23299
+INFO 2026-05-06 15:40:54,195 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-06 15:40:54,233 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-06 15:40:54,257 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-06 15:40:54,264 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-06 15:40:54,265 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-06 15:40:54,318 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-06 15:40:54,368 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-06 15:40:54,514 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-06 15:40:54,529 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-06 15:40:54,551 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-06 15:40:54,606 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+WARNING 2026-05-06 15:40:55,576 log Not Found: /favicon.ico
+WARNING 2026-05-06 15:40:55,577 basehttp "GET /favicon.ico HTTP/1.1" 404 10807
+INFO 2026-05-06 15:40:58,983 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-06 15:40:59,210 basehttp "GET /static/store/css/responsive.css HTTP/1.1" 200 6987
+INFO 2026-05-06 15:40:59,211 basehttp "GET /static/store/css/pages/auth.css HTTP/1.1" 200 6352
+INFO 2026-05-06 15:40:59,231 basehttp "GET /static/store/images/logo.png HTTP/1.1" 200 531958
+INFO 2026-05-06 15:41:03,655 basehttp "POST /login/ HTTP/1.1" 200 2457
+INFO 2026-05-06 15:41:07,287 basehttp "GET /accounts/google/login/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:41:17,059 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-06 15:41:20,867 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:41:20,940 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 15:41:22,599 views Cart view | user_if=1
+INFO 2026-05-06 15:41:22,618 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 15:41:22,906 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 200 4858
+INFO 2026-05-06 15:41:24,985 views Checkout started | user_id=1
+INFO 2026-05-06 15:41:25,001 basehttp "GET /checkout/ HTTP/1.1" 200 18023
+INFO 2026-05-06 15:41:25,253 basehttp "GET /static/store/css/pages/checkout.css HTTP/1.1" 200 5690
+INFO 2026-05-06 15:41:34,039 views Checkout started | user_id=1
+INFO 2026-05-06 15:41:34,061 views Order created | order_id=91 | user_id=1 | amount=1.00
+INFO 2026-05-06 15:41:34,068 views Payment start | order_id=91 | user_id=1
+INFO 2026-05-06 15:41:34,148 views Payment record created | payment_id=190
+INFO 2026-05-06 15:41:34,168 basehttp "POST /checkout/ HTTP/1.1" 200 14566
+INFO 2026-05-06 15:41:34,330 basehttp "GET /static/store/css/pages/payment.css HTTP/1.1" 200 3454
+INFO 2026-05-06 15:42:08,473 views Webhook received
+INFO 2026-05-06 15:42:08,474 views Webhook event received | event=payment.captured
+INFO 2026-05-06 15:42:08,556 views Payment success webhook | razorpay_order_id=order_Sm2b0nGAS0Kq92
+INFO 2026-05-06 15:42:08,557 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:42:21,737 views Payment Success | order_id=order_Sm2b0nGAS0Kq92
+INFO 2026-05-06 15:42:21,744 views Payment confirmed page render | payment_id=190
+INFO 2026-05-06 15:42:21,764 basehttp "GET /payment-success/?order_id=order_Sm2b0nGAS0Kq92&django_order_id=91 HTTP/1.1" 200 11935
+INFO 2026-05-06 15:42:22,058 basehttp "GET /static/store/css/pages/payment_success.css HTTP/1.1" 200 2198
+INFO 2026-05-06 15:42:31,380 basehttp "GET /orders/ HTTP/1.1" 200 35371
+INFO 2026-05-06 15:42:31,485 basehttp "GET /static/store/css/pages/orders.css HTTP/1.1" 200 5091
+INFO 2026-05-06 15:42:42,721 views Webhook received
+INFO 2026-05-06 15:42:42,722 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:42:42,762 views Payment failed webhook | razorpay_order_id=order_Sm2ThphsyJ0MME
+INFO 2026-05-06 15:42:42,764 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:43:47,610 views Webhook received
+INFO 2026-05-06 15:43:47,611 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:43:47,653 views Payment failed webhook | razorpay_order_id=order_Sm2ETBjmRV38k1
+INFO 2026-05-06 15:43:47,654 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:44:16,681 views Webhook received
+INFO 2026-05-06 15:44:16,681 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:44:16,730 views Payment failed webhook | razorpay_order_id=order_Sm2GtFyUtlVthO
+INFO 2026-05-06 15:44:16,731 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:45:02,255 views Webhook received
+INFO 2026-05-06 15:45:02,255 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:45:02,270 views Payment failed webhook | razorpay_order_id=order_Sm2T3Le9lfRuEW
+INFO 2026-05-06 15:45:02,271 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:45:59,312 views PayNow triggered | order_id=79 | user_id=1
+INFO 2026-05-06 15:45:59,460 basehttp "POST /pay-now/79/ HTTP/1.1" 200 14566
+INFO 2026-05-06 15:46:06,163 basehttp "GET /orders/ HTTP/1.1" 200 35371
+INFO 2026-05-06 15:46:09,969 basehttp "GET /orders/?status=pending HTTP/1.1" 200 19180
+INFO 2026-05-06 15:47:01,567 views Webhook received
+INFO 2026-05-06 15:47:01,568 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:47:01,608 views Payment failed webhook | razorpay_order_id=order_Sm2JFRKZlcX8GW
+INFO 2026-05-06 15:47:01,609 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:47:06,123 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 15:47:08,676 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-06 15:47:08,703 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:47:08,742 views Cart view | user_if=1
+INFO 2026-05-06 15:47:08,756 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 15:47:18,149 views Coupon applied | user_id=1 | code=PCRAFTS1
+INFO 2026-05-06 15:47:18,157 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:47:18,198 views Cart view | user_if=1
+INFO 2026-05-06 15:47:18,204 basehttp "GET /cart/ HTTP/1.1" 200 13369
+INFO 2026-05-06 15:47:52,413 basehttp "GET / HTTP/1.1" 200 23356
+INFO 2026-05-06 15:47:52,456 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,458 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,462 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,472 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,472 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,496 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,580 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 304 0
+INFO 2026-05-06 15:47:52,580 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 304 0
+INFO 2026-05-06 15:48:00,499 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:48:00,584 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3687
+INFO 2026-05-06 15:48:00,603 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-05-06 15:48:08,934 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:48:08,977 basehttp "GET /admin/ HTTP/1.1" 200 20256
+INFO 2026-05-06 15:48:16,470 basehttp "GET /admin/store/coupon/ HTTP/1.1" 200 19385
+INFO 2026-05-06 15:48:16,499 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-06 15:48:19,061 basehttp "GET /admin/store/coupon/add/ HTTP/1.1" 200 18656
+INFO 2026-05-06 15:48:19,081 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2026-05-06 15:48:19,082 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-05-06 15:48:19,086 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 200 11973
+INFO 2026-05-06 15:48:19,092 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-05-06 15:48:19,093 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-06 15:48:37,955 basehttp "POST /admin/store/coupon/add/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:48:37,987 basehttp "GET /admin/store/coupon/ HTTP/1.1" 200 19968
+INFO 2026-05-06 15:48:38,014 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-06 15:49:07,926 views Coupon applied | user_id=1 | code=PREET50
+INFO 2026-05-06 15:49:07,935 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:49:07,980 views Cart view | user_if=1
+INFO 2026-05-06 15:49:07,998 basehttp "GET /cart/ HTTP/1.1" 200 13369
+INFO 2026-05-06 15:49:10,395 views Webhook received
+INFO 2026-05-06 15:49:10,396 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:49:10,422 views Payment failed webhook | razorpay_order_id=order_Sm2MBlWgUXtN97
+INFO 2026-05-06 15:49:10,423 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:49:21,754 views Invalid Coupon | user_id=1 | code=DHOM
+INFO 2026-05-06 15:49:21,763 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:49:21,805 views Cart view | user_if=1
+INFO 2026-05-06 15:49:21,811 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 15:49:29,815 views Coupon applied | user_id=1 | code=PREET50
+INFO 2026-05-06 15:49:29,821 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:49:29,893 views Cart view | user_if=1
+INFO 2026-05-06 15:49:29,901 basehttp "GET /cart/ HTTP/1.1" 200 13369
+INFO 2026-05-06 15:49:32,357 views Checkout started | user_id=1
+INFO 2026-05-06 15:49:32,371 basehttp "GET /checkout/ HTTP/1.1" 200 18248
+INFO 2026-05-06 15:49:37,037 views Checkout started | user_id=1
+INFO 2026-05-06 15:49:37,101 views Order created | order_id=92 | user_id=1 | amount=0.50
+INFO 2026-05-06 15:49:37,111 views Payment start | order_id=92 | user_id=1
+INFO 2026-05-06 15:49:37,201 views Payment record created | payment_id=192
+INFO 2026-05-06 15:49:37,235 basehttp "POST /checkout/ HTTP/1.1" 200 14566
+INFO 2026-05-06 15:49:47,818 views Webhook received
+INFO 2026-05-06 15:49:47,818 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:49:47,850 views Payment failed webhook | razorpay_order_id=order_Sm2MovE05dG01b
+INFO 2026-05-06 15:49:47,851 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:51:53,653 views Webhook received
+INFO 2026-05-06 15:51:53,653 views Webhook event received | event=payment.captured
+INFO 2026-05-06 15:51:53,753 views Payment success webhook | razorpay_order_id=order_Sm2jW3DPQjFEW5
+INFO 2026-05-06 15:51:53,754 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:52:03,922 views Payment Success | order_id=order_Sm2jW3DPQjFEW5
+INFO 2026-05-06 15:52:03,933 views Payment confirmed page render | payment_id=192
+INFO 2026-05-06 15:52:03,949 basehttp "GET /payment-success/?order_id=order_Sm2jW3DPQjFEW5&django_order_id=92 HTTP/1.1" 200 11935
+INFO 2026-05-06 15:53:16,930 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 15:56:07,466 views Webhook received
+INFO 2026-05-06 15:56:07,466 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:56:07,528 views Payment failed webhook | razorpay_order_id=order_Sm24E4pHmYnqlF
+INFO 2026-05-06 15:56:07,530 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:57:27,618 basehttp "GET /orders/ HTTP/1.1" 200 38354
+INFO 2026-05-06 15:57:36,364 views Order cancelled | order_id=77 | user_id=1
+INFO 2026-05-06 15:57:36,365 basehttp "POST /cancel-order/77/ HTTP/1.1" 302 0
+INFO 2026-05-06 15:57:36,460 basehttp "GET /orders/ HTTP/1.1" 200 37746
+INFO 2026-05-06 15:58:58,438 views Webhook received
+INFO 2026-05-06 15:58:58,439 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:58:58,508 views Payment failed webhook | razorpay_order_id=order_Sm29moTQeUq9uW
+INFO 2026-05-06 15:58:58,509 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 15:59:34,983 views Webhook received
+INFO 2026-05-06 15:59:34,984 views Webhook event received | event=payment.failed
+WARNING 2026-05-06 15:59:35,035 views Payment failed webhook | razorpay_order_id=order_Sm2ANJelW7M4qw
+INFO 2026-05-06 15:59:35,037 basehttp "POST /razorpay/webhook/ HTTP/1.1" 200 16
+INFO 2026-05-06 16:01:07,945 basehttp "GET /orders/ HTTP/1.1" 200 37746
+INFO 2026-05-06 16:01:14,717 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 16:01:20,198 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-06 16:01:20,222 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:01:20,268 views Cart view | user_if=1
+INFO 2026-05-06 16:01:20,280 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:01:29,165 views Invalid Coupon | user_id=1 | code=PREET1
+INFO 2026-05-06 16:01:29,173 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:01:29,213 views Cart view | user_if=1
+INFO 2026-05-06 16:01:29,221 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:01:37,552 views Coupon applied | user_id=1 | code=PREET50
+INFO 2026-05-06 16:01:37,561 basehttp "POST /apply-coupon/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:01:37,619 views Cart view | user_if=1
+INFO 2026-05-06 16:01:37,626 basehttp "GET /cart/ HTTP/1.1" 200 13369
+INFO 2026-05-06 16:01:40,812 views Checkout started | user_id=1
+INFO 2026-05-06 16:01:40,885 basehttp "GET /checkout/ HTTP/1.1" 200 18248
+INFO 2026-05-06 16:01:44,860 views Checkout started | user_id=1
+INFO 2026-05-06 16:01:44,897 views Order created | order_id=93 | user_id=1 | amount=0.50
+INFO 2026-05-06 16:01:44,904 views Payment start | order_id=93 | user_id=1
+INFO 2026-05-06 16:01:46,104 views Payment record created | payment_id=193
+INFO 2026-05-06 16:01:46,125 basehttp "POST /checkout/ HTTP/1.1" 200 14566
+WARNING 2026-05-06 16:02:41,939 views Payment failed page | order_id=93
+INFO 2026-05-06 16:02:41,939 views Payment Failed | order_id=93
+INFO 2026-05-06 16:02:41,954 basehttp "GET /payment-failed/?order_id=93 HTTP/1.1" 200 10778
+INFO 2026-05-06 16:02:42,184 basehttp "GET /static/store/css/pages/payment_failed.css HTTP/1.1" 200 1437
+INFO 2026-05-06 16:02:46,041 views Cart view | user_if=1
+INFO 2026-05-06 16:02:46,065 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:02:47,995 basehttp "GET / HTTP/1.1" 200 23363
+ERROR 2026-05-06 16:03:32,486 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 16:03:32,493 basehttp "GET /search-suggestions/?q=HA HTTP/1.1" 500 75653
+ERROR 2026-05-06 16:03:32,651 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 16:03:32,654 basehttp "GET /search-suggestions/?q=HAN HTTP/1.1" 500 75660
+ERROR 2026-05-06 16:03:32,738 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 16:03:32,741 basehttp "GET /search-suggestions/?q=HAND HTTP/1.1" 500 75667
+ERROR 2026-05-06 16:03:35,974 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 16:03:35,979 basehttp "GET /search-suggestions/?q=HAN HTTP/1.1" 500 75660
+ERROR 2026-05-06 16:03:36,150 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 16:03:36,152 basehttp "GET /search-suggestions/?q=HA HTTP/1.1" 500 75653
+INFO 2026-05-06 16:03:48,130 basehttp "GET /product/6/ HTTP/1.1" 200 18996
+INFO 2026-05-06 16:03:48,435 basehttp "GET /static/store/css/pages/product.css HTTP/1.1" 200 7063
+INFO 2026-05-06 16:03:48,435 basehttp "GET /media/products/images_3_PT60IRn.jpg HTTP/1.1" 200 10307
+INFO 2026-05-06 16:03:48,436 basehttp "GET /media/products/images_9_UdhEtp2.jpg HTTP/1.1" 200 21747
+INFO 2026-05-06 16:04:02,333 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-06 16:04:02,355 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:04:02,395 views Cart view | user_if=1
+INFO 2026-05-06 16:04:02,415 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:04:05,016 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 16:04:08,366 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-06 16:04:08,378 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:04:08,419 views Cart view | user_if=1
+INFO 2026-05-06 16:04:08,430 basehttp "GET /cart/ HTTP/1.1" 200 14578
+INFO 2026-05-06 16:04:11,738 views Remove from cart | user_id=1 | product_id=7
+INFO 2026-05-06 16:04:11,749 basehttp "GET /decrease/7/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:04:11,789 views Cart view | user_if=1
+INFO 2026-05-06 16:04:11,796 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:04:12,930 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-06 16:04:12,938 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-06 16:04:12,973 views Cart view | user_if=1
+INFO 2026-05-06 16:04:12,981 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:05:17,127 basehttp "GET /orders/ HTTP/1.1" 200 41656
+INFO 2026-05-06 16:05:19,726 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 16:05:22,234 views Cart view | user_if=1
+INFO 2026-05-06 16:05:22,250 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:11:46,841 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 16:13:51,568 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 16:13:53,204 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 16:19:21,507 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:19:21,858 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-06 16:19:21,864 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-06 16:19:21,911 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+INFO 2026-05-06 16:19:21,913 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-06 16:19:21,915 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-06 16:19:21,917 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-06 16:19:25,296 views Cart view | user_if=4
+INFO 2026-05-06 16:19:25,316 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:19:25,333 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 200 4858
+INFO 2026-05-06 16:19:27,821 views Cart view | user_if=4
+INFO 2026-05-06 16:19:27,828 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:19:30,447 views Checkout started | user_id=4
+INFO 2026-05-06 16:19:30,463 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 16:19:30,479 basehttp "GET /static/store/css/pages/checkout.css HTTP/1.1" 200 5690
+INFO 2026-05-06 16:19:31,744 views Checkout started | user_id=4
+INFO 2026-05-06 16:19:31,767 views Order created | order_id=94 | user_id=4 | amount=1.00
+INFO 2026-05-06 16:19:31,776 views Payment start | order_id=94 | user_id=4
+INFO 2026-05-06 16:19:32,859 views Payment record created | payment_id=194
+INFO 2026-05-06 16:19:32,881 basehttp "POST /checkout/ HTTP/1.1" 200 14522
+INFO 2026-05-06 16:19:34,913 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:19:51,650 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:19:53,374 views Cart view | user_if=4
+INFO 2026-05-06 16:19:53,386 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:19:54,289 views Checkout started | user_id=4
+INFO 2026-05-06 16:19:54,302 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 16:19:55,221 views Checkout started | user_id=4
+INFO 2026-05-06 16:19:55,230 views Order created | order_id=95 | user_id=4 | amount=1.00
+INFO 2026-05-06 16:19:55,233 views Payment start | order_id=95 | user_id=4
+INFO 2026-05-06 16:19:55,367 views Payment record created | payment_id=195
+INFO 2026-05-06 16:19:55,382 basehttp "POST /checkout/ HTTP/1.1" 200 14522
+INFO 2026-05-06 16:19:56,339 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:20:10,119 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:20:11,585 views Cart view | user_if=4
+INFO 2026-05-06 16:20:11,595 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:20:12,536 views Checkout started | user_id=4
+INFO 2026-05-06 16:20:12,548 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 16:20:13,468 views Checkout started | user_id=4
+INFO 2026-05-06 16:20:13,475 views Order created | order_id=96 | user_id=4 | amount=1.00
+INFO 2026-05-06 16:20:13,478 views Payment start | order_id=96 | user_id=4
+INFO 2026-05-06 16:20:13,579 views Payment record created | payment_id=196
+INFO 2026-05-06 16:20:13,590 basehttp "POST /checkout/ HTTP/1.1" 200 14522
+INFO 2026-05-06 16:20:14,429 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:21:16,495 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:21:17,967 views Cart view | user_if=4
+INFO 2026-05-06 16:21:17,988 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:21:19,445 views Checkout started | user_id=4
+INFO 2026-05-06 16:21:19,462 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 16:21:20,528 views Checkout started | user_id=4
+INFO 2026-05-06 16:21:20,547 views Order created | order_id=97 | user_id=4 | amount=1.00
+INFO 2026-05-06 16:21:20,552 views Payment start | order_id=97 | user_id=4
+INFO 2026-05-06 16:21:20,628 views Payment record created | payment_id=197
+INFO 2026-05-06 16:21:20,651 basehttp "POST /checkout/ HTTP/1.1" 200 14522
+INFO 2026-05-06 16:21:20,669 basehttp "GET /static/store/css/pages/payment.css HTTP/1.1" 200 3454
+INFO 2026-05-06 16:21:21,622 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 16:21:25,609 views Cart view | user_if=1
+INFO 2026-05-06 16:21:25,634 basehttp "GET /cart/ HTTP/1.1" 200 13095
+INFO 2026-05-06 16:21:26,863 views Checkout started | user_id=1
+INFO 2026-05-06 16:21:26,918 basehttp "GET /checkout/ HTTP/1.1" 200 18023
+INFO 2026-05-06 16:21:27,936 views Checkout started | user_id=1
+INFO 2026-05-06 16:21:27,963 views Order created | order_id=98 | user_id=1 | amount=1.00
+INFO 2026-05-06 16:21:27,969 views Payment start | order_id=98 | user_id=1
+INFO 2026-05-06 16:21:28,128 views Payment record created | payment_id=198
+INFO 2026-05-06 16:21:28,154 basehttp "POST /checkout/ HTTP/1.1" 200 14566
+INFO 2026-05-06 16:21:29,562 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 16:21:37,118 views Cart view | user_if=4
+INFO 2026-05-06 16:21:37,125 basehttp "GET /cart/ HTTP/1.1" 200 13089
+INFO 2026-05-06 16:21:38,036 views Checkout started | user_id=4
+INFO 2026-05-06 16:21:38,046 basehttp "GET /checkout/ HTTP/1.1" 200 17075
+INFO 2026-05-06 16:21:39,206 views Checkout started | user_id=4
+INFO 2026-05-06 16:21:39,215 views Order created | order_id=99 | user_id=4 | amount=1.00
+INFO 2026-05-06 16:21:39,217 views Payment start | order_id=99 | user_id=4
+INFO 2026-05-06 16:21:39,354 views Payment record created | payment_id=199
+INFO 2026-05-06 16:21:39,365 basehttp "POST /checkout/ HTTP/1.1" 200 14522
+WARNING 2026-05-06 16:21:46,373 views Payment failed page | order_id=99
+INFO 2026-05-06 16:21:46,374 views Payment Failed | order_id=99
+INFO 2026-05-06 16:21:46,388 basehttp "GET /payment-failed/?order_id=99 HTTP/1.1" 200 10905
+INFO 2026-05-06 16:21:46,413 basehttp "GET /static/store/css/pages/payment_failed.css HTTP/1.1" 200 1437
+INFO 2026-05-06 16:21:56,911 views PayNow triggered | order_id=99 | user_id=4
+INFO 2026-05-06 16:21:56,998 basehttp "GET /pay-now/99/ HTTP/1.1" 200 14522
+WARNING 2026-05-06 16:22:01,865 views Payment failed page | order_id=99
+INFO 2026-05-06 16:22:01,865 views Payment Failed | order_id=99
+INFO 2026-05-06 16:22:01,878 basehttp "GET /payment-failed/?order_id=99 HTTP/1.1" 200 10916
+INFO 2026-05-06 16:22:03,587 basehttp "GET / HTTP/1.1" 200 23357

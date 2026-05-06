@@ -96,8 +96,7 @@ const rzp = new Razorpay(options);
 
 let isProcessing = false;
 
-document.getElementById("payBtn").addEventListener("click", function () {
-    
+document.getElementById("payBtn").addEventListener("click", function () {    
     if (isProcessing) return;
 
     isProcessing = true;
@@ -122,10 +121,7 @@ document.getElementById("payBtn").addEventListener("click", function () {
 // });
 
 rzp.on('payment.failed', function (response){
-
-    window.location.href =
-    "{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
-
+    window.location.href ="{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
 });
 
 function goHome() {

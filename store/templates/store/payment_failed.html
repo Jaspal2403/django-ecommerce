@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<div class="container payment-failed-wrap">
+<div class="container payment-failed-wrap" id="paymentFailedPage">
 
     <div class="payment-failed-card">
 
@@ -40,5 +40,13 @@
     </div>
 
 </div>
+
+<script>
+    if (html.includes("paymentFailedPage")) {
+    clearInterval(interval);
+    location.reload();
+}
+
+</script>
 
 {% endblock %}

@@ -524,14 +524,15 @@ def checkout(request):
         # ===============================
         # EXISTING ADDRESS (priority)
         # ===============================
-        if address_id:
-            logger.debug(f"Checkout address selected | address_id={address.id}")        #logs
+        if address_id:           
 
             address = get_object_or_404(
                 Address,
                 id=address_id,
                 user=request.user
             )
+
+            logger.debug(f"Checkout address selected | address_id={address.id}")        #logs
         
         # ===============================
         # NEW ADDRESS (fallback)
@@ -834,13 +835,14 @@ def create_order(request):
 
 @login_required
 def pay_now(request, order_id):
-    logger.info(f"PayNow triggered | order_id={order.id} | user_id={request.user.id}")      #logs
-
+    
     order = get_object_or_404(
         Order,
         id=order_id,
         user=request.user
     )
+
+    logger.info(f"PayNow triggered | order_id={order.id} | user_id={request.user.id}")      #logs
 
     total = sum(
         item.price * item.quantity

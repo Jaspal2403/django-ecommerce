@@ -230,9 +230,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 RAZORPAY_WEBHOOK_SECRET = "preetcraft_webhook_secret_2026"
 
 # Razorpay credentials (TEST)
-RAZORPAY_KEY_ID = "rzp_test_SiWDlv4d8mie81"
-RAZORPAY_KEY_SECRET = "B4gjMraD2Dc1anrhnUaMUAXj"
+# RAZORPAY_KEY_ID = "rzp_test_SiWDlv4d8mie81"
+# RAZORPAY_KEY_SECRET = "B4gjMraD2Dc1anrhnUaMUAXj"
 
 # Razorpay credentials (LIVE)
-# RAZORPAY_KEY_ID = "rzp_live_SbjiCAnOkRyFH7"
-# RAZORPAY_KEY_SECRET = "2e0aVnvJ68ZJv9BgEOMOrk10"
+RAZORPAY_KEY_ID = "rzp_live_SbjiCAnOkRyFH7"
+RAZORPAY_KEY_SECRET = "2e0aVnvJ68ZJv9BgEOMOrk10"
