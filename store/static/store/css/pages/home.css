@@ -110,11 +110,6 @@
   position:relative;
 }
 
-.card-img-top{
-  height:240px;
-  object-fit:cover;
-}
-
 .home-product-title{
   min-height:48px;
   display:flex;

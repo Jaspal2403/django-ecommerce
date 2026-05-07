@@ -1,0 +1,118 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Your Wishlist{% endblock %}
+
+{% block content %}
+
+<div class="account-page">
+
+    <!-- Header -->
+    <div class="account-header mb-4">
+        <div>
+            <h2 class="account-title">Your Wishlist</h2>
+            <p class="account-subtitle">
+                Save products you love for later.
+            </p>
+        </div>
+
+        <div class="wishlist-count">
+            {{ wishlist_items|length }} Items
+        </div>
+    </div>
+
+    {% if wishlist_items %}
+
+    <div class="row g-4">
+
+        {% for item in wishlist_items %}
+        <div class="col-xl-3 col-lg-4 col-md-6">
+
+            <div class="card home-product-card wishlist-card h-100">
+
+                <!-- Remove -->
+                <div class="wishlist-remove">
+
+                    <a href="{% url 'store:toggle_wishlist' item.product.id %}">
+                        ❤️
+                    </a>
+
+                </div>
+
+                <!-- Product Image -->
+                <a href="{% url 'store:product_detail' item.product.id %}">
+
+                    {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}"
+                         class="card-img-top"
+                         alt="{{ item.product.name }}">
+                    {% endif %}
+
+                </a>
+
+                <!-- Body -->
+                <div class="card-body text-center d-flex flex-column">
+
+                    <h6 class="home-product-title">
+                        {{ item.product.name }}
+                    </h6>
+
+                    <p class="text-success fw-bold mb-3">
+                        ₹ {{ item.product.price }}
+                    </p>
+
+                    <div class="mt-auto">
+
+                        <form method="POST"
+                              action="{% url 'store:add_to_cart' item.product.id %}">
+                            {% csrf_token %}
+
+                            <button class="btn btn-warning w-100 mb-2">
+                                Add to Cart
+                            </button>
+
+                        </form>
+
+                        <a href="{% url 'store:product_detail' item.product.id %}"
+                           class="btn btn-outline-dark w-100">
+                            View Product
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- Empty State -->
+    <div class="empty-account-state text-center">
+
+        <div class="empty-icon">
+            ❤️
+        </div>
+
+        <h3>Your wishlist is empty</h3>
+
+        <p>
+            Browse products and save your favorite items.
+        </p>
+
+        <a href="{% url 'store:home' %}"
+           class="btn btn-warning px-4">
+            Continue Shopping
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -8,12 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Modular CSS -->
     <link rel="stylesheet" href="{% static 'store/css/core/base.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/core/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/core/footer.css' %}">    
+    <link rel="stylesheet" href="{% static 'store/css/pages/wishlist.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'store/css/pages/home.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/pages/product.css' %}">
     <link rel="stylesheet" href="{% static 'store/css/pages/cart.css' %}">
@@ -136,10 +137,10 @@
                                 {% if user.is_authenticated %}
 
                                     <a href="{% url 'store:order_history' %}">Your Orders</a>
-                                    <a href="">Your Wishlist</a>
-                                    <a href="">Your Profile</a>
-                                    <a href="">Your Addresses</a>
-                                    <a href="">Payment Options</a>
+                                    <a href="{% url 'store:wishlist_page' %}">Your Wishlist</a>
+                                    <a href="{% url 'store:user_profile' %}">Your Profile</a>
+                                    <a href="{% url 'store:user_addresses' %}">Your Addresses</a>
+                                    <a href="{% url 'store:payment_options' %}">Payment Options</a>
 
                                     <form method="post" action="{% url 'store:logout' %}">
                                         {% csrf_token %}

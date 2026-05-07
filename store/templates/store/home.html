@@ -11,93 +11,76 @@
 <!-- ================= HERO SECTION ================= -->
 <div class="mb-5">
 
-{% if hero_banners|length > 0 %}
+    {% if hero_banners|length > 0 %}
 
-<div id="heroSlider"
-     class="carousel slide carousel-fade"
-     data-bs-ride="carousel"
-     data-bs-interval="3000">
+    <div id="heroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
 
-    <!-- Indicators -->
-    <div class="carousel-indicators">
-        {% for banner in hero_banners %}
-        <button type="button"
-                data-bs-target="#heroSlider"
-                data-bs-slide-to="{{ forloop.counter0 }}"
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            {% for banner in hero_banners %}
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="{{ forloop.counter0 }}"
                 class="{% if forloop.first %}active{% endif %}">
-        </button>
-        {% endfor %}
-    </div>
+            </button>
+            {% endfor %}
+        </div>
 
-    <!-- Slides -->
-    <div class="carousel-inner rounded shadow-sm">
+        <!-- Slides -->
+        <div class="carousel-inner rounded shadow-sm">
 
-        {% for banner in hero_banners %}
-        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% for banner in hero_banners %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
 
-            {% if banner.image %}
-            <img src="{{ banner.image.url }}"
-                 class="d-block w-100 hero-banner-img"
-                 alt="{{ banner.title }}">
-            {% else %}
-            <img src="https://via.placeholder.com/1400x540"
-                 class="d-block w-100 hero-banner-img"
-                 alt="Banner">
-            {% endif %}
-
-            <div class="carousel-caption text-start premium-caption">
-
-                <h2>{{ banner.title }}</h2>
-
-                <p>
-                    {{ banner.subtitle|default:"Best Deals Available Now" }}
-                </p>
-
-                {% if banner.linked_product %}
-                <a href="{% url 'store:product_detail' banner.linked_product.id %}"
-                   class="btn btn-warning">
-                    {{ banner.button_text|default:"Shop Now" }}
-                </a>
-
-                {% elif banner.custom_link %}
-                <a href="{{ banner.custom_link }}"
-                   class="btn btn-warning">
-                    {{ banner.button_text|default:"Shop Now" }}
-                </a>
+                {% if banner.image %}
+                <img src="{{ banner.image.url }}" class="d-block w-100 hero-banner-img" alt="{{ banner.title }}">
+                {% else %}
+                <img src="https://via.placeholder.com/1400x540" class="d-block w-100 hero-banner-img" alt="Banner">
                 {% endif %}
 
+                <div class="carousel-caption text-start premium-caption">
+
+                    <h2>{{ banner.title }}</h2>
+
+                    <p>
+                        {{ banner.subtitle|default:"Best Deals Available Now" }}
+                    </p>
+
+                    {% if banner.linked_product %}
+                    <a href="{% url 'store:product_detail' banner.linked_product.id %}" class="btn btn-warning">
+                        {{ banner.button_text|default:"Shop Now" }}
+                    </a>
+
+                    {% elif banner.custom_link %}
+                    <a href="{{ banner.custom_link }}" class="btn btn-warning">
+                        {{ banner.button_text|default:"Shop Now" }}
+                    </a>
+                    {% endif %}
+
+                </div>
+
             </div>
+            {% endfor %}
 
         </div>
-        {% endfor %}
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
 
     </div>
 
-    <!-- Controls -->
-    <button class="carousel-control-prev"
-            type="button"
-            data-bs-target="#heroSlider"
-            data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
+    {% else %}
 
-    <button class="carousel-control-next"
-            type="button"
-            data-bs-target="#heroSlider"
-            data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
+    <div class="bg-light text-center p-5 rounded shadow-sm">
+        <h3>Welcome to PreetCraftStudio</h3>
+        <p>Add Hero Banners from admin panel to show hero banner.</p>
+    </div>
 
-</div>
-
-{% else %}
-
-<div class="bg-light text-center p-5 rounded shadow-sm">
-    <h3>Welcome to PreetCraftStudio</h3>
-    <p>Add Hero Banners from admin panel to show hero banner.</p>
-</div>
-
-{% endif %}
+    {% endif %}
 </div>
 
 <!-- ================= TRUST BADGES ================= -->
@@ -224,52 +207,53 @@
 
             <!-- <h4 class="home-heading">New Arrivals</h4> -->
 
-            <div class="row g-3">
+            <div class="row g-4">
 
                 {% for product in products|slice:":8" %}
                 <div class="col-xl-3 col-md-4 col-sm-6">
 
-                    <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
 
-                        <div class="card home-product-card">
 
-                            <div class="text-end p-2">
-                                <span class="wishlist-btn"
-                                      data-id="{{ product.id }}"
-                                      onclick="event.stopPropagation(); event.preventDefault();">
-                                    {% if product.id in wishlist_ids %}❤️{% else %}🤍{% endif %}
-                                </span>
-                            </div>
+                    <div class="card home-product-card wishlist-card h-100"> <!-- css from wishlist.css in base.html -->
 
-                            <div class="sale-badge">Only Few Left</div>
+                        <div class="wishlist-remove"> <!-- css from wishlist.css in base.html -->
+                            <a class="wishlist-btn" data-id="{{ product.id }}"
+                                onclick="event.stopPropagation(); event.preventDefault();">
+                                {% if product.id in wishlist_ids %}❤️{% else %}🤍{% endif %}
+                            </a>
+                        </div>
 
+                        <!-- Product Image -->
+                        <!-- <div class="sale-badge">Only Few Left</div> -->
+                        <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
                             {% if product.image %}
-                            <img src="{{ product.image.url }}"
-                                 class="card-img-top"
-                                 alt="{{ product.name }}">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                             {% endif %}
+                        </a>
+                        
+                        <!-- Body -->
+                        <div class="card-body text-center d-flex flex-column">
 
-                            <div class="card-body text-center">
+                            <h6 class="home-product-title">{{ product.name }}</h6>
 
-                                <h6 class="home-product-title">{{ product.name }}</h6>
+                            <p class="text-success fw-bold mb-3">
+                                ₹ {{ product.price }}
+                            </p>
 
-                                <p class="text-success fw-bold">
-                                    ₹ {{ product.price }}
-                                </p>
-
-                                <form method="POST"
-                                      action="{% url 'store:add_to_cart' product.id %}">
+                            <div class="mt-auto">
+                                <form method="POST" action="{% url 'store:add_to_cart' product.id %}">
                                     {% csrf_token %}
-                                    <button class="btn btn-warning btn-sm w-100">
+                                    <button class="btn btn-warning w-100 mb-2">
                                         Add to Cart
                                     </button>
                                 </form>
-
                             </div>
 
                         </div>
 
-                    </a>
+                    </div>
+
+
 
                 </div>
                 {% endfor %}
@@ -290,12 +274,10 @@
 
                     <a href="{% url 'store:product_detail' product.id %}" class="text-dark">
 
-                        <div class="card h-100">
+                        <div class="card home-product-card wishlist-card h-100">
 
                             {% if product.image %}
-                            <img src="{{ product.image.url }}"
-                                 class="card-img-top"
-                                 alt="{{ product.name }}">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                             {% endif %}
 
                             <div class="card-body text-center">
@@ -329,9 +311,7 @@
     <p>Subscribe for deals & launches</p>
 
     <div class="newsletter-form">
-        <input type="email"
-               class="form-control"
-               placeholder="Enter email">
+        <input type="email" class="form-control" placeholder="Enter email">
 
         <button class="btn btn-warning">
             Subscribe
@@ -342,45 +322,45 @@
 
 <!-- ================= JS ================= -->
 <script>
-document.querySelectorAll(".wishlist-btn").forEach(btn => {
+    document.querySelectorAll(".wishlist-btn").forEach(btn => {
 
-btn.addEventListener("click", function (e) {
+        btn.addEventListener("click", function (e) {
 
-e.preventDefault();
-e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
 
-let productId = this.dataset.id;
-let heart = this;
+            let productId = this.dataset.id;
+            let heart = this;
 
-fetch("/toggle-wishlist-ajax/" + productId + "/")
-.then(response => response.json())
-.then(data => {
-heart.innerHTML = data.status === "added" ? "❤️" : "🤍";
-});
+            fetch("/toggle-wishlist-ajax/" + productId + "/")
+                .then(response => response.json())
+                .then(data => {
+                    heart.innerHTML = data.status === "added" ? "❤️" : "🤍";
+                });
 
-});
+        });
 
-});
+    });
 
-let time = 7200;
+    let time = 7200;
 
-function updateTimer() {
+    function updateTimer() {
 
-let hrs = Math.floor(time / 3600);
-let mins = Math.floor((time % 3600) / 60);
-let secs = time % 60;
+        let hrs = Math.floor(time / 3600);
+        let mins = Math.floor((time % 3600) / 60);
+        let secs = time % 60;
 
-document.getElementById("flashTimer").innerText =
-String(hrs).padStart(2,'0') + ":" +
-String(mins).padStart(2,'0') + ":" +
-String(secs).padStart(2,'0');
+        document.getElementById("flashTimer").innerText =
+            String(hrs).padStart(2, '0') + ":" +
+            String(mins).padStart(2, '0') + ":" +
+            String(secs).padStart(2, '0');
 
-if(time > 0){ time--; }
+        if (time > 0) { time--; }
 
-}
+    }
 
-setInterval(updateTimer,1000);
-updateTimer();
+    setInterval(updateTimer, 1000);
+    updateTimer();
 </script>
 
 {% endblock %}

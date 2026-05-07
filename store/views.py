@@ -185,12 +185,13 @@ def subcategory_products(request, subcategory_id):
 # AJAX
 # =====================================================
 
-def load_subcategories(request):
-    logger.debug(f"Load subcategory | parent_id={parent_id}")        #logs
+def load_subcategories(request):   
 
     parent_id = request.GET.get("parent_id")
 
-    subcategories = Category.objects.filter(parent_id=parent_id)
+    logger.debug(f"Load subcategory | parent_id={parent_id}")        #logs
+
+    subcategories = Category.objects.filter(parent_id=parent_id)    
 
     data = [
         {
@@ -203,10 +204,9 @@ def load_subcategories(request):
     return JsonResponse(data, safe=False)
 
 
-def search_suggestions(request):
-    logger.debug(f"Search suggestions | query={query}")     #logs
-
+def search_suggestions(request):    
     query = request.GET.get("q", "").strip()
+    logger.debug(f"Search suggestions | query={query}")     #logs
 
     if not query:
         return JsonResponse([], safe=False)
@@ -277,6 +277,106 @@ def toggle_wishlist_ajax(request, product_id):
 
     return JsonResponse({"status": status})
 
+# =====================================================
+# ACCOUNT PAGES
+# =====================================================
+
+# =====================================================
+# WISHLIST
+# =====================================================
+@login_required
+def wishlist_page(request):
+
+    wishlist_items = Wishlist.objects.filter(
+        user=request.user
+    ).select_related("product").order_by("-created_at")
+
+    logger.info(
+        f"Wishlist page viewed | user_id={request.user.id}"
+    )
+
+    return render(request, "store/wishlist.html", {
+        "wishlist_items": wishlist_items
+    })
+
+# =====================================================
+# USER PROFILE
+# =====================================================
+
+@login_required
+def user_profile(request):
+
+    if request.method == "POST":
+
+        request.user.first_name = request.POST.get(
+            "first_name", ""
+        )
+
+        request.user.last_name = request.POST.get(
+            "last_name", ""
+        )
+
+        request.user.email = request.POST.get(
+            "email", ""
+        )
+
+        request.user.save()
+
+        logger.info(
+            f"Profile updated | user_id={request.user.id}"
+        )
+
+        messages.success(
+            request,
+            "Profile updated successfully."
+        )
+
+        return redirect("store:user_profile")
+
+    logger.info(
+        f"Profile viewed | user_id={request.user.id}"
+    )
+
+    return render(request, "store/profile.html")
+
+# =====================================================
+# USER ADDRESSES
+# =====================================================
+
+@login_required
+def user_addresses(request):
+
+    addresses = Address.objects.filter(
+        user=request.user
+    ).order_by("-id")
+
+    logger.info(
+        f"Address page viewed | user_id={request.user.id}"
+    )
+
+    return render(request, "store/addresses.html", {
+        "addresses": addresses
+    })
+
+# =====================================================
+# PAYMENT OPTIONS
+# =====================================================
+
+@login_required
+def payment_options(request):
+
+    payments = Payment.objects.filter(
+        user=request.user,
+        status="SUCCESS"
+    ).order_by("-created_at")[:10]
+
+    logger.info(
+        f"Payment options viewed | user_id={request.user.id}"
+    )
+
+    return render(request, "store/payment_options.html", {
+        "payments": payments
+    })
 
 # =====================================================
 # CART
