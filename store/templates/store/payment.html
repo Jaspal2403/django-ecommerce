@@ -47,157 +47,157 @@
 
 <script>
 
-const options = {
-    key: "{{ razorpay_key }}",
-    amount: parseInt("{{ amount }}"),
-    currency: "INR",
-    name: "PreetCraft Studio",
-    description: "Order Payment",
-    order_id: "{{ order_id }}",
+    const options = {
+        key: "{{ razorpay_key }}",
+        amount: parseInt("{{ amount }}"),
+        currency: "INR",
+        name: "PreetCraft Studio",
+        description: "Order Payment",
+        order_id: "{{ order_id }}",
 
-    // ❌ NO BACKEND CALL HERE
-    handler: function (response) {
-        console.log("Payment completed on frontend");
+        // ❌ NO BACKEND CALL HERE
+        handler: function (response) {
+            console.log("Payment completed on frontend");
 
-        // Redirect ONLY (no verification here)
-        // window.location.href =
-        //     "{% url 'store:payment_success_page' %}?order_id=" +
-        //     response.razorpay_order_id;
+            // Redirect ONLY (no verification here)
+            // window.location.href =
+            //     "{% url 'store:payment_success_page' %}?order_id=" +
+            //     response.razorpay_order_id;
 
-        window.location.href =
-        "{% url 'store:payment_success_page' %}?order_id={{ order_id }}&django_order_id={{ django_order_id }}";
-    },
-
-    // modal: {
-    //     ondismiss: function () {
-    //         window.location.href = "{% url 'store:home' %}";
-    //     }
-    // },
-
-    modal: {
-        ondismiss: function(){
             window.location.href =
-            "{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
+                "{% url 'store:payment_success_page' %}?order_id={{ order_id }}&django_order_id={{ django_order_id }}";
+        },
+
+        // modal: {
+        //     ondismiss: function () {
+        //         window.location.href = "{% url 'store:home' %}";
+        //     }
+        // },
+
+        modal: {
+            ondismiss: function () {
+                window.location.href =
+                    "{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
+            }
+        },
+
+        theme: {
+            color: "#f59e0b"
+        },
+
+        prefill: {
+            name: "{{ request.user.get_full_name|default:'' }}",
+            email: "{{ request.user.email|default:'' }}",
+            contact: "{{ request.user.profile.phone_number|default:'' }}"
         }
-    },
+    };
 
-    theme: {
-        color: "#f59e0b"
-    },
+    const rzp = new Razorpay(options);
 
-    prefill: {
-        name: "{{ request.user.get_full_name|default:'' }}",
-        email: "{{ request.user.email|default:'' }}",
-        contact: "{{ request.user.profile.phone_number|default:'' }}"
+    let isProcessing = false;
+
+    document.getElementById("payBtn").addEventListener("click", function () {
+        if (isProcessing) return;
+
+        isProcessing = true;
+
+        this.innerText = "Opening Payment...";
+        this.disabled = true;
+
+        rzp.open();
+
+    });
+
+    // rzp.on('payment.failed', function (response){
+
+    //     alert("Payment Failed: " + response.error.description);
+
+    //     const btn = document.getElementById("payBtn");
+
+    //     btn.innerText = "Proceed to Pay";
+    //     btn.disabled = false;
+
+    //     isProcessing = false;
+    // });
+
+    rzp.on('payment.failed', function (response) {
+        window.location.href = "{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
+    });
+
+    function goHome() {
+        window.location.href = "{% url 'store:home' %}";
     }
-};
 
-const rzp = new Razorpay(options);
-
-let isProcessing = false;
-
-document.getElementById("payBtn").addEventListener("click", function () {    
-    if (isProcessing) return;
-
-    isProcessing = true;
-
-    this.innerText = "Opening Payment...";
-    this.disabled = true;
-
-    rzp.open();
-
-});
-
-// rzp.on('payment.failed', function (response){
-
-//     alert("Payment Failed: " + response.error.description);
-
-//     const btn = document.getElementById("payBtn");
-
-//     btn.innerText = "Proceed to Pay";
-//     btn.disabled = false;
-
-//     isProcessing = false;
-// });
-
-rzp.on('payment.failed', function (response){
-    window.location.href ="{% url 'store:payment_failed' %}?order_id={{ django_order_id }}";
-});
-
-function goHome() {
-    window.location.href = "{% url 'store:home' %}";
-}
-
-// Auto open
-// window.onload = function () {
-//     setTimeout(() => {
-//         openPayment();
-//     }, 500);
-// };
+    // Auto open
+    // window.onload = function () {
+    //     setTimeout(() => {
+    //         openPayment();
+    //     }, 500);
+    // };
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
+    // document.addEventListener("DOMContentLoaded", function () {
 
-//     const options = {
-//         key: "{{ razorpay_key }}",
-//         amount: parseInt("{{ amount }}"),
-//         currency: "INR",
-//         name: "PreetCraft Studio",
-//         description: "Order Payment",
-//         order_id: "{{ order_id }}",
+    //     const options = {
+    //         key: "{{ razorpay_key }}",
+    //         amount: parseInt("{{ amount }}"),
+    //         currency: "INR",
+    //         name: "PreetCraft Studio",
+    //         description: "Order Payment",
+    //         order_id: "{{ order_id }}",
 
-//         handler: function (response) {
+    //         handler: function (response) {
 
-//             fetch("{% url 'store:payment_success' %}", {
-//                 method: "POST",
-//                 headers: {
-//                     "Content-Type": "application/json"
-//                 },
-//                 body: JSON.stringify(response)
-//             })
-//             .then(res => res.json())
-//             .then(data => {
+    //             fetch("{% url 'store:payment_success' %}", {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 },
+    //                 body: JSON.stringify(response)
+    //             })
+    //             .then(res => res.json())
+    //             .then(data => {
 
-//                 if (data.status === "success") {
+    //                 if (data.status === "success") {
 
-//                     window.location.href =
-//                     "{% url 'store:payment_success_page' %}?order_id=" +
-//                     response.razorpay_order_id;
+    //                     window.location.href =
+    //                     "{% url 'store:payment_success_page' %}?order_id=" +
+    //                     response.razorpay_order_id;
 
-//                 } else {
-//                     alert("Payment verification failed.");
-//                 }
+    //                 } else {
+    //                     alert("Payment verification failed.");
+    //                 }
 
-//             })
-//             .catch(() => {
-//                 alert("Payment processed but verification failed.");
-//             });
-//         },
+    //             })
+    //             .catch(() => {
+    //                 alert("Payment processed but verification failed.");
+    //             });
+    //         },
 
-//         modal: {
-//             ondismiss: function () {
-//                 console.log("Payment popup closed.");
-//             }
-//         },
+    //         modal: {
+    //             ondismiss: function () {
+    //                 console.log("Payment popup closed.");
+    //             }
+    //         },
 
-//         prefill: {
-//             name: "{{ request.user.username }}",
-//             email: "{{ request.user.email }}"
-//         },
+    //         prefill: {
+    //             name: "{{ request.user.username }}",
+    //             email: "{{ request.user.email }}"
+    //         },
 
-//         theme: {
-//             color: "#f59e0b"
-//         }
-//     };
+    //         theme: {
+    //             color: "#f59e0b"
+    //         }
+    //     };
 
-//     const rzp = new Razorpay(options);
+    //     const rzp = new Razorpay(options);
 
-//     document.getElementById("payBtn").addEventListener("click", function () {
-//         rzp.open();
-//     });
+    //     document.getElementById("payBtn").addEventListener("click", function () {
+    //         rzp.open();
+    //     });
 
-// });
+    // });
 </script>
 
 {% endblock %}

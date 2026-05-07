@@ -733,10 +733,11 @@ def start_payment(request, order):
 # =====================================================
 
 @login_required
-def buy_now(request, product_id):
-    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+def buy_now(request, product_id):   
 
     product = get_object_or_404(Product, id=product_id)
+
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
 
     address = Address.objects.filter(user=request.user).first()
 
@@ -804,7 +805,7 @@ def create_order(request):
         #print("RAZORPAY ORDER:", razorpay_order)
 
         logger.debug(f"Razorpay order created | data={razorpay_order}")     #logs
-        logger.info(f"Order created (BuyNow flow) | order_id={order.id} | user_id={request.user.id}")       #logs  
+          
 
         payment = Payment.objects.create(
             razorpay_order_id=razorpay_order["id"],
@@ -814,9 +815,11 @@ def create_order(request):
             product=product,
             user=request.user
         )
-
+        
         order.payment = payment
         order.save()
+        
+        logger.info(f"Order created (BuyNow flow) | order_id={order.id} | user_id={request.user.id}")       #logs
 
         # ✅ Clear session after use
         del request.session["buy_product_id"]
@@ -989,7 +992,8 @@ def razorpay_webhook(request):
             logger.warning(f"Payment failed webhook | razorpay_order_id={razorpay_order_id}")       #logs
 
         except Payment.DoesNotExist:
-            print("❌ Payment not found for failure")
+            #print("❌ Payment not found for failure")
+            logger.warning(f"Payment not found for failure | razorpay_order_id={razorpay_order_id}")       #logs
 
     return JsonResponse({"status": "ok"})
 

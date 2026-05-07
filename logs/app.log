@@ -503,3 +503,427 @@ WARNING 2026-05-06 16:22:01,865 views Payment failed page | order_id=99
 INFO 2026-05-06 16:22:01,865 views Payment Failed | order_id=99
 INFO 2026-05-06 16:22:01,878 basehttp "GET /payment-failed/?order_id=99 HTTP/1.1" 200 10916
 INFO 2026-05-06 16:22:03,587 basehttp "GET / HTTP/1.1" 200 23357
+INFO 2026-05-06 18:16:55,786 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:17:00,099 basehttp "GET / HTTP/1.1" 200 23363
+ERROR 2026-05-06 18:17:31,611 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:31,617 basehttp "GET /search-suggestions/?q=ha HTTP/1.1" 500 74578
+ERROR 2026-05-06 18:17:31,693 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:31,695 basehttp "GET /search-suggestions/?q=han HTTP/1.1" 500 74585
+ERROR 2026-05-06 18:17:31,928 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:31,929 basehttp "GET /search-suggestions/?q=hand HTTP/1.1" 500 74592
+ERROR 2026-05-06 18:17:33,607 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:33,609 basehttp "GET /search-suggestions/?q=handm HTTP/1.1" 500 74599
+ERROR 2026-05-06 18:17:33,736 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:33,738 basehttp "GET /search-suggestions/?q=handma HTTP/1.1" 500 74606
+ERROR 2026-05-06 18:17:33,875 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:33,876 basehttp "GET /search-suggestions/?q=handmad HTTP/1.1" 500 74613
+ERROR 2026-05-06 18:17:34,133 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:34,134 basehttp "GET /search-suggestions/?q=handmade HTTP/1.1" 500 74620
+ERROR 2026-05-06 18:17:35,333 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:17:35,335 basehttp "GET /search-suggestions/?q=handmade HTTP/1.1" 500 74620
+INFO 2026-05-06 18:17:35,946 views Search | query=handmade | category=all | price= | sort=
+INFO 2026-05-06 18:17:35,967 basehttp "GET /search/?q=handmade+ HTTP/1.1" 200 13087
+INFO 2026-05-06 18:17:36,074 basehttp "GET /static/store/css/pages/search.css HTTP/1.1" 200 1492
+INFO 2026-05-06 18:17:40,657 basehttp "GET /product/7/ HTTP/1.1" 200 19062
+INFO 2026-05-06 18:17:40,678 basehttp "GET /media/products/images_3_oUwvbPT.jpg HTTP/1.1" 200 8904
+INFO 2026-05-06 18:17:40,679 basehttp "GET /static/store/css/pages/product.css HTTP/1.1" 200 7063
+INFO 2026-05-06 18:17:40,680 basehttp "GET /media/products/images_NSBlna7.jpg HTTP/1.1" 200 6898
+ERROR 2026-05-06 18:17:42,562 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:17:42,565 basehttp "GET /buy-now/7/ HTTP/1.1" 500 80136
+INFO 2026-05-06 18:18:34,189 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:18:35,593 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:18:37,412 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:18:38,840 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:18:39,208 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:18:39,211 basehttp "GET /buy-now/7/ HTTP/1.1" 500 79975
+INFO 2026-05-06 18:18:54,546 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:18:56,063 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:18:56,781 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:18:56,785 basehttp "GET /buy-now/7/ HTTP/1.1" 500 79975
+INFO 2026-05-06 18:19:03,357 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:19:04,689 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:19:05,105 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:19:05,110 basehttp "GET /buy-now/7/ HTTP/1.1" 500 79975
+ERROR 2026-05-06 18:19:07,308 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:19:07,310 basehttp "GET /buy-now/7/ HTTP/1.1" 500 79975
+INFO 2026-05-06 18:19:30,027 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:19:31,525 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:19:31,921 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:19:31,924 basehttp "GET /buy-now/7/ HTTP/1.1" 500 79975
+ERROR 2026-05-06 18:19:33,950 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:19:33,952 basehttp "GET /buy-now/7/ HTTP/1.1" 500 80112
+INFO 2026-05-06 18:19:40,092 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:19:41,507 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:20:50,015 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:20:50,022 basehttp "GET /buy-now/7/ HTTP/1.1" 500 80136
+INFO 2026-05-06 18:21:05,571 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:21:06,961 autoreload Watching for file changes with StatReloader
+ERROR 2026-05-06 18:21:07,499 log Internal Server Error: /buy-now/7/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 737, in buy_now
+    logger.info(f"BuyNow | user_id={request.user.id} | product_id={product.id}")        #logs
+                                                                   ^^^^^^^
+UnboundLocalError: cannot access local variable 'product' where it is not associated with a value
+ERROR 2026-05-06 18:21:07,503 basehttp "GET /buy-now/7/ HTTP/1.1" 500 80273
+INFO 2026-05-06 18:21:59,612 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:22:01,110 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:22:01,613 views BuyNow | user_id=1 | product_id=7
+INFO 2026-05-06 18:22:01,646 views Payment start | order_id=100 | user_id=1
+INFO 2026-05-06 18:22:02,594 views Payment record created | payment_id=201
+INFO 2026-05-06 18:22:02,642 basehttp "GET /buy-now/7/ HTTP/1.1" 200 14569
+INFO 2026-05-06 18:22:02,667 basehttp "GET /static/store/css/pages/payment.css HTTP/1.1" 304 0
+INFO 2026-05-06 18:22:07,201 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 18:22:20,754 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-06 18:22:22,163 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:22:23,189 basehttp "GET / HTTP/1.1" 200 23363
+ERROR 2026-05-06 18:22:26,984 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:26,990 basehttp "GET /search-suggestions/?q=han HTTP/1.1" 500 74741
+ERROR 2026-05-06 18:22:27,050 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:27,052 basehttp "GET /search-suggestions/?q=han HTTP/1.1" 500 74741
+ERROR 2026-05-06 18:22:27,393 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:27,396 basehttp "GET /search-suggestions/?q=ha HTTP/1.1" 500 74734
+ERROR 2026-05-06 18:22:28,437 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:28,439 basehttp "GET /search-suggestions/?q=je HTTP/1.1" 500 74734
+ERROR 2026-05-06 18:22:28,640 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:28,641 basehttp "GET /search-suggestions/?q=jew HTTP/1.1" 500 74741
+ERROR 2026-05-06 18:22:29,021 log Internal Server Error: /search-suggestions/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 207, in search_suggestions
+    logger.debug(f"Search suggestions | query={query}")     #logs
+                                               ^^^^^
+UnboundLocalError: cannot access local variable 'query' where it is not associated with a value
+ERROR 2026-05-06 18:22:29,023 basehttp "GET /search-suggestions/?q=jewe HTTP/1.1" 500 74748
+INFO 2026-05-06 18:22:29,226 views Search | query=jewe | category=all | price= | sort=
+INFO 2026-05-06 18:22:29,247 basehttp "GET /search/?q=jewe HTTP/1.1" 200 11925
+INFO 2026-05-06 18:22:31,088 basehttp "GET /product/7/ HTTP/1.1" 200 19062
+INFO 2026-05-06 18:22:33,055 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-06 18:22:33,081 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-06 18:22:33,088 views Cart view | user_if=1
+INFO 2026-05-06 18:22:33,105 basehttp "GET /cart/ HTTP/1.1" 200 14578
+INFO 2026-05-06 18:22:33,124 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 304 0
+INFO 2026-05-06 18:22:36,469 views BuyNow | user_id=1 | product_id=7
+INFO 2026-05-06 18:22:36,491 views Payment start | order_id=101 | user_id=1
+INFO 2026-05-06 18:22:37,885 views Payment record created | payment_id=202
+INFO 2026-05-06 18:22:37,899 basehttp "GET /buy-now/7/ HTTP/1.1" 200 14569
+INFO 2026-05-06 18:22:41,155 basehttp "GET / HTTP/1.1" 200 23363
+INFO 2026-05-06 18:34:46,962 basehttp "GET /product/6/ HTTP/1.1" 200 18996
+INFO 2026-05-06 18:34:47,113 basehttp "GET /media/products/images_9_UdhEtp2.jpg HTTP/1.1" 200 21747
+INFO 2026-05-06 18:34:47,116 basehttp "GET /media/products/images_3_PT60IRn.jpg HTTP/1.1" 200 10307
+INFO 2026-05-06 18:34:48,379 views BuyNow | user_id=1 | product_id=6
+INFO 2026-05-06 18:34:48,401 views Payment start | order_id=102 | user_id=1
+INFO 2026-05-06 18:34:49,377 views Payment record created | payment_id=203
+INFO 2026-05-06 18:34:49,390 basehttp "GET /buy-now/6/ HTTP/1.1" 200 14569
+WARNING 2026-05-06 18:34:57,899 views Payment failed page | order_id=102
+INFO 2026-05-06 18:34:57,900 views Payment Failed | order_id=102
+INFO 2026-05-06 18:34:57,915 basehttp "GET /payment-failed/?order_id=102 HTTP/1.1" 200 10923
+INFO 2026-05-06 18:34:57,943 basehttp "GET /static/store/css/pages/payment_failed.css HTTP/1.1" 304 0
+INFO 2026-05-06 18:35:08,125 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-06 18:35:09,428 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:39:46,501 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-06 18:39:47,799 autoreload Watching for file changes with StatReloader
+INFO 2026-05-06 18:41:53,834 views PayNow triggered | order_id=102 | user_id=1
+INFO 2026-05-06 18:41:55,073 basehttp "GET /pay-now/102/ HTTP/1.1" 200 15029
+WARNING 2026-05-06 18:42:04,733 views Payment failed page | order_id=102
+INFO 2026-05-06 18:42:04,734 views Payment Failed | order_id=102
+INFO 2026-05-06 18:42:04,749 basehttp "GET /payment-failed/?order_id=102 HTTP/1.1" 200 10923
+INFO 2026-05-07 10:58:05,756 autoreload Watching for file changes with StatReloader
+INFO 2026-05-07 10:58:13,575 basehttp "GET / HTTP/1.1" 200 23299
+INFO 2026-05-07 10:58:13,687 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-07 10:58:13,688 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-07 10:58:13,694 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-07 10:58:13,695 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-07 10:58:13,708 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-07 10:58:13,728 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-07 10:58:13,734 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-07 10:58:13,746 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-07 10:58:13,763 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-07 10:58:13,769 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-07 10:58:13,794 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+WARNING 2026-05-07 10:58:14,260 log Not Found: /favicon.ico
+WARNING 2026-05-07 10:58:14,262 basehttp "GET /favicon.ico HTTP/1.1" 404 10777
+INFO 2026-05-07 10:59:38,339 basehttp "GET / HTTP/1.1" 200 23294
+WARNING 2026-05-07 10:59:48,553 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-07 10:59:48,555 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-07 11:00:12,280 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-07 11:00:12,309 basehttp "GET /static/store/css/responsive.css HTTP/1.1" 200 6987
+INFO 2026-05-07 11:00:12,309 basehttp "GET /static/store/css/pages/auth.css HTTP/1.1" 200 6352
+WARNING 2026-05-07 11:00:12,318 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-07 11:00:12,320 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-07 11:00:12,323 basehttp "GET /static/store/images/logo.png HTTP/1.1" 200 531958
+INFO 2026-05-07 11:00:24,547 basehttp "GET / HTTP/1.1" 200 23294
+INFO 2026-05-07 11:01:04,456 basehttp "GET / HTTP/1.1" 200 23192
+INFO 2026-05-07 11:01:18,438 basehttp "GET / HTTP/1.1" 200 23187
+INFO 2026-05-07 11:01:23,846 basehttp "GET / HTTP/1.1" 200 23187
+INFO 2026-05-07 11:01:23,871 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-07 11:01:23,871 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-07 11:01:23,871 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-07 11:01:23,871 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-07 11:01:23,879 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-07 11:01:23,880 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-07 11:01:23,903 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-07 11:01:23,929 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-07 11:01:23,931 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-07 11:01:23,932 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+INFO 2026-05-07 11:01:23,934 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-07 11:01:35,490 basehttp "GET / HTTP/1.1" 200 23187
+INFO 2026-05-07 11:01:35,511 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-07 11:01:35,511 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-07 11:01:35,511 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-07 11:01:35,512 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-07 11:01:35,518 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-07 11:01:35,519 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-07 11:01:35,539 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-07 11:01:35,567 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-07 11:01:35,569 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-07 11:01:35,571 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+INFO 2026-05-07 11:01:35,575 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-07 11:01:54,774 basehttp "GET / HTTP/1.1" 200 23168
+INFO 2026-05-07 11:01:54,801 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 1785
+INFO 2026-05-07 11:01:54,801 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4310
+INFO 2026-05-07 11:01:54,804 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-07 11:01:54,805 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-07 11:01:54,810 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-07 11:01:54,813 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-07 11:01:54,836 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-07 11:01:54,861 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-07 11:01:54,877 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+INFO 2026-05-07 11:01:54,880 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-07 11:01:54,881 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+WARNING 2026-05-07 11:02:23,212 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-07 11:02:23,213 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-07 11:03:22,220 basehttp "GET /cart/ HTTP/1.1" 302 0
+INFO 2026-05-07 11:03:22,239 basehttp "GET /login/?next=/cart/ HTTP/1.1" 200 2343
+WARNING 2026-05-07 11:03:22,283 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-07 11:03:22,284 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-07 11:03:38,508 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2026-05-07 11:03:38,580 basehttp "GET / HTTP/1.1" 200 23363
+WARNING 2026-05-07 11:03:38,609 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-07 11:03:38,611 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10888
+INFO 2026-05-07 11:06:22,112 basehttp "GET / HTTP/1.1" 200 23372
+INFO 2026-05-07 11:06:30,966 basehttp "GET /toggle-wishlist-ajax/6/ HTTP/1.1" 200 19
+INFO 2026-05-07 11:06:31,655 basehttp "GET /toggle-wishlist-ajax/6/ HTTP/1.1" 200 21
+INFO 2026-05-07 11:06:44,258 basehttp "GET / HTTP/1.1" 200 23372
+INFO 2026-05-07 11:08:29,412 views Logout | user_id=1
+INFO 2026-05-07 11:08:29,420 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2026-05-07 11:08:29,435 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-07 11:08:35,130 basehttp "GET / HTTP/1.1" 200 23177
+INFO 2026-05-07 11:14:33,826 basehttp "GET / HTTP/1.1" 200 23308
+INFO 2026-05-07 11:14:48,753 basehttp "GET / HTTP/1.1" 200 23303
+INFO 2026-05-07 11:14:51,458 basehttp "GET /login/ HTTP/1.1" 200 2343
+INFO 2026-05-07 11:14:53,824 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2026-05-07 11:14:53,878 basehttp "GET / HTTP/1.1" 200 23372
