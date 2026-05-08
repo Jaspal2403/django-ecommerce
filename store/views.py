@@ -346,6 +346,60 @@ def user_profile(request):
 @login_required
 def user_addresses(request):
 
+    # =========================
+    # ADD NEW ADDRESS
+    # =========================
+    if request.method == "POST":
+
+        name = request.POST.get("name", "").strip()
+
+        address_text = request.POST.get(
+            "address", ""
+        ).strip()
+
+        city = request.POST.get(
+            "city", ""
+        ).strip()
+
+        pincode = request.POST.get(
+            "pincode", ""
+        ).strip()
+
+        phone = request.POST.get(
+            "phone", ""
+        ).strip()
+
+        if all([
+            name,
+            address_text,
+            city,
+            pincode,
+            phone
+        ]):
+
+            Address.objects.create(
+                user=request.user,
+                name=name,
+                address=address_text,
+                city=city,
+                pincode=pincode,
+                phone=phone
+            )
+
+            logger.info(
+                f"Address added | user_id={request.user.id}"
+            )
+
+            messages.success(
+                request,
+                "Address saved successfully."
+            )
+
+            return redirect("store:user_addresses")
+
+    # =========================
+    # LOAD ADDRESSES
+    # =========================
     addresses = Address.objects.filter(
         user=request.user
     ).order_by("-id")
@@ -357,6 +411,23 @@ def user_addresses(request):
     return render(request, "store/addresses.html", {
         "addresses": addresses
     })
+
+
+
+# @login_required
+# def user_addresses(request):
+
+#     addresses = Address.objects.filter(
+#         user=request.user
+#     ).order_by("-id")
+
+#     logger.info(
+#         f"Address page viewed | user_id={request.user.id}"
+#     )
+
+#     return render(request, "store/addresses.html", {
+#         "addresses": addresses
+#     })
 
 # =====================================================
 # PAYMENT OPTIONS

@@ -1,0 +1,261 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Your Addresses{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/addresses.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="account-page">
+
+    <!-- Header -->
+    <div class="account-header">
+
+        <div>
+            <h2 class="account-title">
+                Your Addresses
+            </h2>
+
+            <p class="account-subtitle">
+                Manage your saved delivery addresses.
+            </p>
+        </div>
+
+        <div class="wishlist-count">
+            {{ addresses|length }} Saved
+        </div>
+
+    </div>
+
+    <!-- Add Address Form -->
+    <div class="address-form-card mb-5">
+
+        <h4 class="mb-4 fw-bold">
+            Add New Address
+        </h4>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="row">
+
+                <!-- Full Name -->
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-bold">
+                        Full Name
+                    </label>
+
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           required>
+
+                </div>
+
+                <!-- Phone -->
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-bold">
+                        Phone Number
+                    </label>
+
+                    <input type="text"
+                           name="phone"
+                           class="form-control"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Address -->
+            <div class="mb-4">
+
+                <label class="form-label fw-bold">
+                    Address
+                </label>
+
+                <textarea name="address"
+                          rows="4"
+                          class="form-control"
+                          required></textarea>
+
+            </div>
+
+            <div class="row">
+
+                <!-- City -->
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-bold">
+                        City
+                    </label>
+
+                    <input type="text"
+                           name="city"
+                           class="form-control"
+                           required>
+
+                </div>
+
+                <!-- Pincode -->
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label fw-bold">
+                        Pincode
+                    </label>
+
+                    <input type="text"
+                           name="pincode"
+                           class="form-control"
+                           required>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-warning px-4">
+                Save Address
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Address List -->
+    {% if addresses %}
+
+    <div class="row g-4">
+
+        {% for address in addresses %}
+
+        <div class="col-lg-6">
+
+            <div class="address-card">
+
+                <!-- Top -->
+                <div class="address-top">
+
+                    <div>
+
+                        <h5 class="address-name">
+                            {{ address.name }}
+                        </h5>
+
+                        <span class="address-city">
+                            {{ address.city }}
+                        </span>
+
+                    </div>
+
+                    <span class="address-badge">
+                        Saved
+                    </span>
+
+                </div>
+
+                <!-- Address -->
+                <div class="address-body">
+
+                    <p>
+                        {{ address.address }}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Pincode:</strong>
+                        {{ address.pincode }}
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Phone:</strong>
+                        {{ address.phone }}
+                    </p>
+
+                </div>
+
+                <!-- Actions -->
+                <div class="address-actions">
+
+                    <button class="btn btn-outline-dark btn-sm">
+                        Edit
+                    </button>
+
+                    <button class="btn btn-outline-danger btn-sm delete-address-btn"
+                            data-id="{{ address.id }}">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- Empty -->
+    <div class="empty-account-state text-center">
+
+        <div class="empty-icon">
+            📍
+        </div>
+
+        <h3>No saved addresses</h3>
+
+        <p>
+            Add your delivery address for faster checkout.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<!-- DELETE AJAX -->
+<script>
+
+document.querySelectorAll(".delete-address-btn").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        const addressId = this.dataset.id;
+
+        if (!confirm("Delete this address?")) {
+            return;
+        }
+
+        fetch(`/delete-address/${addressId}/`, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken":
+                "{{ csrf_token }}"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.status === "success") {
+
+                this.closest(".col-lg-6").remove();
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+/* =================================
+ PROFILE PAGE
+================================= */
+
+/* Sidebar */
+.profile-sidebar-card{
+ background:#fff;
+ border-radius:24px;
+ padding:40px 25px;
+ text-align:center;
+ box-shadow:var(--shadow-sm);
+ height:100%;
+}
+
+.profile-avatar{
+ width:110px;
+ height:110px;
+ border-radius:50%;
+ background:linear-gradient(
+ 135deg,
+ var(--primary),
+ var(--primary-dark)
+ );
+ color:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:42px;
+ font-weight:800;
+ margin:0 auto 22px;
+ box-shadow:0 12px 30px rgba(245,158,11,.25);
+}
+
+.profile-name{
+ font-weight:800;
+ margin-bottom:8px;
+ color:var(--dark);
+}
+
+.profile-email{
+ color:var(--muted);
+ margin-bottom:30px;
+ word-break:break-word;
+}
+
+.profile-meta{
+ border-top:1px solid var(--border);
+ padding-top:22px;
+}
+
+.profile-meta-item{
+ margin-bottom:20px;
+}
+
+.profile-meta-item span{
+ display:block;
+ color:var(--muted);
+ font-size:14px;
+ margin-bottom:4px;
+}
+
+.profile-meta-item strong{
+ font-size:15px;
+ color:var(--dark);
+}
+
+/* Form Card */
+.profile-form-card{
+ background:#fff;
+ border-radius:24px;
+ padding:35px;
+ box-shadow:var(--shadow-sm);
+}
+
+.profile-form-card .form-control{
+ background:#f9fafb;
+ border:1px solid #edf0f2;
+}
+
+.profile-form-card .form-control:disabled{
+ background:#eef1f5;
+ opacity:1;
+}
+
+.profile-form-card .btn{
+ min-width:170px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+ .profile-sidebar-card{
+ padding:30px 20px;
+ }
+
+ .profile-form-card{
+ padding:24px;
+ }
+
+ .profile-avatar{
+ width:90px;
+ height:90px;
+ font-size:34px;
+ }
+
+}

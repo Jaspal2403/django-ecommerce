@@ -1,0 +1,173 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/pages/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="account-page">
+
+    <!-- Header -->
+    <div class="account-header">
+
+        <div>
+            <h2 class="account-title">
+                Your Profile
+            </h2>
+
+            <p class="account-subtitle">
+                Manage your account information.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Left Profile Card -->
+        <div class="col-lg-4">
+
+            <div class="profile-sidebar-card">
+
+                <div class="profile-avatar">
+
+                    {{ user.username|first|upper }}
+
+                </div>
+
+                <h4 class="profile-name">
+                    {{ user.get_full_name|default:user.username }}
+                </h4>
+
+                <p class="profile-email">
+                    {{ user.email }}
+                </p>
+
+                <div class="profile-meta">
+
+                    <div class="profile-meta-item">
+                        <span>Username</span>
+                        <strong>{{ user.username }}</strong>
+                    </div>
+
+                    <div class="profile-meta-item">
+                        <span>Joined</span>
+                        <strong>
+                            {{ user.date_joined|date:"d M Y" }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Form -->
+        <div class="col-lg-8">
+
+            <div class="profile-form-card">
+
+                {% if messages %}
+                    {% for message in messages %}
+
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="row">
+
+                        <!-- First Name -->
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label fw-bold">
+                                First Name
+                            </label>
+
+                            <input type="text"
+                                   name="first_name"
+                                   class="form-control"
+                                   value="{{ user.first_name }}">
+
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="col-md-6 mb-4">
+
+                            <label class="form-label fw-bold">
+                                Last Name
+                            </label>
+
+                            <input type="text"
+                                   name="last_name"
+                                   class="form-control"
+                                   value="{{ user.last_name }}">
+
+                        </div>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               value="{{ user.email }}">
+
+                    </div>
+
+                    <!-- Username -->
+                    <div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Username
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               value="{{ user.username }}"
+                               disabled>
+
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex gap-3 flex-wrap">
+
+                        <button class="btn btn-warning px-4">
+                            Save Changes
+                        </button>
+
+                        <a href="{% url 'store:order_history' %}"
+                           class="btn btn-outline-dark px-4">
+                            View Orders
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
