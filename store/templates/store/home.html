@@ -239,11 +239,16 @@
                             </p>
 
                             <div class="mt-auto">
-                                <form method="POST" action="{% url 'store:add_to_cart' product.id %}">
-                                    {% csrf_token %}
-                                    <button class="btn btn-warning w-100 mb-2">
-                                        Add to Cart
-                                    </button>
+                                <form method="POST"
+                                    action="{% url 'store:add_to_cart' product.id %}"
+                                    class="add-cart-form">
+
+                                {% csrf_token %}
+
+                                <button class="btn btn-warning btn-sm w-100 add-cart-btn">
+                                Add to Cart
+                                </button>
+
                                 </form>
                             </div>
                         </div>

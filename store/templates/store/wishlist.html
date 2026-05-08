@@ -64,10 +64,11 @@
                     <div class="mt-auto">
 
                         <form method="POST"
-                              action="{% url 'store:add_to_cart' item.product.id %}">
+                            action="{% url 'store:add_to_cart' item.product.id %}"
+                            class="add-cart-form">
                             {% csrf_token %}
 
-                            <button class="btn btn-warning w-100 mb-2">
+                            <button class="btn btn-warning w-100 mb-2 add-cart-btn">
                                 Add to Cart
                             </button>
 

@@ -2368,3 +2368,195 @@ INFO 2026-05-08 11:01:56,648 basehttp "GET /toggle-wishlist-ajax/7/ HTTP/1.1" 20
 INFO 2026-05-08 11:01:57,533 basehttp "GET /toggle-wishlist-ajax/6/ HTTP/1.1" 200 19
 INFO 2026-05-08 11:01:59,493 views Wishlist page viewed | user_id=1
 INFO 2026-05-08 11:01:59,509 basehttp "GET /wishlist/ HTTP/1.1" 200 14208
+INFO 2026-05-08 12:44:07,843 autoreload Watching for file changes with StatReloader
+INFO 2026-05-08 12:45:26,114 basehttp "GET / HTTP/1.1" 200 29893
+INFO 2026-05-08 12:45:26,141 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 304 0
+INFO 2026-05-08 12:45:26,144 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 304 0
+INFO 2026-05-08 12:45:26,146 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 304 0
+INFO 2026-05-08 12:45:26,154 basehttp "GET /media/products/WhatsAppImage2023-09-22at3_sdbGEcI.11.48PM_1_580x.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 12:45:26,155 basehttp "GET /media/products/images_7_qFtHDZl.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 12:45:30,487 basehttp "GET / HTTP/1.1" 200 29893
+INFO 2026-05-08 12:45:35,153 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 19
+INFO 2026-05-08 12:45:35,567 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 21
+INFO 2026-05-08 12:45:37,885 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 12:45:37,903 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:45:37,912 views Cart view | user_if=1
+INFO 2026-05-08 12:45:37,929 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:45:41,256 views Cart view | user_if=1
+INFO 2026-05-08 12:45:41,266 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:45:42,343 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-08 12:45:42,349 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:45:42,356 views Cart view | user_if=1
+INFO 2026-05-08 12:45:42,365 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:45:42,609 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-08 12:45:42,615 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:45:42,623 views Cart view | user_if=1
+INFO 2026-05-08 12:45:42,630 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:45:43,024 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-08 12:45:43,033 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:45:43,041 views Cart view | user_if=1
+INFO 2026-05-08 12:45:43,048 basehttp "GET /cart/ HTTP/1.1" 200 12309
+INFO 2026-05-08 12:45:45,090 basehttp "GET / HTTP/1.1" 200 29893
+INFO 2026-05-08 12:46:14,764 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 12:46:14,776 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:46:14,784 views Cart view | user_if=1
+INFO 2026-05-08 12:46:14,792 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:46:35,535 views Wishlist page viewed | user_id=1
+INFO 2026-05-08 12:46:35,561 basehttp "GET /wishlist/ HTTP/1.1" 200 15903
+INFO 2026-05-08 12:46:41,986 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 12:46:42,000 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:46:42,008 views Cart view | user_if=1
+INFO 2026-05-08 12:46:42,023 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:46:46,963 views Cart view | user_if=1
+INFO 2026-05-08 12:46:46,971 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:46:48,720 views Wishlist page viewed | user_id=1
+INFO 2026-05-08 12:46:48,727 basehttp "GET /wishlist/ HTTP/1.1" 200 15903
+INFO 2026-05-08 12:46:50,955 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-08 12:46:50,969 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:46:50,976 views Cart view | user_if=1
+INFO 2026-05-08 12:46:50,986 basehttp "GET /cart/ HTTP/1.1" 200 16270
+INFO 2026-05-08 12:47:02,785 basehttp "GET /remove/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:47:02,792 views Cart view | user_if=1
+INFO 2026-05-08 12:47:02,800 basehttp "GET /cart/ HTTP/1.1" 200 14787
+INFO 2026-05-08 12:47:04,729 basehttp "GET /remove/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:47:04,737 views Cart view | user_if=1
+INFO 2026-05-08 12:47:04,744 basehttp "GET /cart/ HTTP/1.1" 200 12309
+INFO 2026-05-08 12:47:06,403 basehttp "GET / HTTP/1.1" 200 29893
+INFO 2026-05-08 12:59:15,499 basehttp "GET / HTTP/1.1" 200 29893
+INFO 2026-05-08 12:59:22,868 views AddToCart | user_id=1 | product_id=8
+INFO 2026-05-08 12:59:22,895 basehttp "POST /add-to-cart/8/ HTTP/1.1" 302 0
+INFO 2026-05-08 12:59:22,903 views Cart view | user_if=1
+INFO 2026-05-08 12:59:22,916 basehttp "GET /cart/ HTTP/1.1" 200 14918
+INFO 2026-05-08 14:41:39,622 views Cart view | user_if=1
+INFO 2026-05-08 14:41:39,664 basehttp "GET /cart/ HTTP/1.1" 200 15100
+INFO 2026-05-08 14:41:39,691 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 304 0
+INFO 2026-05-08 14:41:41,649 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:41:41,675 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 304 0
+INFO 2026-05-08 14:41:41,684 basehttp "GET /media/products/WhatsAppImage2023-09-22at3_sdbGEcI.11.48PM_1_580x.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 14:41:41,690 basehttp "GET /media/products/images_7_qFtHDZl.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 14:41:45,027 views Wishlist page viewed | user_id=1
+INFO 2026-05-08 14:41:45,044 basehttp "GET /wishlist/ HTTP/1.1" 200 16085
+INFO 2026-05-08 14:41:48,143 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-08 14:41:48,164 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:41:48,173 views Cart view | user_if=1
+INFO 2026-05-08 14:41:48,185 basehttp "GET /cart/ HTTP/1.1" 200 16487
+INFO 2026-05-08 14:42:05,562 views Remove from cart | user_id=1 | product_id=7
+INFO 2026-05-08 14:42:05,574 basehttp "GET /decrease/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:42:05,582 views Cart view | user_if=1
+INFO 2026-05-08 14:42:05,594 basehttp "GET /cart/ HTTP/1.1" 200 15100
+INFO 2026-05-08 14:42:06,942 views Remove from cart | user_id=1 | product_id=8
+INFO 2026-05-08 14:42:06,950 basehttp "GET /decrease/8/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:42:06,960 views Cart view | user_if=1
+INFO 2026-05-08 14:42:06,968 basehttp "GET /cart/ HTTP/1.1" 200 12491
+INFO 2026-05-08 14:42:08,438 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:42:12,449 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 14:42:12,459 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:42:12,468 views Cart view | user_if=1
+INFO 2026-05-08 14:42:12,476 basehttp "GET /cart/ HTTP/1.1" 200 14969
+INFO 2026-05-08 14:42:16,414 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:42:19,931 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-08 14:42:19,941 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:42:19,948 views Cart view | user_if=1
+INFO 2026-05-08 14:42:19,956 basehttp "GET /cart/ HTTP/1.1" 200 16452
+INFO 2026-05-08 14:50:34,935 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-08 14:50:34,973 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:50:34,996 views Cart view | user_if=1
+INFO 2026-05-08 14:50:35,046 basehttp "GET /cart/ HTTP/1.1" 200 15099
+INFO 2026-05-08 14:50:36,155 views Remove from cart | user_id=1 | product_id=7
+INFO 2026-05-08 14:50:36,187 basehttp "GET /decrease/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:50:36,212 views Cart view | user_if=1
+INFO 2026-05-08 14:50:36,245 basehttp "GET /cart/ HTTP/1.1" 200 12491
+INFO 2026-05-08 14:50:38,275 basehttp "GET / HTTP/1.1" 200 30075
+WARNING 2026-05-08 14:50:46,057 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-08 14:50:46,059 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11953
+INFO 2026-05-08 14:52:45,410 autoreload Watching for file changes with StatReloader
+INFO 2026-05-08 14:52:47,034 basehttp "GET / HTTP/1.1" 200 29955
+INFO 2026-05-08 14:52:47,495 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-08 14:52:47,543 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-08 14:52:47,552 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-08 14:52:47,563 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4251
+INFO 2026-05-08 14:52:47,568 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-08 14:52:47,578 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-08 14:52:47,583 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 200 1998
+INFO 2026-05-08 14:52:47,593 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 2405
+INFO 2026-05-08 14:52:47,602 basehttp "GET /media/products/WhatsAppImage2023-09-22at3_sdbGEcI.11.48PM_1_580x.jpg HTTP/1.1" 200 60959
+INFO 2026-05-08 14:52:47,616 basehttp "GET /media/products/images_7_qFtHDZl.jpg HTTP/1.1" 200 16227
+INFO 2026-05-08 14:52:47,632 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-08 14:52:47,665 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-08 14:52:47,682 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-08 14:52:47,684 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+WARNING 2026-05-08 14:52:54,851 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-08 14:52:54,853 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11953
+INFO 2026-05-08 14:53:12,903 views AddToCart | user_id=None | product_id=6
+INFO 2026-05-08 14:53:12,924 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:12,938 basehttp "GET /cart/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:12,971 basehttp "GET /login/?next=/cart/ HTTP/1.1" 200 2343
+INFO 2026-05-08 14:53:12,997 basehttp "GET /static/store/css/pages/auth.css HTTP/1.1" 200 6352
+INFO 2026-05-08 14:53:13,003 basehttp "GET /static/store/css/responsive.css HTTP/1.1" 200 6987
+INFO 2026-05-08 14:53:13,010 basehttp "GET /static/store/images/logo.png HTTP/1.1" 200 531958
+WARNING 2026-05-08 14:53:13,034 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-08 14:53:13,035 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11953
+INFO 2026-05-08 14:53:18,867 basehttp "POST /login/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:18,908 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:53:25,480 views AddToCart | user_id=1 | product_id=7
+INFO 2026-05-08 14:53:25,512 basehttp "POST /add-to-cart/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:25,523 views Cart view | user_if=1
+INFO 2026-05-08 14:53:25,543 basehttp "GET /cart/ HTTP/1.1" 200 15099
+INFO 2026-05-08 14:53:25,565 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 200 4858
+INFO 2026-05-08 14:53:35,697 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:53:39,418 basehttp "GET /toggle-wishlist-ajax/7/ HTTP/1.1" 200 21
+INFO 2026-05-08 14:53:40,510 basehttp "GET /toggle-wishlist-ajax/6/ HTTP/1.1" 200 21
+INFO 2026-05-08 14:53:41,274 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 19
+INFO 2026-05-08 14:53:42,297 basehttp "GET /toggle-wishlist-ajax/9/ HTTP/1.1" 200 19
+INFO 2026-05-08 14:53:43,679 views Wishlist page viewed | user_id=1
+INFO 2026-05-08 14:53:43,704 basehttp "GET /wishlist/ HTTP/1.1" 200 16112
+INFO 2026-05-08 14:53:47,395 views AddToCart | user_id=1 | product_id=8
+INFO 2026-05-08 14:53:47,441 basehttp "POST /add-to-cart/8/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:47,474 views Cart view | user_if=1
+INFO 2026-05-08 14:53:47,501 basehttp "GET /cart/ HTTP/1.1" 200 16487
+INFO 2026-05-08 14:53:52,352 views Remove from cart | user_id=1 | product_id=7
+INFO 2026-05-08 14:53:52,362 basehttp "GET /decrease/7/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:52,371 views Cart view | user_if=1
+INFO 2026-05-08 14:53:52,400 basehttp "GET /cart/ HTTP/1.1" 200 15100
+INFO 2026-05-08 14:53:53,089 views Remove from cart | user_id=1 | product_id=8
+INFO 2026-05-08 14:53:53,096 basehttp "GET /decrease/8/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:53:53,107 views Cart view | user_if=1
+INFO 2026-05-08 14:53:53,119 basehttp "GET /cart/ HTTP/1.1" 200 12491
+INFO 2026-05-08 14:54:01,473 basehttp "GET / HTTP/1.1" 200 30075
+INFO 2026-05-08 14:54:09,319 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 21
+INFO 2026-05-08 14:54:10,421 basehttp "GET /toggle-wishlist-ajax/9/ HTTP/1.1" 200 21
+INFO 2026-05-08 14:54:12,536 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 14:54:12,547 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:54:12,555 views Cart view | user_if=1
+INFO 2026-05-08 14:54:12,562 basehttp "GET /cart/ HTTP/1.1" 200 14969
+INFO 2026-05-08 14:54:14,975 basehttp "GET / HTTP/1.1" 200 30071
+INFO 2026-05-08 14:54:40,383 basehttp "GET / HTTP/1.1" 200 30071
+INFO 2026-05-08 14:54:40,410 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-08 14:54:40,411 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 2405
+INFO 2026-05-08 14:54:40,413 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-08 14:54:40,413 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 200 1998
+INFO 2026-05-08 14:54:40,417 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4251
+INFO 2026-05-08 14:54:40,425 basehttp "GET /media/products/images_2_gQQM0l7.jpg HTTP/1.1" 200 14032
+INFO 2026-05-08 14:54:40,429 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-08 14:54:40,441 basehttp "GET /media/products/WhatsAppImage2023-09-22at3_sdbGEcI.11.48PM_1_580x.jpg HTTP/1.1" 200 60959
+INFO 2026-05-08 14:54:40,452 basehttp "GET /media/products/images_7_qFtHDZl.jpg HTTP/1.1" 200 16227
+INFO 2026-05-08 14:54:40,455 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-08 14:54:40,503 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
+INFO 2026-05-08 14:54:40,506 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-08 14:54:40,508 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_09_03_48_PM.png HTTP/1.1" 200 2349593
+INFO 2026-05-08 14:54:40,513 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
+INFO 2026-05-08 14:54:45,743 views AddToCart | user_id=1 | product_id=9
+INFO 2026-05-08 14:54:45,777 basehttp "POST /add-to-cart/9/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:54:45,788 views Cart view | user_if=1
+INFO 2026-05-08 14:54:45,814 basehttp "GET /cart/ HTTP/1.1" 200 16448
+INFO 2026-05-08 14:54:45,840 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 200 4858
+INFO 2026-05-08 14:54:47,259 views Cart view | user_if=1
+INFO 2026-05-08 14:54:47,285 basehttp "GET /cart/ HTTP/1.1" 200 16448
+INFO 2026-05-08 14:54:49,647 views Remove from cart | user_id=1 | product_id=6
+INFO 2026-05-08 14:54:49,663 basehttp "GET /decrease/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:54:49,675 views Cart view | user_if=1
+INFO 2026-05-08 14:54:49,685 basehttp "GET /cart/ HTTP/1.1" 200 15095
+INFO 2026-05-08 14:54:50,118 views Remove from cart | user_id=1 | product_id=9
+INFO 2026-05-08 14:54:50,126 basehttp "GET /decrease/9/ HTTP/1.1" 302 0
+INFO 2026-05-08 14:54:50,138 views Cart view | user_if=1
+INFO 2026-05-08 14:54:50,145 basehttp "GET /cart/ HTTP/1.1" 200 12491

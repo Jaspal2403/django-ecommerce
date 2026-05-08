@@ -81,6 +81,47 @@
   display:block;
 }
 
+/* =================================
+ CART ANIMATION
+================================= */
+
+.flying-product {
+ position: fixed;
+ z-index: 99999;
+ pointer-events: none;
+ border-radius: 16px;
+ overflow: hidden;
+ transition:
+ transform .9s cubic-bezier(.22,.61,.36,1),
+ opacity .9s ease,
+ width .9s ease,
+ height .9s ease;
+ box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
+.cart-bounce {
+ animation: cartBounce .55s ease;
+}
+
+@keyframes cartBounce {
+
+ 0% {
+ transform: scale(1);
+ }
+
+ 35% {
+ transform: scale(1.18);
+ }
+
+ 60% {
+ transform: scale(.92);
+ }
+
+ 100% {
+ transform: scale(1);
+ }
+}
+
 /* Tablet */
 @media(max-width:991px){
 

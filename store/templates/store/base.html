@@ -165,8 +165,10 @@
 
                 <!-- Cart -->
                 <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                    <a href="{% url 'store:cart' %}" class="cart-link">
-                        🛒 Cart ({{ cart_count }})
+                    <a href="{% url 'store:cart' %}"
+                    class="cart-link"
+                    id="cartIcon">
+                    🛒 Cart ({{ cart_count }})
                     </a>
                 </li>
 
@@ -312,6 +314,84 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+
+
+/* ===============================
+ MOVE TO CART ANIMATION
+=============================== */
+
+const cartIcon = document.getElementById("cartIcon");
+
+function animateToCart(button) {
+
+    const card = button.closest(".card");
+
+    if (!card) return;
+
+    const productImage = card.querySelector("img");
+
+    if (!productImage || !cartIcon) return;
+
+    const imageRect = productImage.getBoundingClientRect();
+    const cartRect = cartIcon.getBoundingClientRect();
+
+    const flyingImage = productImage.cloneNode(true);
+
+    flyingImage.classList.add("flying-product");
+
+    flyingImage.style.top = imageRect.top + "px";
+    flyingImage.style.left = imageRect.left + "px";
+    flyingImage.style.width = imageRect.width + "px";
+    flyingImage.style.height = imageRect.height + "px";
+
+    document.body.appendChild(flyingImage);
+
+    requestAnimationFrame(() => {
+
+        flyingImage.style.transform = `
+            translate(
+                ${cartRect.left - imageRect.left}px,
+                ${cartRect.top - imageRect.top}px
+            ) scale(0.18)
+        `;
+
+        flyingImage.style.opacity = "0.3";
+
+    });
+
+    setTimeout(() => {
+
+        flyingImage.remove();
+
+        cartIcon.classList.add("cart-bounce");
+
+        setTimeout(() => {
+            cartIcon.classList.remove("cart-bounce");
+        }, 600);
+
+    }, 900);
+}
+
+/* Trigger Animation + Delayed Submit */
+document.querySelectorAll(".add-cart-form").forEach(form => {
+
+    form.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const button = form.querySelector(".add-cart-btn");
+
+        animateToCart(button);
+
+        setTimeout(() => {
+
+            form.submit();
+
+        }, 850);
+
+    });
+
+});
 
 });
 
