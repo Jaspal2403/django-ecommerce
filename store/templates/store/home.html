@@ -212,8 +212,6 @@
                 {% for product in products|slice:":8" %}
                 <div class="col-xl-3 col-md-4 col-sm-6">
 
-
-
                     <div class="card home-product-card wishlist-card h-100"> <!-- css from wishlist.css in base.html -->
 
                         <div class="wishlist-remove"> <!-- css from wishlist.css in base.html -->
@@ -230,7 +228,7 @@
                             <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                             {% endif %}
                         </a>
-                        
+
                         <!-- Body -->
                         <div class="card-body text-center d-flex flex-column">
 
@@ -248,18 +246,11 @@
                                     </button>
                                 </form>
                             </div>
-
                         </div>
-
                     </div>
-
-
-
                 </div>
                 {% endfor %}
-
             </div>
-
         </div>
 
         <!-- Best Sellers -->

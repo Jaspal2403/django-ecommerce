@@ -2329,3 +2329,42 @@ INFO 2026-05-07 19:00:23,775 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr
 INFO 2026-05-07 19:00:23,776 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 200 2295775
 INFO 2026-05-07 19:00:23,781 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 200 2360953
 INFO 2026-05-07 19:00:23,783 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM.png HTTP/1.1" 200 2495273
+INFO 2026-05-08 10:44:27,995 autoreload Watching for file changes with StatReloader
+INFO 2026-05-08 10:44:34,031 basehttp "GET / HTTP/1.1" 200 28019
+INFO 2026-05-08 10:44:34,117 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 304 0
+INFO 2026-05-08 10:44:34,146 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_09_03_48_PM_kDcdw6F.png HTTP/1.1" 304 0
+INFO 2026-05-08 10:44:34,161 basehttp "GET /media/products/ChatGPT_Image_Apr_24_2026_08_52_42_PM_mHNjwkb.png HTTP/1.1" 304 0
+INFO 2026-05-08 10:44:34,169 basehttp "GET /media/products/WhatsAppImage2023-09-22at3_sdbGEcI.11.48PM_1_580x.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 10:44:34,178 basehttp "GET /media/products/images_7_qFtHDZl.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 10:44:34,200 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 4251
+WARNING 2026-05-08 10:44:34,632 log Not Found: /favicon.ico
+WARNING 2026-05-08 10:44:34,633 basehttp "GET /favicon.ico HTTP/1.1" 404 11842
+INFO 2026-05-08 10:45:27,468 basehttp "GET /toggle-wishlist-ajax/9/ HTTP/1.1" 200 19
+INFO 2026-05-08 10:45:27,963 basehttp "GET /toggle-wishlist-ajax/9/ HTTP/1.1" 200 21
+INFO 2026-05-08 10:45:29,346 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 19
+INFO 2026-05-08 10:45:29,663 basehttp "GET /toggle-wishlist-ajax/8/ HTTP/1.1" 200 21
+INFO 2026-05-08 10:45:30,659 basehttp "GET /toggle-wishlist-ajax/7/ HTTP/1.1" 200 21
+INFO 2026-05-08 10:46:36,455 basehttp "GET / HTTP/1.1" 200 28132
+INFO 2026-05-08 10:46:47,050 views AddToCart | user_id=1 | product_id=6
+INFO 2026-05-08 10:46:47,067 basehttp "POST /add-to-cart/6/ HTTP/1.1" 302 0
+INFO 2026-05-08 10:46:47,076 views Cart view | user_if=1
+INFO 2026-05-08 10:46:47,095 basehttp "GET /cart/ HTTP/1.1" 200 13218
+INFO 2026-05-08 10:46:47,117 basehttp "GET /static/store/css/pages/cart.css HTTP/1.1" 304 0
+INFO 2026-05-08 10:46:56,853 basehttp "GET /product/6/ HTTP/1.1" 200 18962
+INFO 2026-05-08 10:46:56,880 basehttp "GET /media/products/images_3_PT60IRn.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 10:46:56,882 basehttp "GET /media/products/images_9_UdhEtp2.jpg HTTP/1.1" 304 0
+INFO 2026-05-08 10:47:00,527 basehttp "GET /product/6/ HTTP/1.1" 200 18962
+INFO 2026-05-08 10:47:28,701 basehttp "GET / HTTP/1.1" 200 28267
+INFO 2026-05-08 10:47:45,529 basehttp "GET /product/6/ HTTP/1.1" 200 18962
+INFO 2026-05-08 10:50:50,184 basehttp "GET / HTTP/1.1" 200 27902
+INFO 2026-05-08 10:51:17,940 basehttp "GET / HTTP/1.1" 200 28027
+INFO 2026-05-08 10:51:21,840 basehttp "GET / HTTP/1.1" 200 28027
+INFO 2026-05-08 10:51:36,157 basehttp "GET / HTTP/1.1" 200 27997
+INFO 2026-05-08 11:01:43,800 autoreload Watching for file changes with StatReloader
+INFO 2026-05-08 11:01:45,530 basehttp "GET / HTTP/1.1" 200 27856
+WARNING 2026-05-08 11:01:45,565 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-08 11:01:45,567 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11953
+INFO 2026-05-08 11:01:56,648 basehttp "GET /toggle-wishlist-ajax/7/ HTTP/1.1" 200 19
+INFO 2026-05-08 11:01:57,533 basehttp "GET /toggle-wishlist-ajax/6/ HTTP/1.1" 200 19
+INFO 2026-05-08 11:01:59,493 views Wishlist page viewed | user_id=1
+INFO 2026-05-08 11:01:59,509 basehttp "GET /wishlist/ HTTP/1.1" 200 14208
