@@ -17,6 +17,12 @@ class Category(models.Model):
         related_name='subcategories'
     )
 
+    image = models.ImageField(
+        upload_to='categories/',
+        blank=True,
+        null=True
+    )
+
     def __str__(self):
         if self.parent:
             return f"{self.parent.name} → {self.name}"

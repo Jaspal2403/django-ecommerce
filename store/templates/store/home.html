@@ -25,10 +25,10 @@
         </div>
 
         <!-- Slides -->
-        <div class="carousel-inner rounded shadow-sm">
+        <div class="carousel-inner premium-hero-wrapper">
 
             {% for banner in hero_banners %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="carousel-item hero-slide {% if forloop.first %}active{% endif %}">
 
                 {% if banner.image %}
                 <img src="{{ banner.image.url }}" class="d-block w-100 hero-banner-img" alt="{{ banner.title }}">
@@ -36,22 +36,31 @@
                 <img src="https://via.placeholder.com/1400x540" class="d-block w-100 hero-banner-img" alt="Banner">
                 {% endif %}
 
-                <div class="carousel-caption text-start premium-caption">
+                <div class="hero-overlay"></div>
 
-                    <h2>{{ banner.title }}</h2>
+                <div class="carousel-caption premium-caption">
+
+                    <span class="hero-subtitle">
+                        HANDCRAFTED COLLECTION
+                    </span>
+
+                    <h1>
+                        {{ banner.title }}
+                    </h1>
 
                     <p>
-                        {{ banner.subtitle|default:"Best Deals Available Now" }}
+                        {{ banner.subtitle|default:"Timeless handcrafted pieces inspired by tradition and designed for
+                        modern living." }}
                     </p>
 
                     {% if banner.linked_product %}
-                    <a href="{% url 'store:product_detail' banner.linked_product.id %}" class="btn btn-warning">
-                        {{ banner.button_text|default:"Shop Now" }}
+                    <a href="{% url 'store:product_detail' banner.linked_product.id %}" class="hero-btn">
+                        {{ banner.button_text|default:"Explore Collection" }}
                     </a>
 
                     {% elif banner.custom_link %}
-                    <a href="{{ banner.custom_link }}" class="btn btn-warning">
-                        {{ banner.button_text|default:"Shop Now" }}
+                    <a href="{{ banner.custom_link }}" class="hero-btn">
+                        {{ banner.button_text|default:"Explore Collection" }}
                     </a>
                     {% endif %}
 
@@ -104,108 +113,155 @@
 
 </div>
 
-<!-- ================= COUNTERS ================= -->
-<div class="row text-center mb-5">
+<!-- ================= SHOP BY CATEGORY ================= -->
 
-    <div class="col-md-4 mb-4">
-        <h2 class="counter">10K+</h2>
-        <p>Happy Customers</p>
+<section class="shop-category-section">
+
+    <div class="section-intro text-center">
+
+        <span class="section-subtitle">
+            Shop By Category
+        </span>
+
+        <h2 class="section-title">
+            Discover Our Collections
+        </h2>
+
     </div>
 
-    <div class="col-md-4 mb-4">
-        <h2 class="counter">500+</h2>
-        <p>Products Sold</p>
+    <!-- <div class="category-slider-wrapper">-->
+    <div class="{% if parent_categories|length > 6 %}category-scroll-container{% endif %}">
+        <div class="category-slider-wrapper {% if parent_categories|length > 6 %}scrollable-categories{% endif %}">
+
+            {% for parent in parent_categories %}
+
+            <a href="{% url 'store:search_products' %}?category={{ parent.id }}" class="category-item">
+
+                <div class="category-image">
+
+                    {% if parent.image %}
+                    <img src="{{ parent.image.url }}" alt="{{ parent.name }}">
+                    {% else %}
+                    <img src="{% static 'store/images/category-placeholder.jpg' %}" alt="{{ parent.name }}">
+                    {% endif %}
+
+                </div>
+
+                <h5>{{ parent.name }}</h5>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
     </div>
 
-    <div class="col-md-4 mb-4">
-        <h2 class="counter">99%</h2>
-        <p>Positive Reviews</p>
+</section>
+
+<!-- ================= CURATED COLLECTIONS ================= -->
+
+<section class="collection-section">
+
+    <div class="section-intro text-center">
+        <span class="section-subtitle">Curated Collections</span>
+
+        <h2 class="section-title">
+            Crafted For Elegant Living
+        </h2>
+
+        <p class="section-description">
+            Discover handcrafted pieces designed to bring warmth,
+            artistry, and timeless beauty into your everyday lifestyle.
+        </p>
     </div>
 
-</div>
+    <div class="row g-4">
 
-<!-- ================= TESTIMONIAL ================= -->
-<div class="mb-5">
-    <div class="testimonial-box">
-        “Absolutely beautiful handcrafted collection. Fast delivery and premium packaging.”
-        <strong>- Verified Customer</strong>
-    </div>
-</div>
+        <!-- Collection 1 -->
+        <div class="col-lg-6">
 
-<!-- ================= FLASH SALE ================= -->
-<div class="mb-5">
+            <div class="collection-card large-card">
 
-    <div class="flash-sale-card">
+                <img src="{% static 'store/images/Bangles/collection-1.jpg' %}" alt="Collection">
 
-        <div class="row align-items-center">
+                <div class="collection-overlay">
+                    <span>Festive Edit</span>
+                    <h3>Handcrafted Jewellery</h3>
 
-            <div class="col-md-8">
-                <h3 class="mb-2">⚡ Flash Sale</h3>
-                <p class="mb-0">Hurry! Limited time deals ending in:</p>
+                    <a href="#" class="btn collection-btn">
+                        Explore Collection
+                    </a>
+                </div>
+
             </div>
 
-            <div class="col-md-4 text-md-end">
-                <h2 id="flashTimer" class="mb-0">02:00:00</h2>
+        </div>
+
+        <!-- Collection 2 -->
+        <div class="col-lg-6">
+
+            <div class="row g-4">
+
+                <div class="col-12">
+
+                    <div class="collection-card small-card">
+
+                        <img src="{% static 'store/images/Necklace/collection-2.jpg' %}" alt="Collection">
+
+                        <div class="collection-overlay">
+                            <span>Modern Ethnic</span>
+                            <h3>Artisan Accessories</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-12">
+
+                    <div class="collection-card small-card">
+
+                        <img src="{% static 'store/images/Necklace/collection-3.jpg' %}" alt="Collection">
+
+                        <div class="collection-overlay">
+                            <span>Traditional Beauty</span>
+                            <h3>Made With Love</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
+</section>
 
 <!-- ================= MAIN SECTION ================= -->
 <div class="row">
 
-    <!-- Filters -->
-    <div class="col-lg-3 mb-4">
-
-        <div class="card filter-card">
-
-            <h5 class="mb-3">Filters</h5>
-
-            <form method="GET" action="{% url 'store:search_products' %}">
-
-                <label class="fw-bold mb-2">Category</label>
-                <select name="category" class="form-select mb-3">
-                    <option value="all">All Categories</option>
-                    {% for parent in parent_categories %}
-                    <option value="{{ parent.id }}">{{ parent.name }}</option>
-                    {% endfor %}
-                </select>
-
-                <label class="fw-bold mb-2">Price Range</label>
-                <select name="price" class="form-select mb-3">
-                    <option value="">Select</option>
-                    <option value="under_500">Under ₹500</option>
-                    <option value="500_2000">₹500 - ₹2000</option>
-                    <option value="above_2000">Above ₹2000</option>
-                </select>
-
-                <label class="fw-bold mb-2">Sort</label>
-                <select name="sort" class="form-select mb-3">
-                    <option value="">Newest</option>
-                    <option value="low">Low to High</option>
-                    <option value="high">High to Low</option>
-                </select>
-
-                <button class="btn btn-dark w-100">
-                    Apply Filters
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
     <!-- Products -->
-    <div class="col-lg-9">
+    <div class="col-12">
 
         <!-- New Arrivals -->
         <div class="mb-5">
 
             <!-- <h4 class="home-heading">New Arrivals</h4> -->
+
+            <div class="section-intro mb-4">
+
+                <span class="section-subtitle">
+                    New Arrivals
+                </span>
+
+                <h2 class="section-title">
+                    Handpicked For You
+                </h2>
+
+            </div>
 
             <div class="row g-4">
 
@@ -239,15 +295,14 @@
                             </p>
 
                             <div class="mt-auto">
-                                <form method="POST"
-                                    action="{% url 'store:add_to_cart' product.id %}"
+                                <form method="POST" action="{% url 'store:add_to_cart' product.id %}"
                                     class="add-cart-form">
 
-                                {% csrf_token %}
+                                    {% csrf_token %}
 
-                                <button class="btn btn-warning btn-sm w-100 add-cart-btn">
-                                Add to Cart
-                                </button>
+                                    <button class="btn btn-warning btn-sm w-100 add-cart-btn">
+                                        Add to Cart
+                                    </button>
 
                                 </form>
                             </div>
@@ -261,7 +316,17 @@
         <!-- Best Sellers -->
         <div class="mb-5">
 
-            <h4 class="home-heading">Best Sellers</h4>
+            <div class="section-intro mb-4">
+
+                <span class="section-subtitle">
+                    Best Sellers
+                </span>
+
+                <h2 class="section-title">
+                    Customer Favorites
+                </h2>
+
+            </div>
 
             <div class="row g-4">
 
@@ -299,6 +364,58 @@
 
     </div>
 </div>
+
+<!-- ================= BRAND STORY ================= -->
+
+<section class="brand-story-section">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-lg-6">
+
+            <div class="story-image-wrapper">
+
+                <img src="{% static 'store/images/Necklace/story-banner.jpg' %}" alt="Brand Story" class="img-fluid">
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="story-content">
+
+                <span class="section-subtitle">
+                    Our Story
+                </span>
+
+                <h2 class="section-title">
+                    Crafted By Tradition,
+                    Designed For Modern Homes
+                </h2>
+
+                <p>
+                    Every handcrafted piece reflects artistry,
+                    culture, and timeless craftsmanship inspired
+                    by modern living and Indian heritage.
+                </p>
+
+                <p>
+                    We believe beautiful spaces should feel personal,
+                    warm, and filled with stories worth sharing.
+                </p>
+
+                <a href="#" class="btn story-btn">
+                    Explore More
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <!-- ================= NEWSLETTER ================= -->
 <div class="newsletter-box text-center">
@@ -338,7 +455,7 @@
 
     });
 
-    let time = 7200;
+    /*let time = 7200;
 
     function updateTimer() {
 
@@ -356,7 +473,7 @@
     }
 
     setInterval(updateTimer, 1000);
-    updateTimer();
+    updateTimer();*/
 </script>
 
 {% endblock %}

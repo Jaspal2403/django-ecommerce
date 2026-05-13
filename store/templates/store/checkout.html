@@ -54,63 +54,137 @@
                 <!-- ADDRESS -->
                 <div class="checkout-card mt-4">
 
-                    <h5 class="mb-3">Delivery Address</h5>
+                    <div class="delivery-header">
 
-                    <!-- ================= SAVED ADDRESSES ================= -->
-                    <div id="existing-addresses">
+                        <!-- <div>
+                            <h5 class="mb-1">Delivery Address</h5>
+                            <small class="text-muted">
+                                Select your preferred delivery location
+                            </small>
+                        </div> -->
 
-                        {% for address in addresses %}
-                        <div class="address-card">
+                        <!-- <button type="button"
+                                class="change-address-btn"
+                                id="toggleAddressBook">
+                            Change
+                        </button> -->
 
-                            <label class="address-content">
+                    </div>
 
-                                <input type="radio" 
-                                    name="address_id" 
-                                    value="{{ address.id }}" 
-                                    class="address-radio" 
-                                    {% if forloop.first %}checked{% endif %}>
+                    <!-- =========================
+                    SELECTED ADDRESS VIEW
+                    ========================== -->
+                    <div class="selected-address-card" id="selectedAddressCard">
 
-                                <div class="address-text">
-                                    <strong>{{ address.name }}</strong><br>
-                                    {{ address.address }}<br>
-                                    {{ address.city }} - {{ address.pincode }}<br>
-                                    <small>{{ address.phone }}</small>
+                        {% if addresses %}
+
+                        {% with default_address=addresses.first %}
+
+                        <div class="selected-address-name">
+                            Delivering to {{ default_address.name }}
+
+                            <button type="button" class="change-address-btn" id="toggleAddressBook">
+                                Change
+                            </button>
+
+                        </div>
+
+                        <div class="selected-address-text">
+                            {{ default_address.address }}
+                        </div>
+
+                        <div class="selected-address-meta">
+                            {{ default_address.city }}
+                            -
+                            {{ default_address.pincode }}
+                        </div>
+
+                        <div class="selected-address-phone">
+                            Phone: {{ default_address.phone }}
+                        </div>
+
+                        {% endwith %}
+
+                        {% else %}
+
+                        <div class="text-danger">
+                            No saved addresses found.
+                        </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+                    <!-- Hidden Selected Address -->
+                    {% if addresses %}
+                    <input type="hidden" name="address_id" id="selectedAddressInput" value="{{ addresses.first.id }}">
+                    {% endif %}
+
+                    <!-- =========================
+                    ADDRESS BOOK PANEL
+                    ========================== -->
+                    <div class="address-selection-panel" id="addressSelectionPanel">
+
+                        <h6 class="mb-4 fw-bold">
+                            Select a Delivery Address
+                        </h6>
+
+                        <!-- Address List -->
+                        <div class="address-selection-list">
+
+                            {% for address in addresses %}
+
+                            <label class="amazon-address-card">
+
+                                <input type="radio" name="address_select" value="{{ address.id }}"
+                                    class="amazon-address-radio" {% if forloop.first %}checked{% endif %}>
+
+                                <div class="amazon-address-content">
+
+                                    <div class="amazon-address-name">
+                                        {{ address.name }}
+                                    </div>
+
+                                    <div class="amazon-address-text">
+                                        {{ address.address }}
+                                    </div>
+
+                                    <div class="amazon-address-meta">
+                                        {{ address.city }}
+                                        -
+                                        {{ address.pincode }}
+                                    </div>
+
+                                    <div class="amazon-address-phone">
+                                        {{ address.phone }}
+                                    </div>
+
                                 </div>
 
                             </label>
 
-                            <button type="button" class="delete-address-btn" data-id="{{ address.id }}">
-                                ✕
+                            {% endfor %}
+
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="address-selection-actions">
+
+                            <button type="button" class="btn btn-warning" id="deliverHereBtn">
+
+                                Deliver to this Address
+
+                            </button>
+
+                            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                data-bs-target="#newAddressModal">
+
+                                + Add New Address
+
                             </button>
 
                         </div>
-                        {% endfor %}
-
-                    </div>
-
-                    <!-- ================= ADD NEW OPTION ================= -->
-                    <div class="address-card add-new-option mt-2">
-
-                        <label class="address-content">
-
-                            <input type="radio" name="address_id" value="" id="add-new-radio">
-
-                            <div class="add-new-address">
-                                <strong>Add New Address</strong>
-                            </div>
-
-                        </label>
-
-                    </div>
-
-                    <!-- ================= NEW ADDRESS FORM ================= -->
-                    <div id="new-address-form" class="mt-3" style="display:none;">
-
-                        <input type="text" name="name" placeholder="Full Name" class="form-control mb-2">
-                        <textarea name="address" placeholder="Full Address" class="form-control mb-2"></textarea>
-                        <input type="text" name="city" placeholder="City" class="form-control mb-2">
-                        <input type="text" name="pincode" placeholder="Pincode" class="form-control mb-2">
-                        <input type="text" name="phone" placeholder="Phone Number" class="form-control mb-2">
 
                     </div>
 
@@ -158,66 +232,354 @@
 
 </div>
 
+<!-- =========================
+ ADD NEW ADDRESS MODAL
+========================= -->
+
+<div class="modal fade" id="newAddressModal" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content address-modal-content">
+
+            <!-- Header -->
+            <div class="modal-header border-0 pb-0">
+
+                <h4 class="modal-title fw-bold">
+                    Add New Address
+                </h4>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body pt-3">
+
+                <form id="newAddressForm">
+
+                    {% csrf_token %}
+
+                    <div class="row">
+
+                        <!-- Name -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-bold">
+                                Full Name
+                            </label>
+
+                            <input type="text" name="name" class="form-control" required>
+
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-bold">
+                                Phone Number
+                            </label>
+
+                            <input type="text" name="phone" class="form-control" required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Address -->
+                    <div class="mb-3">
+
+                        <label class="form-label fw-bold">
+                            Full Address
+                        </label>
+
+                        <textarea name="address" rows="4" class="form-control" required></textarea>
+
+                    </div>
+
+                    <div class="row">
+
+                        <!-- City -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-bold">
+                                City
+                            </label>
+
+                            <input type="text" name="city" class="form-control" required>
+
+                        </div>
+
+                        <!-- Pincode -->
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label fw-bold">
+                                Pincode
+                            </label>
+
+                            <input type="text" name="pincode" class="form-control" required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="modal-footer border-0 px-0 pb-0">
+
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+
+                            Cancel
+
+                        </button>
+
+                        <button type="submit" class="btn btn-warning px-4">
+
+                            Save Address
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- ================= SCRIPT ================= -->
 <script>
+
     document.addEventListener("DOMContentLoaded", function () {
 
-        const radios = document.querySelectorAll("input[name='address_id']");
-        const newForm = document.getElementById("new-address-form");
+        const toggleBtn =
+            document.getElementById("toggleAddressBook");
 
-        function toggleForm() {
-            let selected = document.querySelector("input[name='address_id']:checked");
+        const panel =
+            document.getElementById("addressSelectionPanel");
 
-            if (selected && selected.value === "") {
-                newForm.style.display = "block";
+        const deliverBtn =
+            document.getElementById("deliverHereBtn");
+
+        const selectedInput =
+            document.getElementById("selectedAddressInput");
+
+        const selectedCard =
+            document.getElementById("selectedAddressCard");
+
+        const radios =
+            document.querySelectorAll(".amazon-address-radio");
+
+        // =========================
+        // TOGGLE PANEL
+        // =========================
+        toggleBtn.addEventListener("click", function () {
+
+            if (panel.style.display === "block") {
+
+                panel.style.display = "none";
+
             } else {
-                newForm.style.display = "none";
-            }
-        }
 
-        // Radio change
-        radios.forEach(r => {
-            r.addEventListener("change", toggleForm);
+                panel.style.display = "block";
+
+            }
+
         });
 
-        // Initial state
-        toggleForm();
+        // =========================
+        // ACTIVE CARD UI
+        // =========================
+        radios.forEach(radio => {
 
-        // ================= DELETE ADDRESS =================
-        document.querySelectorAll(".delete-address-btn").forEach(btn => {
+            radio.addEventListener("change", function () {
 
-            btn.addEventListener("click", function () {
-
-                if (!confirm("Are you sure you want to remove this address?")) return;
-
-                fetch(`/delete-address/${this.dataset.id}/`, {
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": "{{ csrf_token }}"
-                    }
-                })
-                    .then(r => r.json())
-                    .then(() => {
-
-                        const card = this.closest(".address-card");
-                        if (card) card.remove();
-
-                        // If no addresses left → auto select new
-                        const remaining = document.querySelectorAll(".address-radio");
-
-                        if (remaining.length === 0) {
-                            document.getElementById("add-new-radio").checked = true;
-                        }
-
-                        toggleForm();
+                document
+                    .querySelectorAll(".amazon-address-card")
+                    .forEach(card => {
+                        card.classList.remove("active");
                     });
+
+                this.closest(".amazon-address-card")
+                    .classList.add("active");
 
             });
 
+            // Initial Active
+            if (radio.checked) {
+
+                radio.closest(".amazon-address-card")
+                    .classList.add("active");
+
+            }
+
         });
 
+        // =========================
+        // DELIVER HERE
+        // =========================
+        deliverBtn.addEventListener("click", function () {
+
+            const selected =
+                document.querySelector(
+                    ".amazon-address-radio:checked"
+                );
+
+            if (!selected) return;
+
+            selectedInput.value = selected.value;
+
+            const card =
+                selected.closest(".amazon-address-card");
+
+            selectedCard.innerHTML =
+                card.querySelector(".amazon-address-content")
+                    .innerHTML;
+
+            panel.style.display = "none";
+
+        });
+
+        /* =========================
+            ADD ADDRESS AJAX
+            ========================= */
+
+        const addressForm =
+            document.getElementById("newAddressForm");
+
+        if (addressForm) {
+
+            addressForm.addEventListener(
+                "submit",
+                function (e) {
+
+                    e.preventDefault();
+
+                    const formData =
+                        new FormData(addressForm);
+
+                    fetch("/add-address-ajax/", {
+
+                        method: "POST",
+
+                        headers: {
+                            "X-CSRFToken":
+                                "{{ csrf_token }}"
+                        },
+
+                        body: formData
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+
+                            if (data.status === "success") {
+
+                                const address = data.address;
+
+                                // =========================
+                                // CREATE NEW CARD
+                                // =========================
+                                const newCard = `
+                            <label class="amazon-address-card active">
+
+                                <input type="radio"
+                                    name="address_select"
+                                    value="${address.id}"
+                                    class="amazon-address-radio"
+                                    checked>
+
+                                <div class="amazon-address-content">
+
+                                    <div class="amazon-address-name">
+                                        ${address.name}
+                                    </div>
+
+                                    <div class="amazon-address-text">
+                                        ${address.address}
+                                    </div>
+
+                                    <div class="amazon-address-meta">
+                                        ${address.city} - ${address.pincode}
+                                    </div>
+
+                                    <div class="amazon-address-phone">
+                                        ${address.phone}
+                                    </div>
+
+                                </div>
+
+                            </label>
+                            `;
+
+                                document
+                                    .querySelector(".address-selection-list")
+                                    .insertAdjacentHTML(
+                                        "afterbegin",
+                                        newCard
+                                    );
+
+                                // =========================
+                                // UPDATE SELECTED ADDRESS
+                                // =========================
+                                selectedInput.value = address.id;
+
+                                selectedCard.innerHTML = `
+                                <div class="selected-address-name">
+                                    ${address.name}
+                                </div>
+
+                                <div class="selected-address-text">
+                                    ${address.address}
+                                </div>
+
+                                <div class="selected-address-meta">
+                                    ${address.city} - ${address.pincode}
+                                </div>
+
+                                <div class="selected-address-phone">
+                                    Phone: ${address.phone}
+                                </div>
+                            `;
+
+                                // Remove old active
+                                document
+                                    .querySelectorAll(".amazon-address-card")
+                                    .forEach(card => {
+                                        card.classList.remove("active");
+                                    });
+
+                                // =========================
+                                // CLOSE MODAL
+                                // =========================
+                                const modal =
+                                    bootstrap.Modal.getInstance(
+                                        document.getElementById(
+                                            "newAddressModal"
+                                        )
+                                    );
+
+                                modal.hide();
+
+                                // Reset form
+                                addressForm.reset();
+
+                                // Close address panel
+                                panel.style.display = "none";
+
+                            }
+
+                        });
+
+                });
+
+        }
+
     });
+
 </script>
-
-
 {% endblock %}

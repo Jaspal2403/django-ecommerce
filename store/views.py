@@ -167,11 +167,7 @@ def product_detail(request, product_id):
 def subcategory_products(request, subcategory_id):
     logger.debug(f"Subcategory view | subcategory_id={subcategory_id} | user={request.user.id}")     #logs
 
-    subcategory = get_object_or_404(
-        Category,
-        id=subcategory_id,
-        parent__isnull=False
-    )
+    subcategory = get_object_or_404(Category, id=subcategory_id, parent__isnull=False)
 
     products = Product.objects.filter(category=subcategory)
 
@@ -432,6 +428,78 @@ def user_addresses(request):
 # =====================================================
 # PAYMENT OPTIONS
 # =====================================================
+
+@login_required
+def add_address_ajax(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get("name", "").strip()
+
+        address_text = request.POST.get(
+            "address", ""
+        ).strip()
+
+        city = request.POST.get(
+            "city", ""
+        ).strip()
+
+        pincode = request.POST.get(
+            "pincode", ""
+        ).strip()
+
+        phone = request.POST.get(
+            "phone", ""
+        ).strip()
+
+        if not all([
+            name,
+            address_text,
+            city,
+            pincode,
+            phone
+        ]):
+
+            return JsonResponse({
+                "status": "error",
+                "message": "All fields are required"
+            })
+
+        address = Address.objects.create(
+            user=request.user,
+            name=name,
+            address=address_text,
+            city=city,
+            pincode=pincode,
+            phone=phone
+        )
+
+        logger.info(
+            f"Checkout address added | user_id={request.user.id}"
+        )
+
+        return JsonResponse({
+
+            "status": "success",
+
+            "address": {
+
+                "id": address.id,
+                "name": address.name,
+                "address": address.address,
+                "city": address.city,
+                "pincode": address.pincode,
+                "phone": address.phone,
+
+            }
+
+        })
+
+    return JsonResponse({
+        "status": "error"
+    })
+
+
 
 @login_required
 def payment_options(request):

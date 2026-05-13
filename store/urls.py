@@ -17,6 +17,7 @@ urlpatterns = [
     # Products
     path("product/<int:product_id>/", views.product_detail, name="product_detail"),
     path("category/<int:subcategory_id>/", views.subcategory_products, name="subcategory_products"),
+    # path('category/<int:id>/', views.category_page, name='category_page'),
 
     # Wishlist
     path("toggle-wishlist/<int:product_id>/", views.toggle_wishlist, name="toggle_wishlist"),
@@ -36,6 +37,7 @@ urlpatterns = [
     path("orders/", views.order_history, name="order_history"),
     path("cancel-order/<int:order_id>/", views.cancel_order, name="cancel_order"),
     path('delete-address/<int:address_id>/', views.delete_address, name='delete_address'),
+    path("add-address-ajax/", views.add_address_ajax, name="add_address_ajax"),
 
     # Payments
     path("buy-now/<int:product_id>/", views.buy_now, name="buy_now"),
