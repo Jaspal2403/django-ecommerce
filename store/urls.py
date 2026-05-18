@@ -63,6 +63,7 @@ urlpatterns = [
     path("profile/", views.user_profile, name="user_profile"),
     path("addresses/", views.user_addresses, name="user_addresses"),
     path("payment-options/", views.payment_options, name="payment_options"),
+    
 ]
 
 

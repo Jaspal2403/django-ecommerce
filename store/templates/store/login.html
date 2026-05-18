@@ -9,15 +9,16 @@
 
 {% block content %}
 
-<div class="login-page">
+<!-- <div class="login-page"> -->
+<div>
 
   <div class="login-card">
 
-    <div class="text-center">
+    <!-- <div class="text-center">
       <img src="{% static 'store/images/logo.png' %}"
            alt="PreetCraft Studio"
            class="login-logo">
-    </div>
+    </div> -->
 
     <h2 class="login-title">Welcome Back</h2>
 
@@ -54,6 +55,12 @@
       <div class="mb-3">
         <label>Password</label>
         {{ form.password }}
+      </div>
+
+      <div class="text-end mt-2">
+          <a href="{% url 'password_reset' %}" class="forgot-link">
+              Forgot Password?
+          </a>
       </div>
 
       <button type="submit" class="login-btn">

@@ -229,6 +229,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Razorpay webhook
 RAZORPAY_WEBHOOK_SECRET = "preetcraft_webhook_secret_2026"
 
+# =========================================
+# EMAIL CONFIGURATION
+# =========================================
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# =========================================
+# RAZORPAY CREDENTIALS
+# =========================================
+
 # Razorpay credentials (TEST)
 RAZORPAY_KEY_ID = "rzp_test_SiWDlv4d8mie81"
 RAZORPAY_KEY_SECRET = "B4gjMraD2Dc1anrhnUaMUAXj"
