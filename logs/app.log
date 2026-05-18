@@ -9242,3 +9242,22 @@ INFO 2026-05-18 15:46:38,172 basehttp "GET /static/store/css/auth/password-reset
 INFO 2026-05-18 15:46:49,508 basehttp "GET /reset/MQ/d8s6hq-912c1e92cbd9038dd6e25e389b17379f/ HTTP/1.1" 302 0
 INFO 2026-05-18 15:46:49,527 basehttp "GET /reset/MQ/set-password/ HTTP/1.1" 200 16963
 INFO 2026-05-18 15:46:49,545 basehttp "GET /static/store/css/auth/password-reset.css HTTP/1.1" 304 0
+INFO 2026-05-18 15:55:29,473 autoreload Watching for file changes with StatReloader
+INFO 2026-05-18 15:56:53,757 basehttp "GET / HTTP/1.1" 200 36504
+INFO 2026-05-18 15:56:56,209 basehttp "GET /login/ HTTP/1.1" 200 4704
+INFO 2026-05-18 15:56:56,232 basehttp "GET /static/store/css/pages/auth.css HTTP/1.1" 304 0
+INFO 2026-05-18 15:56:57,754 basehttp "GET /password-reset/ HTTP/1.1" 200 3938
+INFO 2026-05-18 15:56:57,775 basehttp "GET /static/store/css/auth/password-reset.css HTTP/1.1" 304 0
+INFO 2026-05-18 15:57:11,855 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2026-05-18 15:57:11,872 basehttp "GET /password-reset/done/ HTTP/1.1" 200 3390
+INFO 2026-05-18 15:57:34,174 basehttp "GET /reset/MQ/d8s6z8-d8b1bca6bc20bf034c4921c14979be6e/ HTTP/1.1" 302 0
+INFO 2026-05-18 15:57:34,204 basehttp "GET /reset/MQ/set-password/ HTTP/1.1" 200 16963
+INFO 2026-05-18 15:57:45,817 basehttp "POST /reset/MQ/set-password/ HTTP/1.1" 302 0
+INFO 2026-05-18 15:57:45,831 basehttp "GET /reset/done/ HTTP/1.1" 200 3528
+INFO 2026-05-18 15:57:49,389 basehttp "GET /login/ HTTP/1.1" 200 4704
+INFO 2026-05-18 15:58:32,931 basehttp "GET /password-reset/ HTTP/1.1" 200 3938
+INFO 2026-05-18 15:58:32,952 basehttp "GET /static/store/css/auth/password-reset.css HTTP/1.1" 304 0
+INFO 2026-05-18 15:58:41,964 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2026-05-18 15:58:41,971 basehttp "GET /password-reset/done/ HTTP/1.1" 200 3390
+INFO 2026-05-18 16:01:06,315 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\ecommerce\settings.py changed, reloading.
+INFO 2026-05-18 16:01:15,442 autoreload Watching for file changes with StatReloader
