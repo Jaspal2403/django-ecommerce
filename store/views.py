@@ -105,6 +105,7 @@ def home(request):
         "products": products,
         "hero_banners": hero_banners,
         "parent_categories": ParentCategory.objects.all(),
+        "categories": Category.objects.filter(parent__isnull=False),
         "wishlist_ids": wishlist_ids,
     })
 
@@ -126,7 +127,7 @@ def search_products(request):
             Q(category__name__icontains=query)
         )
 
-    if category_id != "all":
+    if category_id and category_id != "all":
         products = products.filter(category_id=category_id)
 
     if price_range == "under_500":

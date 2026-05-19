@@ -49,8 +49,7 @@
                     </h1>
 
                     <p>
-                        {{ banner.subtitle|default:"Timeless handcrafted pieces inspired by tradition and designed for
-                        modern living." }}
+                        {{ banner.subtitle|default:"Timeless handcrafted pieces inspired by tradition and designed for modern living." }}
                     </p>
 
                     {% if banner.linked_product %}
@@ -130,24 +129,24 @@
     </div>
 
     <!-- <div class="category-slider-wrapper">-->
-    <div class="{% if parent_categories|length > 6 %}category-scroll-container{% endif %}">
-        <div class="category-slider-wrapper {% if parent_categories|length > 6 %}scrollable-categories{% endif %}">
+    <div class="{% if categories|length > 6 %}category-scroll-container{% endif %}">
+        <div class="category-slider-wrapper {% if categories|length > 6 %}scrollable-categories{% endif %}">
 
-            {% for parent in parent_categories %}
+            {% for category in categories %}
 
-            <a href="{% url 'store:search_products' %}?category={{ parent.id }}" class="category-item">
+            <a href="{% url 'store:search_products' %}?category={{ category.id }}" class="category-item">
 
                 <div class="category-image">
 
-                    {% if parent.image %}
-                    <img src="{{ parent.image.url }}" alt="{{ parent.name }}">
+                    {% if category.image %}
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
                     {% else %}
-                    <img src="{% static 'store/images/category-placeholder.jpg' %}" alt="{{ parent.name }}">
+                    <img src="{% static 'store/images/category-placeholder.jpg' %}" alt="{{ category.name }}">
                     {% endif %}
 
                 </div>
 
-                <h5>{{ parent.name }}</h5>
+                <h5>{{ category.name }}</h5>
 
             </a>
 

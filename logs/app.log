@@ -10509,3 +10509,309 @@ INFO 2026-05-19 15:55:09,324 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet U
 INFO 2026-05-19 15:55:12,171 autoreload Watching for file changes with StatReloader
 INFO 2026-05-19 15:55:26,474 basehttp "GET /admin/store/subcategory/add/ HTTP/1.1" 200 19158
 INFO 2026-05-19 15:55:26,502 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:20:15,970 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 16:20:16,785 basehttp "GET / HTTP/1.1" 200 23658
+INFO 2026-05-19 16:20:16,823 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM_Le5cbMd.png HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,825 basehttp "GET /media/categories/51PzezJpkuL_qSHO30i._AC_UY1100_.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,826 basehttp "GET /media/categories/collection-1.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,827 basehttp "GET /media/categories/il_fullxfull_McpRYVR.5199899877_3wzk.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,828 basehttp "GET /media/categories/images_1_6Ok9sK6.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,837 basehttp "GET /media/categories/81WQuZ76iqL._AC_UY1100_.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 16:20:16,837 basehttp "GET /media/categories/images_1_NFZ9qFp.jpg HTTP/1.1" 304 0
+WARNING 2026-05-19 16:20:16,842 basehttp "GET /static/store/images/category-placeholder.jpg HTTP/1.1" 404 1925
+WARNING 2026-05-19 16:20:16,983 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1847
+INFO 2026-05-19 16:20:44,544 basehttp "GET / HTTP/1.1" 200 23658
+WARNING 2026-05-19 16:20:44,661 basehttp "GET /static/store/images/category-placeholder.jpg HTTP/1.1" 404 1925
+INFO 2026-05-19 16:20:48,184 basehttp "GET /admin/ HTTP/1.1" 200 21978
+WARNING 2026-05-19 16:20:48,273 log Not Found: /favicon.ico
+WARNING 2026-05-19 16:20:48,275 basehttp "GET /favicon.ico HTTP/1.1" 404 12884
+INFO 2026-05-19 16:20:51,404 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 21526
+INFO 2026-05-19 16:20:51,456 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:20:55,200 basehttp "GET /admin/store/parentcategory/ HTTP/1.1" 200 20053
+INFO 2026-05-19 16:20:55,226 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:23:44,659 basehttp "POST /admin/store/parentcategory/ HTTP/1.1" 200 17832
+INFO 2026-05-19 16:23:46,134 basehttp "POST /admin/store/parentcategory/ HTTP/1.1" 302 0
+INFO 2026-05-19 16:23:46,162 basehttp "GET /admin/store/parentcategory/ HTTP/1.1" 200 17231
+INFO 2026-05-19 16:23:46,188 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:23:52,112 basehttp "GET /admin/store/parentcategory/add/ HTTP/1.1" 200 18880
+INFO 2026-05-19 16:23:52,138 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:24:17,568 basehttp "POST /admin/store/parentcategory/add/ HTTP/1.1" 302 0
+INFO 2026-05-19 16:24:17,601 basehttp "GET /admin/store/parentcategory/ HTTP/1.1" 200 18587
+INFO 2026-05-19 16:24:17,626 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:24:18,406 basehttp "GET /admin/store/parentcategory/add/ HTTP/1.1" 200 18919
+INFO 2026-05-19 16:24:18,433 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:24:45,006 basehttp "POST /admin/store/parentcategory/add/ HTTP/1.1" 302 0
+INFO 2026-05-19 16:24:45,027 basehttp "GET /admin/store/parentcategory/ HTTP/1.1" 200 18876
+INFO 2026-05-19 16:24:45,052 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:24:46,657 basehttp "GET / HTTP/1.1" 200 21896
+INFO 2026-05-19 16:24:46,801 basehttp "GET /media/categories/1.jpg HTTP/1.1" 200 9405
+INFO 2026-05-19 16:24:46,810 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b.jpeg HTTP/1.1" 200 94279
+INFO 2026-05-19 16:24:56,329 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 19570
+INFO 2026-05-19 16:24:56,354 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:25:11,075 basehttp "GET /admin/store/subcategory/add/ HTTP/1.1" 200 18924
+INFO 2026-05-19 16:25:11,104 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 16:25:17,059 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 19570
+INFO 2026-05-19 16:28:49,464 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-19 16:28:51,723 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 21:30:33,194 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 21:30:42,415 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 17797
+INFO 2026-05-19 21:30:43,096 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2026-05-19 21:30:43,102 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-05-19 21:30:43,107 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-05-19 21:30:43,111 basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2026-05-19 21:30:43,114 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2026-05-19 21:30:43,115 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2026-05-19 21:30:43,128 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2026-05-19 21:30:43,128 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-05-19 21:30:43,131 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-05-19 21:30:43,139 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-05-19 21:30:43,142 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-05-19 21:30:43,143 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-05-19 21:30:43,145 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-05-19 21:30:43,153 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-05-19 21:30:43,160 basehttp "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2026-05-19 21:30:43,176 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-05-19 21:30:43,197 basehttp "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-05-19 21:30:43,197 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:30:43,250 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2026-05-19 21:30:43,250 basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2026-05-19 21:30:43,255 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+WARNING 2026-05-19 21:30:43,285 log Not Found: /favicon.ico
+WARNING 2026-05-19 21:30:43,288 basehttp "GET /favicon.ico HTTP/1.1" 404 12884
+INFO 2026-05-19 21:30:57,137 basehttp "GET /admin/store/parentcategory/ HTTP/1.1" 200 18654
+INFO 2026-05-19 21:30:57,181 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:31:00,910 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 17797
+INFO 2026-05-19 21:31:00,974 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:31:03,170 basehttp "GET /admin/store/subcategory/add/ HTTP/1.1" 200 18924
+INFO 2026-05-19 21:31:03,244 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:31:24,079 basehttp "POST /admin/store/subcategory/add/ HTTP/1.1" 302 0
+INFO 2026-05-19 21:31:24,159 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 19569
+INFO 2026-05-19 21:31:24,220 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:31:29,255 basehttp "GET / HTTP/1.1" 200 22231
+INFO 2026-05-19 21:31:29,319 basehttp "GET /media/categories/1.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:31:29,319 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM_Le5cbMd.png HTTP/1.1" 304 0
+INFO 2026-05-19 21:31:29,324 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b.jpeg HTTP/1.1" 304 0
+INFO 2026-05-19 21:31:29,332 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 200 131847
+WARNING 2026-05-19 21:31:29,368 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1847
+INFO 2026-05-19 21:31:55,183 views Search | query= | category=8 | price= | sort=
+INFO 2026-05-19 21:31:55,236 basehttp "GET /search/?category=8 HTTP/1.1" 200 13436
+INFO 2026-05-19 21:31:55,282 basehttp "GET /static/store/css/pages/search.css HTTP/1.1" 200 1492
+INFO 2026-05-19 21:32:06,263 basehttp "GET /admin/store/product/ HTTP/1.1" 200 17812
+INFO 2026-05-19 21:32:06,316 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:32:08,538 basehttp "GET /admin/store/product/add/ HTTP/1.1" 200 25094
+INFO 2026-05-19 21:32:08,593 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:32:54,142 basehttp "POST /admin/store/product/add/ HTTP/1.1" 302 0
+INFO 2026-05-19 21:32:54,232 basehttp "GET /admin/store/product/ HTTP/1.1" 200 19925
+INFO 2026-05-19 21:32:54,286 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 200 14831
+INFO 2026-05-19 21:32:54,297 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:33:01,187 basehttp "GET / HTTP/1.1" 200 24193
+INFO 2026-05-19 21:33:01,255 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 4188
+INFO 2026-05-19 21:33:01,257 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-19 21:33:01,257 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 200 1998
+INFO 2026-05-19 21:33:01,258 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 14877
+INFO 2026-05-19 21:33:01,261 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-19 21:33:01,282 basehttp "GET /media/categories/1.jpg HTTP/1.1" 200 9405
+INFO 2026-05-19 21:33:01,284 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-19 21:33:01,291 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 200 131847
+INFO 2026-05-19 21:33:01,304 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b.jpeg HTTP/1.1" 200 94279
+INFO 2026-05-19 21:33:01,314 basehttp "GET /static/store/images/Bangles/collection-1.jpg HTTP/1.1" 200 131847
+INFO 2026-05-19 21:33:01,320 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-19 21:33:01,334 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 200 14831
+INFO 2026-05-19 21:33:01,343 basehttp "GET /static/store/images/Necklace/collection-2.jpg HTTP/1.1" 200 339806
+INFO 2026-05-19 21:33:01,351 basehttp "GET /static/store/images/Necklace/story-banner.jpg HTTP/1.1" 200 12499
+INFO 2026-05-19 21:33:01,361 basehttp "GET /static/store/images/Necklace/collection-3.jpg HTTP/1.1" 200 394341
+INFO 2026-05-19 21:33:01,391 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM_Le5cbMd.png HTTP/1.1" 200 2495273
+WARNING 2026-05-19 21:33:01,783 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1847
+INFO 2026-05-19 21:33:04,180 views Search | query= | category=8 | price= | sort=
+INFO 2026-05-19 21:33:04,213 basehttp "GET /search/?category=8 HTTP/1.1" 200 13436
+INFO 2026-05-19 21:33:08,068 views Search | query= | category=10 | price= | sort=
+INFO 2026-05-19 21:33:08,099 basehttp "GET /search/?category=10 HTTP/1.1" 200 14044
+INFO 2026-05-19 21:33:08,139 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:33:21,108 basehttp "GET /toggle-wishlist-ajax/1/ HTTP/1.1" 200 19
+INFO 2026-05-19 21:33:21,810 basehttp "GET /toggle-wishlist-ajax/1/ HTTP/1.1" 200 21
+INFO 2026-05-19 21:35:50,366 basehttp "GET / HTTP/1.1" 200 24137
+INFO 2026-05-19 21:35:50,410 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:35:50,410 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:39:15,788 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-19 21:39:19,028 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 21:40:54,245 basehttp "GET / HTTP/1.1" 200 23429
+WARNING 2026-05-19 21:40:54,293 basehttp "GET /static/store/images/category-placeholder.jpg HTTP/1.1" 404 1925
+INFO 2026-05-19 21:40:54,295 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:41:13,587 basehttp "GET / HTTP/1.1" 200 23429
+WARNING 2026-05-19 21:41:13,631 basehttp "GET /static/store/images/category-placeholder.jpg HTTP/1.1" 404 1925
+INFO 2026-05-19 21:41:30,487 basehttp "GET / HTTP/1.1" 200 23436
+WARNING 2026-05-19 21:41:30,534 basehttp "GET /static/store/images/category-placeholder.jpg HTTP/1.1" 404 1925
+INFO 2026-05-19 21:44:05,264 basehttp "GET / HTTP/1.1" 200 23440
+INFO 2026-05-19 21:44:05,914 basehttp "GET /static/store/css/pages/wishlist.css HTTP/1.1" 200 1998
+INFO 2026-05-19 21:44:05,917 basehttp "GET /static/store/css/core/navbar.css HTTP/1.1" 200 4188
+INFO 2026-05-19 21:44:05,932 basehttp "GET /static/store/css/pages/home.css HTTP/1.1" 200 14877
+INFO 2026-05-19 21:44:05,935 basehttp "GET /static/store/css/core/base.css HTTP/1.1" 200 2572
+INFO 2026-05-19 21:44:05,937 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 200 131847
+INFO 2026-05-19 21:44:05,938 basehttp "GET /static/store/css/core/footer.css HTTP/1.1" 200 1170
+INFO 2026-05-19 21:44:05,950 basehttp "GET /static/store/images/Bangles/collection-1.jpg HTTP/1.1" 200 131847
+INFO 2026-05-19 21:44:05,968 basehttp "GET /static/store/images/profile.jpg HTTP/1.1" 200 14023
+INFO 2026-05-19 21:44:05,979 basehttp "GET /static/store/images/Necklace/collection-2.jpg HTTP/1.1" 200 339806
+INFO 2026-05-19 21:44:05,981 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 200 14831
+INFO 2026-05-19 21:44:05,985 basehttp "GET /static/store/images/brandlogo1.png HTTP/1.1" 200 966262
+INFO 2026-05-19 21:44:05,986 basehttp "GET /static/store/images/Necklace/collection-3.jpg HTTP/1.1" 200 394341
+INFO 2026-05-19 21:44:05,990 basehttp "GET /static/store/images/Necklace/story-banner.jpg HTTP/1.1" 200 12499
+INFO 2026-05-19 21:44:06,018 basehttp "GET /media/hero_banners/ChatGPT_Image_Apr_24_2026_08_52_42_PM_Le5cbMd.png HTTP/1.1" 200 2495273
+WARNING 2026-05-19 21:44:06,199 basehttp "GET /static/favicon.ico HTTP/1.1" 404 1847
+INFO 2026-05-19 21:44:11,824 views Search | query= | category= | price= | sort=
+ERROR 2026-05-19 21:44:12,027 log Internal Server Error: /search/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2128, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 131, in search_products
+    products = products.filter(category_id=category_id)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1495, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1513, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1523, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1588, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1415, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\lookups.py", line 38, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 112, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2130, in get_prep_value
+    raise e.__class__(
+        "Field '%s' expected a number but got %r." % (self.name, value),
+    ) from e
+ValueError: Field 'id' expected a number but got ''.
+ERROR 2026-05-19 21:44:12,065 basehttp "GET /search/?category= HTTP/1.1" 500 134511
+WARNING 2026-05-19 21:44:12,208 log Not Found: /favicon.ico
+WARNING 2026-05-19 21:44:12,209 basehttp "GET /favicon.ico HTTP/1.1" 404 12884
+INFO 2026-05-19 21:44:38,805 views Search | query= | category= | price= | sort=
+ERROR 2026-05-19 21:44:38,928 log Internal Server Error: /search/
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2128, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: ''
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py", line 131, in search_products
+    products = products.filter(category_id=category_id)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1495, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1513, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\query.py", line 1523, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1588, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\sql\query.py", line 1415, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\lookups.py", line 38, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 112, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2130, in get_prep_value
+    raise e.__class__(
+        "Field '%s' expected a number but got %r." % (self.name, value),
+    ) from e
+ValueError: Field 'id' expected a number but got ''.
+ERROR 2026-05-19 21:44:38,946 basehttp "GET /search/?category= HTTP/1.1" 500 134360
+INFO 2026-05-19 21:46:54,947 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\views.py changed, reloading.
+INFO 2026-05-19 21:46:57,884 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 21:47:00,876 views Search | query= | category= | price= | sort=
+INFO 2026-05-19 21:47:01,037 basehttp "GET /search/?category= HTTP/1.1" 200 14044
+INFO 2026-05-19 21:47:01,087 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+WARNING 2026-05-19 21:47:11,799 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-19 21:47:11,802 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
+INFO 2026-05-19 21:47:16,311 basehttp "GET / HTTP/1.1" 200 23442
+INFO 2026-05-19 21:47:16,375 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 304 0
+WARNING 2026-05-19 21:47:16,395 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-19 21:47:16,398 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
+INFO 2026-05-19 21:47:20,344 views Search | query= | category=10 | price= | sort=
+INFO 2026-05-19 21:47:20,391 basehttp "GET /search/?category=10 HTTP/1.1" 200 14044
+WARNING 2026-05-19 21:47:20,455 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-19 21:47:20,457 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
+INFO 2026-05-19 21:47:45,390 basehttp "GET / HTTP/1.1" 200 23442
+INFO 2026-05-19 21:47:49,256 basehttp "GET /admin/store/product/add/ HTTP/1.1" 200 25094
+INFO 2026-05-19 21:47:49,301 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:47:54,948 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 19350
+INFO 2026-05-19 21:47:54,999 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:47:57,717 basehttp "GET /admin/store/subcategory/add/ HTTP/1.1" 200 18976
+INFO 2026-05-19 21:47:57,771 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:51:37,103 autoreload C:\Users\JaspalSingh\OneDrive - 1Rivet US, Inc\Jaspal Singh\2022_2025\Personal Document\My Learnings\Udemy Courses\Python\ECommerce\DjangoProjects\ecommerce\store\admin.py changed, reloading.
+INFO 2026-05-19 21:51:40,216 autoreload Watching for file changes with StatReloader
+INFO 2026-05-19 21:52:48,271 basehttp "GET /admin/store/subcategory/add/ HTTP/1.1" 200 18924
+INFO 2026-05-19 21:52:48,353 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:52:55,928 basehttp "GET / HTTP/1.1" 200 23442
+INFO 2026-05-19 21:52:55,979 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:52:55,980 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:53:35,467 basehttp "POST /admin/store/subcategory/add/ HTTP/1.1" 302 0
+INFO 2026-05-19 21:53:35,609 basehttp "GET /admin/store/subcategory/ HTTP/1.1" 200 19989
+INFO 2026-05-19 21:53:35,665 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-05-19 21:53:38,026 basehttp "GET / HTTP/1.1" 200 23811
+INFO 2026-05-19 21:53:38,246 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b_LansDnT.jpeg HTTP/1.1" 200 94279
+INFO 2026-05-19 21:53:44,072 views Search | query= | category=11 | price= | sort=
+INFO 2026-05-19 21:53:44,117 basehttp "GET /search/?category=11 HTTP/1.1" 200 13436
+WARNING 2026-05-19 21:53:50,913 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-19 21:53:50,914 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
+INFO 2026-05-19 21:55:06,091 basehttp "GET / HTTP/1.1" 200 23811
+INFO 2026-05-19 21:55:06,170 basehttp "GET /media/categories/collection-1_2nrNE3z.jpg HTTP/1.1" 304 0
+INFO 2026-05-19 21:55:06,171 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b_LansDnT.jpeg HTTP/1.1" 304 0
+WARNING 2026-05-19 21:55:06,207 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+INFO 2026-05-19 21:55:06,208 basehttp "GET /media/products/images_6.jpg HTTP/1.1" 304 0
+WARNING 2026-05-19 21:55:06,215 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
+INFO 2026-05-19 21:56:39,665 basehttp "GET / HTTP/1.1" 200 23811
+INFO 2026-05-19 21:56:39,719 basehttp "GET /media/categories/simple-handmade-rakhi-design-8a618438-8912-4efd-b_LansDnT.jpeg HTTP/1.1" 304 0
+WARNING 2026-05-19 21:56:39,782 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-05-19 21:56:39,784 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 12995
