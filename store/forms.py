@@ -1,12 +1,22 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .models import Product, Category
 
+User = get_user_model()
 
 # =========================
 # 🔐 SIGNUP FORM
 # =========================
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import get_user_model
+
+from .models import Product, Category
+
+User = get_user_model()
+
+
 class SignUpForm(UserCreationForm):
 
     email = forms.EmailField(
@@ -20,6 +30,14 @@ class SignUpForm(UserCreationForm):
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Enter username'
+        })
+    )
+
+    mobile = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter mobile number'
         })
     )
 
@@ -38,24 +56,53 @@ class SignUpForm(UserCreationForm):
     )
 
     class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')
 
-    # ✅ Email uniqueness validation
+        model = User
+
+        fields = (
+            'username',
+            'email',
+            'mobile',
+            'password1',
+            'password2'
+        )
+
     def clean_email(self):
+
         email = self.cleaned_data.get('email')
+
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Email already registered")
+            raise forms.ValidationError(
+                "Email already registered"
+            )
+
         return email
 
-    # ✅ Save override (important)
+    def clean_mobile(self):
+
+        mobile = self.cleaned_data.get('mobile')
+
+        if mobile:
+
+            if not mobile.isdigit():
+                raise forms.ValidationError(
+                    "Mobile number must contain only digits"
+                )
+
+            if len(mobile) != 10:
+                raise forms.ValidationError(
+                    "Mobile number must be 10 digits"
+                )
+
+        return mobile
+
     def save(self, commit=True):
+
         user = super().save(commit=False)
 
-        # 🔥 Recommended: use email as username
         user.username = self.cleaned_data['username']
-
         user.email = self.cleaned_data['email']
+        user.mobile = self.cleaned_data['mobile']
 
         if commit:
             user.save()

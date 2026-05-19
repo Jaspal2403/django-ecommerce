@@ -1,12 +1,60 @@
-# from django.db import models
-
 # Create your models here.
 from django.db import models
 from django.core.exceptions import ValidationError
 from PIL import Image
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from decimal import Decimal
 
 
+class User(AbstractUser):
+
+    # ================= BASIC EXTRA FIELDS =================
+
+    email = models.EmailField(unique=True)
+
+    mobile = models.CharField(
+        max_length=15,
+        unique=True,
+        blank=True,
+        null=True
+    )
+
+    profile_image = models.ImageField(
+        upload_to='profiles/',
+        blank=True,
+        null=True
+    )
+
+    date_of_birth = models.DateField(
+        blank=True,
+        null=True
+    )
+
+    # ================= ECOMMERCE FUTURE FIELDS =================
+    
+    is_email_verified = models.BooleanField(default=False)
+
+    is_mobile_verified = models.BooleanField(default=False)
+
+    wallet_balance = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal('0.00')
+    )
+
+    loyalty_points = models.PositiveIntegerField(default=0)
+
+    # ================= OPTIONAL =================
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.username
+
+        
 class Category(models.Model):
     name = models.CharField(max_length=100)
     parent = models.ForeignKey(
@@ -51,9 +99,10 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.TextField()   
+    description = models.TextField(blank=True)   
     image = models.ImageField(upload_to='products/', null=True, blank=True)
     mrp = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    is_featured = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -68,8 +117,8 @@ class Product(models.Model):
 
                 # 🔧 Compress & save
                 img.save(self.image.path, optimize=True, quality=85)
-            except Exception:
-                pass  # Handle exceptions (e.g., file not found, invalid image) as needed
+            except Exception as e:
+                print(e)  # Handle exceptions (e.g., file not found, invalid image) as needed
 
     def __str__(self):
         return self.name
@@ -95,7 +144,7 @@ class ProductImage(models.Model):
     
     
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Cart - {self.user.username}"
@@ -113,7 +162,7 @@ class CartItem(models.Model):
         return f"{self.product.name} ({self.quantity})"    
     
 class Address(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     address = models.TextField()
     city = models.CharField(max_length=100)
@@ -150,7 +199,7 @@ class Order(models.Model):
         ('cancelled', 'Cancelled'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
 
     # ✅ FIXED (add related_name to avoid conflicts)
@@ -199,7 +248,7 @@ class Payment(models.Model):
     razorpay_signature = models.CharField(max_length=255, blank=True, null=True)
 
     # Payment details
-    amount = models.PositiveIntegerField()  # in paise
+    amount = models.PositiveIntegerField(help_text="Amount in paise")  # in paise
     currency = models.CharField(max_length=10, default="INR")
 
     # Status
@@ -209,7 +258,7 @@ class Payment(models.Model):
     #product_id = models.IntegerField(null=True, blank=True)
     #user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='payments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='payments')
 
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -222,7 +271,7 @@ class Payment(models.Model):
         return f"Payment {self.id} | {self.status} | ₹{self.amount/100}"
    
 class Wishlist(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 

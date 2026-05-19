@@ -1,10 +1,18 @@
 from django.contrib import admin
 from django.http import HttpResponse
 from django.utils.html import format_html
-from .models import Address, Cart, CartItem, OrderItem, HeroBanner, Coupon
+from django.contrib.auth.admin import UserAdmin
+from .forms import ProductAdminForm
 import csv
 
 from .models import (
+    User,
+    Address,
+    Cart,
+    CartItem,
+    OrderItem,
+    HeroBanner,
+    Coupon,
     Category,
     ParentCategory,
     SubCategory,
@@ -14,6 +22,49 @@ from .models import (
     Payment,
     Wishlist
 )
+
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+
+    list_display = (
+        'id',
+        'username',
+        'email',
+        'mobile',
+        'is_staff',
+        'is_active',
+        'is_email_verified',
+        'created_at',
+    )
+
+    search_fields = (
+        'username',
+        'email',
+        'mobile',
+    )
+
+    list_filter = (
+        'is_staff',
+        'is_active',
+        'is_email_verified',
+    )
+
+    fieldsets = UserAdmin.fieldsets + (
+        (
+            'Additional Info',
+            {
+                'fields': (
+                    'mobile',
+                    'profile_image',
+                    'date_of_birth',
+                    'is_email_verified',
+                    'is_mobile_verified',
+                    'wallet_balance',
+                    'loyalty_points',
+                )
+            }
+        ),
+    )
 
 
 # =========================
@@ -87,6 +138,9 @@ def remove_featured(modeladmin, request, queryset):
 # =========================
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+
+    form = ProductAdminForm   
+
 
     list_display = (
         "thumbnail",
@@ -189,7 +243,8 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     search_fields = (
-        "id",
+        # "id",
+        "razorpay_order_id",
         "user__username",
     )
 
